@@ -3,6 +3,7 @@ import './App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import GlobalAppBar from './components/GlobalAppBar';  
+import Editable from './components/OrderTable';  
 
 
 
@@ -19,20 +20,29 @@ function NewOrder() {
       
     <GlobalAppBar/>
       
-    <div style={{ padding: '20px'}} ><h2>Neue Bestellung anlegen</h2></div>
+    <div style={{ paddingTop: '20px', paddingLeft: '20px'}} ><h2>Neue Bestellung anlegen</h2></div>
         
         <div style={{ maxWidth: '100%' }}>
-        
         <div style={{display:'flex', alignItems:'center', margin:'20px'}}>
         <form noValidate autoComplete="off">
         <TextField id="outlined-basic" label="Kundennummer" variant="outlined" />
         </form>
         <Button style={{margin:'5px'}} variant="contained" color="primary">
-        Submit
+        Aufrufen
         </Button>
         </div>
+        <div >
+          <Button style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
+          Bestellung anlegen
+          </Button>
+        </div>
+
+        <div style={{ paddingTop: '60px'}} >
+        <Editable/>
+        </div>
+        </div>
+
         
-          </div>
      </>
       
   
