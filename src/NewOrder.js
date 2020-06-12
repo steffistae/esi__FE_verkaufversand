@@ -68,7 +68,7 @@ class NewOrder extends Component {
       
       
       <MaterialTable
-        title="Bestellung anlegen"
+        title="Bestellung testen"
         columns={columns}
         data={this.state.data}
         editable={{

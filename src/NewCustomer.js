@@ -24,6 +24,7 @@ class NewCustomer extends Component {
             business: false,
 			company: '',
 			response: [],
+			data: null
 		}
 	}
 
@@ -39,7 +40,18 @@ class NewCustomer extends Component {
 		console.log(this.state)
 		axios
 			.post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addcustomer', this.state)
-			
+			.then((res) => {
+                console.log(res.data)
+                var data = JSON.stringify(res.data)
+                data = JSON.parse(data)
+				data = data.message
+				console.log(data)
+                return data
+            })
+            .then(data => {
+                console.log("data: " + data)
+                this.setState({ data: data })
+            })
 			.then(response => {
 				console.log(response)
 			})
@@ -49,12 +61,9 @@ class NewCustomer extends Component {
 			})
 	}
 
-	setB2B(event) {
-        console.log(event.target.value)
-      }
-
 	render() {
 		const { firstName, surName, street, PostCode, city, country, phone, mail, business, company } = this.state
+		let content = '';
 		return (
 		<>
 		<div>
@@ -159,9 +168,9 @@ class NewCustomer extends Component {
 						</Button></Grid>
 					</Grid>
 					<div>
-						<h2>
-							Bestätigung: 
-						</h2>
+						<h3>
+							Bestätigung: {content = this.state.data}
+						</h3>
 					</div>
 				</FormControl>
 				</div>    
