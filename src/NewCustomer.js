@@ -181,5 +181,4 @@ class NewCustomer extends Component {
 		}
 	}
 
-
 export default NewCustomer; 

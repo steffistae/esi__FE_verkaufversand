@@ -16,7 +16,8 @@ class Retoure extends Component {
             prodOrderNr: '', //Nummer
             customerID: '', //ID des Kunden
             lack: '', //String mit Beschreibung
-            newProd: false //boolean
+			newProd: false, //boolean
+			data: null,
 		}
     }
 
@@ -32,6 +33,14 @@ class Retoure extends Component {
 		console.log(this.state)
 		axios
 			.post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addcustomer', this.state)
+			.then((res) => {
+                console.log(res.data)
+                var data = JSON.stringify(res.data)
+                data = JSON.parse(data)
+				data = data.message
+				console.log(data)
+                return data
+            })
 			.then(response => {
 				console.log(response)
 			})
@@ -43,7 +52,8 @@ class Retoure extends Component {
 
 
     render() {
-        const {prodOrderNr, customerID, lack, newProd} = this.state
+		const {prodOrderNr, customerID, lack, newProd} = this.state
+		let content = '';
         return (  
             <>
 		<div>
@@ -101,9 +111,9 @@ class Retoure extends Component {
 						</Button></Grid>
 					</Grid>
 					<div>
-						<h2>
-							Bestätigung: 
-						</h2>
+					<h3>
+							Bestätigung: {content = this.state.data}
+						</h3>
 					</div>
 				</FormControl>
 				</div>    
