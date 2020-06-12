@@ -21,7 +21,7 @@ class NewCustomer extends Component {
             country: '',
             phone: '',
             mail: '',
-            business: true,
+            business: false,
 			company: '',
 			response: [],
 		}
@@ -29,14 +29,14 @@ class NewCustomer extends Component {
 
 	changeHandler = e => {
 		this.setState({ [e.target.name]: e.target.value })
+		this.setState(
+			{business: true}
+		)
 	}
 
 	submitHandler = e => {
 		e.preventDefault()
 		console.log(this.state)
-		this.setState({
-				business: this.state.business,
-			  })
 		axios
 			.post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addcustomer', this.state)
 			
@@ -140,9 +140,9 @@ class NewCustomer extends Component {
 							onChange={this.changeHandler} />
 						</Grid>
 						<Grid item xs={6} sm={6}>
-						<div onChange={this.changeHandler,this.setB2B.bind(this)}> Geschäftskunde <br/>
+						<div onChange={this.changeHandler}> Geschäftskunde <br/>
                             <input type="radio" value={business} name="business"/> Ja <br/>
-                            <input type="radio" value={false} name="business"/> Nein
+                            <input type="radio" name="business"/> Nein
                         </div>
 						</Grid>
 						<Grid item xs={6} sm={6}>
@@ -171,5 +171,6 @@ class NewCustomer extends Component {
 			);
 		}
 	}
+
 
 export default NewCustomer; 
