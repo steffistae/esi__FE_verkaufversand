@@ -8,8 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { Link } from 'react-router-dom';
-
+import { Link } from 'react-router-dom'
   
 export default function GlobalAppBar() {  
         const [anchorEl, open] = React.useState(null);  
@@ -22,7 +21,7 @@ export default function GlobalAppBar() {
         };  
         return (  
                 <>  
-                        <AppBar position="sticky" > 
+                        <AppBar position="static"> 
                         <Toolbar>
                             <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" color="inherit" aria-label="menu">
                                 <MenuIcon />
@@ -34,8 +33,9 @@ export default function GlobalAppBar() {
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
                             <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
                             <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
-                            <Button component={Link} to="/status" color="inherit">Statusabfrage</Button>
-                            <Button  component={Link} to="/booking" color="inherit">Prüfen & Auslagern</Button>
+                            <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
+                            <Button  component={Link} to="/status" color="inherit">Status</Button>
+                            <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
                             </ButtonGroup>
 
                             </Toolbar>
