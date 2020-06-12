@@ -7,7 +7,10 @@ import Home from './Home';
 import Status from './Status';
 import Booking from './Booking';
 import Retoure from './Retoure';
-
+import OrderMaterial from './OrderMaterial';
+import OrderPickup from './OrderPickup';
+import GetProdStatus from './GetProdStatus';
+import SplitLargeOrders from './SplitLargeOrders';
 
 function App() {
   return (
@@ -21,6 +24,10 @@ function App() {
    <Route path="/booking" component={Booking} />
    <Route path="/status" component={Status} />
    <Route path="/retoure" component={Retoure} />
+   <Route path="/orderMaterial" component={OrderMaterial} />
+   <Route path="/orderPickup" component={OrderPickup} />
+   <Route path="/getProdStatus" component={GetProdStatus} />
+   <Route path="/splitLargeOrders" component={SplitLargeOrders} />
 
  </Switch>
  
