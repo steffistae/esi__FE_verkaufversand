@@ -27,10 +27,17 @@ export default function GlobalAppBar() {
                                 <MenuIcon />
                             </IconButton> 
                             <Typography variant="h4" >
-                                YOURSHIRT   |   Home    
+                                YOURSHIRT   |   Verkauf & Versand      
                             </Typography>
 
-                            
+                            <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
+                            <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
+                            <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
+                            <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
+                            <Button  component={Link} to="/status" color="inherit">Status</Button>
+                            <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
+                            </ButtonGroup>
+
                             </Toolbar>
                         </AppBar>  
                         <div>  

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import MaterialTable from 'material-table';
-import GlobalAppBar from './components/GlobalAppBar'; 
+import AppBarSales from './components/AppBarSales'; 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 
@@ -87,7 +87,7 @@ class Booking extends Component {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
         
-      <GlobalAppBar/>
+      <AppBarSales/>
       
       <div style={{ paddingTop: '20px', paddingLeft: '20px'}} ><h2>Status prüfen</h2>
                 <Button onClick={() => this.submitHandler()}
