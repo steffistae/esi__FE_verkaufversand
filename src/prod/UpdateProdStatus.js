@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './App.css';
+import '../App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from './components/GlobalAppBar';
-import ProdAppBar from './components/ProdAppBar';
+import GlobalAppBar from '../components/GlobalAppBar';  
+import ProdAppBar from '../components/ProdAppBar';  
 
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
@@ -41,9 +41,9 @@ class UpdateProdStatus extends Component {
             .post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/updatestatus', this.state)
             .then((res) => {
                 console.log(res.data)
-                var parsed = JSON.stringify(res.data)
-                parsed = JSON.parse(parsed)
-                var data = parsed.body.message
+                var data = JSON.stringify(res.data)
+                data = JSON.parse(data)
+                data = data.body.message
                 return data
             })
             .then(data => {
@@ -91,8 +91,8 @@ class UpdateProdStatus extends Component {
                                                 onChange={this.changeHandler} />
                                         </Grid>
                                         <Grid item xs={6} sm={6}>
-                                            <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Auftragsstatus updaten
-						</Button></Grid>
+                                            <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Auftragsstatus updaten</Button>
+                                        </Grid>
                                     </Grid >
 
                                 </Grid>

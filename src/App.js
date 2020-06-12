@@ -7,11 +7,12 @@ import Home from './Home';
 import Status from './Status';
 import Booking from './Booking';
 import Retoure from './Retoure';
-import OrderMaterial from './OrderMaterial';
-import OrderPickup from './OrderPickup';
-import GetProdStatus from './GetProdStatus';
-import UpdateProdStatus from './UpdateProdStatus';
-import SplitLargeOrders from './SplitLargeOrders';
+import OrderMaterial from './prod/OrderMaterial';
+import OrderPickup from './prod/OrderPickup';
+import GetProdStatus from './prod/GetProdStatus';
+import UpdateProdStatus from './prod/UpdateProdStatus';
+import SplitLargeOrders from './prod/SplitLargeOrders';
+import GetCSV from './prod/getCSV';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
 
 <Switch>
 
-    <Route path="/home" component={Home} />
+   <Route path="/home" component={Home} />
    <Route path="/newcustomer" component={NewCustomer} />
    <Route path="/neworder" component={NewOrder} />
    <Route path="/booking" component={Booking} />
@@ -30,6 +31,8 @@ function App() {
    <Route path="/getProdStatus" component={GetProdStatus} />
    <Route path="/updateProdStatus" component={UpdateProdStatus} />
    <Route path="/splitLargeOrders" component={SplitLargeOrders} />
+   <Route path="/getCSV" component={GetCSV} />
+
 
  </Switch>
  

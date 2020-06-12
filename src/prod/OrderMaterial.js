@@ -1,9 +1,9 @@
 import React from 'react';
-import './App.css';
+import '../App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from './components/GlobalAppBar';  
-import ProdAppBar from './components/ProdAppBar';  
+import GlobalAppBar from '../components/GlobalAppBar';  
+import ProdAppBar from '../components/ProdAppBar';  
 
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
