@@ -6,6 +6,7 @@ import NewOrder from './NewOrder';
 import Home from './Home';
 import Status from './Status';
 import Booking from './Booking';
+import Retoure from './Retoure';
 
 
 function App() {
@@ -17,8 +18,9 @@ function App() {
     <Route path="/home" component={Home} />
    <Route path="/newcustomer" component={NewCustomer} />
    <Route path="/neworder" component={NewOrder} />
-   <Route path="/status" component={Status} />
    <Route path="/booking" component={Booking} />
+   <Route path="/status" component={Status} />
+   <Route path="/retoure" component={Retoure} />
 
  </Switch>
  
