@@ -8,6 +8,7 @@ import Editable from './components/OrderTable';
 
 
 
+
 function NewOrder() {
   return (
 
@@ -20,7 +21,7 @@ function NewOrder() {
       
     <GlobalAppBar/>
       
-    <div style={{ paddingTop: '20px', paddingLeft: '20px'}} ><h2>Neue Bestellung anlegen</h2></div>
+    <div style={{ paddingTop: '1px', paddingLeft: '20px'}} ><h2>Neue Bestellung anlegen</h2></div>
         
         <div style={{ maxWidth: '100%' }}>
         <div style={{display:'flex', alignItems:'center', margin:'20px'}}>
@@ -31,11 +32,7 @@ function NewOrder() {
         Aufrufen
         </Button>
         </div>
-        <div >
-          <Button style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
-          Bestellung anlegen
-          </Button>
-        </div>
+        
 
         <div style={{ paddingTop: '60px'}} >
         <Editable/>

@@ -1,5 +1,6 @@
 import React from 'react';
 import MaterialTable from 'material-table';
+import Button from '@material-ui/core/Button';
 
 
 
@@ -28,9 +29,15 @@ function Editable() {
    
   ]);
 
+  function createOrder() {
+    alert('test');
+  }
+
  
+
   return (
   
+    <>
     
     <MaterialTable
       title="Bestellung anlegen"
@@ -41,6 +48,8 @@ function Editable() {
           new Promise((resolve, reject) => {
             setTimeout(() => {
               setData([...data, newData]);
+              console.log(newData);
+              
               //count= count+1;  irgendwo muss count für die Position hochgezählt werden
               resolve();
             }, 1000)
@@ -73,14 +82,18 @@ function Editable() {
      
 
     /> 
-   
+    
+    <Button onClick={createOrder} style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
+          Bestellung anlegen
+          </Button>
+   </>
   )
 }
 
 
 
 
-export default Editable;
+export default Editable; 
 
 
 

@@ -14,15 +14,22 @@ const BookingTable = () => {
       { title: 'Kundennummer', field: 'customernr', type: 'numeric' },
       { title: 'Geprüft', field: 'proof', type: 'boolean' },  
       { title: 'Ausgebucht', field: 'booked', type: 'boolean' },
+      { title: 'Versendet', field: 'send', type: 'boolean' },
 
       
     ]}
-    data={[{ position: 1, ordernr: 123456, customernr: 99999, proof: 0, booked:0 }, 
-      { position: 2, ordernr: 234567, customernr: 99999, proof: 1, booked:0 },]}
+    data={[{ position: 1, ordernr: 123456, customernr: 99999, proof: 0, booked:0, send:0 }, 
+      { position: 2, ordernr: 234567, customernr: 99999, proof: 1, booked:0, send:0 },]}
     
     title="Vollständige Bestellungen"
 
     actions={[
+      {
+        icon: 'verified',
+        tooltip: 'Bestellung erfolgreich geprüft!',
+        onClick: (event, rowData) => {
+        }
+      },
       {
         icon: 'unarchive',
         //if(proof....true/0) {disabled: true},
@@ -31,8 +38,9 @@ const BookingTable = () => {
         }
       },
       {
-        icon: 'verified',
-        tooltip: 'Bestellung erfolgreich geprüft!',
+        icon: 'send',
+        //if(proof....true/0) {disabled: true},
+        tooltip: 'Bestellung versendet!',
         onClick: (event, rowData) => {
         }
       }
