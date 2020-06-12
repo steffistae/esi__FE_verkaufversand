@@ -55,7 +55,7 @@ class Retoure extends Component {
 					<GlobalAppBar/>
 				</div>
 				
-				<div style={{ padding: '20px'}} ><h2>Neuen Kunden anlegen</h2></div>
+				<div style={{ padding: '20px'}} ><h2>Retoure anlegen</h2></div>
 				
 				<div style={{ width: '800px', padding: '20px'}}>
 				<FormControl>
