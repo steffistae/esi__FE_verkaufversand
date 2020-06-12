@@ -22,7 +22,7 @@ export default function GlobalAppBar() {
         return (  
                 <>  
                         <AppBar position="static"> 
-                        <Toolbar>
+                        <Toolbar >
                             <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" color="inherit" aria-label="menu">
                                 <MenuIcon />
                             </IconButton> 
@@ -30,6 +30,11 @@ export default function GlobalAppBar() {
                                 YOURSHIRT   |   Home    
                             </Typography>
 
+                            <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
+                            <Button component={Link} to="/newcustomer" color="inherit">Verkauf & Versand</Button>
+                            <Button  component={Link} to="/home" color="inherit">Produktion</Button>
+                            <Button  component={Link} to="/home" color="inherit">Mawi</Button>
+                            </ButtonGroup>
                             
                             </Toolbar>
                         </AppBar>  
@@ -43,7 +48,7 @@ export default function GlobalAppBar() {
                                         onClose={handleClose}  
                                 >  
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
-                                        <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
+                                        <MenuItem component={Link} to="/newcustomer" onClick={handleClose}>Verkauf & Versand</MenuItem>  
                                         <MenuItem onClick={handleClose}>Produktion</MenuItem>  
                                         <MenuItem onClick={handleClose}>Mawi</MenuItem>  
                                 </Menu>  

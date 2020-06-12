@@ -144,11 +144,6 @@ class NewOrder extends Component {
           <div style={{ paddingTop: '20px'}} >
           <Editable/>
 
-          <div >
-            <Button type="submit" style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
-            Bestellung anlegen
-            </Button>
-          </div>
           </div>
           </div>
       </form>

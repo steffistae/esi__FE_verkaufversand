@@ -22,7 +22,7 @@ export default function GlobalAppBar() {
         return (  
                 <>  
                         <AppBar position="static"> 
-                        <Toolbar>
+                        <Toolbar >
                             <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" color="inherit" aria-label="menu">
                                 <MenuIcon />
                             </IconButton> 
