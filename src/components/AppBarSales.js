@@ -34,6 +34,7 @@ export default function GlobalAppBar() {
                             <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
                             <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
                             <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
+                            <Button  component={Link} to="/customerrequest" color="inherit">Kundenanfrage</Button>
                             <Button  component={Link} to="/status" color="inherit">Status</Button>
                             <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
                             </ButtonGroup>

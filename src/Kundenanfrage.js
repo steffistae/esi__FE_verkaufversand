@@ -5,7 +5,7 @@ import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-class Status extends Component {
+class Kundenanfrage extends Component {
   constructor(props) {
     super(props);
 
@@ -14,17 +14,18 @@ class Status extends Component {
       isLoaded: false,
       items: [],
       stateID: '',
-      trigger: '',
+      orderNr: '',
     };
   }
 
   submitHandler = e => {
-    console.log(this.state.trigger)
+    console.log(this.state.orderNr)
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
-          this.state.trigger
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusvo?orderNr=" +
+          this.state.orderNr
       )
+      .then((result) => console.log(result))
       .then(
         (result) => {
           this.setState({
@@ -41,10 +42,9 @@ class Status extends Component {
             error,
           });
         }
-      )
-    .then((result) => console.log(result))
+      );
     e.preventDefault();
-    console.log(this.state.trigger);
+    console.log(this.state.orderNr);
   };
   
 
@@ -53,7 +53,7 @@ class Status extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error, isLoaded, items, stateID, orderNr } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -69,7 +69,7 @@ class Status extends Component {
               <AppBarSales />
 
               <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-                <h2>Status prüfen</h2>
+                <h2>Kundenanfrage prüfen</h2>
               </div>
 
               <div style={{ maxWidth: "100%" }}>
@@ -82,10 +82,10 @@ class Status extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Status ID"
-                      type="number"
-                      name="trigger"
-                      value={trigger}
+                      label="Ordernummer"
+                      type="text"
+                      name="orderNr"
+                      value={orderNr}
                       onChange={this.changeHandler}
                       id="outlined-basic"
                       variant="outlined"
@@ -107,7 +107,7 @@ class Status extends Component {
                 <div style={{ paddingTop: "25px" }}>
                   <MaterialTable
                     style={{ marginLeft: "20px", marginRight: "20px" }}
-                    title="Status der aktuellen Aufträge"
+                    title="Status der Bestellung"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
                       { title: "OrderNr", field: "orderNr" },
@@ -145,4 +145,4 @@ class Status extends Component {
   }
 }
 
-export default Status;
+export default Kundenanfrage;
