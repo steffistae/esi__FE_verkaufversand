@@ -3,7 +3,7 @@ import axios from 'axios'
 import './App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from './components/GlobalAppBar';  
+import AppBarSales from './components/AppBarSales'; 
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { Radio } from '@material-ui/core';
@@ -60,7 +60,7 @@ class NewCustomer extends Component {
 		<div>
 			<form onSubmit={this.submitHandler}>
 				<div>
-					<GlobalAppBar/>
+					<AppBarSales/>
 				</div>
 				
 				<div style={{ padding: '20px'}} ><h2>Neuen Kunden anlegen</h2></div>
