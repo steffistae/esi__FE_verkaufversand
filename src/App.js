@@ -10,6 +10,7 @@ import Retoure from './Retoure';
 import OrderMaterial from './OrderMaterial';
 import OrderPickup from './OrderPickup';
 import GetProdStatus from './GetProdStatus';
+import UpdateProdStatus from './UpdateProdStatus';
 import SplitLargeOrders from './SplitLargeOrders';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
    <Route path="/orderMaterial" component={OrderMaterial} />
    <Route path="/orderPickup" component={OrderPickup} />
    <Route path="/getProdStatus" component={GetProdStatus} />
+   <Route path="/updateProdStatus" component={UpdateProdStatus} />
    <Route path="/splitLargeOrders" component={SplitLargeOrders} />
 
  </Switch>

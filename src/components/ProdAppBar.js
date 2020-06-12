@@ -34,6 +34,7 @@ export default function ProdAppBar() {
                             <Button component={Link} to="/orderMaterial" color="inherit">Material bestellen</Button>
                             <Button  component={Link} to="/orderPickup" color="inherit">Aufträge abholen lassen</Button>
                             <Button  component={Link} to="/getProdStatus" color="inherit">Produktionsstatus anzeigen</Button>
+                            <Button  component={Link} to="/updateProdStatus" color="inherit">Produktionsstatus updaten</Button>
                             <Button  component={Link} to="/splitLargeOrders" color="inherit">Aufträge aufteilen</Button>
 
                             </ButtonGroup>
