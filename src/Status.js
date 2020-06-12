@@ -19,6 +19,7 @@ class Status extends Component {
 
   submitHandler = e => {
     var trigger = '4';
+    
     axios.get("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID="+ trigger)
     .then(
       result => {
