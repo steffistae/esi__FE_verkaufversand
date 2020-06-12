@@ -22,14 +22,14 @@ class Retoure extends Component {
 
     changeHandler = e => {
 		this.setState({ [e.target.name]: e.target.value })
+		this.setState(
+			{newProd: true}
+		)
 	}
 
 	submitHandler = e => {
 		e.preventDefault()
 		console.log(this.state)
-		this.setState(
-			{newProd: true}
-		)
 		axios
 			.post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addcustomer', this.state)
 			.then(response => {
@@ -41,10 +41,7 @@ class Retoure extends Component {
 			})
     }
 
-    setnewProd(event) {
-        console.log(event.target.value)
-      }
-    
+
     render() {
         const {prodOrderNr, customerID, lack, newProd} = this.state
         return (  
@@ -92,9 +89,9 @@ class Retoure extends Component {
 							onChange={this.changeHandler}/>
 						</Grid>
 						<Grid item xs={6} sm={6}>
-						<div onChange={this.changeHandler,this.setnewProd.bind(this)}> Neue Produktion <br/>
-                            <input type="radio" value={true} name="newProd"/> Ja <br/>
-                            <input type="radio" value={false} name="newProd"/> Nein
+						<div onChange={this.changeHandler}> Neue Produktion <br/>
+                            <input type="radio" value={newProd} name="newProd"/> Ja <br/>
+							<input type="radio" name="newProd"/> Nein <br/>
                         </div>
 						</Grid>
 							  			
