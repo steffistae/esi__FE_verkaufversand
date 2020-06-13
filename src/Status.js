@@ -31,6 +31,7 @@ class Status extends Component {
             isLoaded: true,
             items: result.data,
           });
+          console.log(result)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -42,7 +43,6 @@ class Status extends Component {
           });
         }
       )
-    .then((result) => console.log(result))
     e.preventDefault();
     console.log(this.state.trigger);
   };

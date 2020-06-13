@@ -17,14 +17,15 @@ class Booking extends Component {
       prodOrderNr: "",
       fkmaterials: "",
       quantity: "",
+      data: null,
     };
   }
-  changeHandler = (e) => {
+  changeHandler = e => {
     this.setState({ [e.target.name]: parseInt(e.target.value) });
   };
 
-  submitHandler = (e) => {
-    var trigger = "4";
+  submitHandler = e => {
+    var trigger = '4';
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
@@ -36,6 +37,7 @@ class Booking extends Component {
             isLoaded: true,
             items: result.data,
           });
+          console.log(result)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -46,10 +48,12 @@ class Booking extends Component {
             error,
           });
         }
-      );
+      )
+    e.preventDefault();
+    console.log(trigger);
   };
 
-  bookingMaWi(fkmaterials, quantity, prodOrderNr) {
+  bookingMaWi() {
     const data = {
       fkmaterials: this.state.fkmaterials,
       quantity: this.state.quantity,
@@ -63,7 +67,7 @@ class Booking extends Component {
       });
   }
 
-  bookingOrder(orderNr) {
+  bookingOrder() {
     const data = {
       orderNr: this.state.orderNr,
     };
@@ -99,8 +103,7 @@ class Booking extends Component {
             <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
               <h2>Status prüfen</h2>
               <Button
-                onClick={() => this.submitHandler()}
-                //type="submit"
+                type="submit"
                 style={{ margin: "10px" }}
                 variant="contained"
                 color="primary"
