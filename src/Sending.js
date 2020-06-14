@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import axios from "axios";
 import "./App.css";
 import QRCode from "qrcode.react";
 import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { FormControl } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
-import { Radio } from "@material-ui/core";
+
 
 class Sending extends Component {
   constructor(props) {
@@ -19,7 +17,7 @@ class Sending extends Component {
     };
   }
 
-  changeHandler = (e) => {
+  changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
     this.setState({ id: true });
   };
