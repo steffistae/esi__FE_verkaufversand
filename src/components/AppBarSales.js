@@ -27,15 +27,18 @@ export default function GlobalAppBar() {
                                 <MenuIcon />
                             </IconButton> 
                             <Typography variant="h4" >
-                                YOURSHIRT   |   Home    
+                                YOURSHIRT   |   Verkauf & Versand      
                             </Typography>
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
-                            <Button component={Link} to="/newcustomer" color="inherit">Verkauf & Versand</Button>
-                            <Button  component={Link} to="/home" color="inherit">Produktion</Button>
-                            <Button  component={Link} to="/home" color="inherit">Mawi</Button>
+                            <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
+                            <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
+                            <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
+                            <Button  component={Link} to="/customerrequest" color="inherit">Kundenanfrage</Button>
+                            <Button  component={Link} to="/status" color="inherit">Status</Button>
+                            <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
                             </ButtonGroup>
-                            
+
                             </Toolbar>
                         </AppBar>  
                         <div>  
@@ -48,8 +51,7 @@ export default function GlobalAppBar() {
                                         onClose={handleClose}  
                                 >  
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
-                                        <MenuItem component={Link} to="/getprodstatus" onClick={handleClose}>Produktion</MenuItem>  
-                                        <MenuItem component={Link} to="/newcustomer" onClick={handleClose}>Verkauf & Versand</MenuItem>  
+                                        <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
                                         <MenuItem onClick={handleClose}>Produktion</MenuItem>  
                                         <MenuItem onClick={handleClose}>Mawi</MenuItem>  
                                 </Menu>  

@@ -4,7 +4,7 @@ import './App.css';
 import MaterialTable from 'material-table'
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from './components/GlobalAppBar';  
+import AppBarSales from './components/AppBarSales'; 
 import Editable from './components/OrderTable';
 
 class NewOrder extends Component {
@@ -68,7 +68,7 @@ class NewOrder extends Component {
       
       
       <MaterialTable
-        title="Bestellung anlegen"
+        title="Bestellung testen"
         columns={columns}
         data={this.state.data}
         editable={{
@@ -125,7 +125,7 @@ class NewOrder extends Component {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
         
-      <GlobalAppBar/>
+      <AppBarSales/>
       
       <div style={{ paddingTop: '20px', paddingLeft: '20px'}} ><h2>Neue Bestellung anlegen</h2></div>
           
@@ -144,11 +144,6 @@ class NewOrder extends Component {
           <div style={{ paddingTop: '20px'}} >
           <Editable/>
 
-          <div >
-            <Button type="submit" style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
-            Bestellung anlegen
-            </Button>
-          </div>
           </div>
           </div>
       </form>
