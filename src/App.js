@@ -8,6 +8,7 @@ import Status from './Status';
 import Booking from './Booking';
 import Retoure from './Retoure';
 import Kundenanfrage from './Kundenanfrage'
+import Sending from './Sending'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
    <Route path="/status" component={Status} />
    <Route path="/customerrequest" component={Kundenanfrage} />
    <Route path="/retoure" component={Retoure} />
+   <Route path="/sending" component={Sending} /> 
 
 
  </Switch>

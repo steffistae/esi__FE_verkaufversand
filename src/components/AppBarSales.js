@@ -37,6 +37,7 @@ export default function GlobalAppBar() {
                             <Button  component={Link} to="/customerrequest" color="inherit">Kundenanfrage</Button>
                             <Button  component={Link} to="/status" color="inherit">Status</Button>
                             <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
+                            <Button  component={Link} to="/sending" color="inherit">Versandlabel</Button>
                             </ButtonGroup>
 
                             </Toolbar>
