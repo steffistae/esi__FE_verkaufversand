@@ -3,16 +3,19 @@ import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
 
 
-
-
 function Editable() {
   const { useState } = React;
 
+  
+  let count = 2 //für Position
 
-  let count = 1
+  function countIndex() {   //für Position
+    count=count+1;
+    console.log(count);
+  }
 
   const [columns, setColumns] = useState([
-    { title: 'Position', field: 'position', initialEditValue: (count +1)},
+    { title: 'Position', field: 'position', initialEditValue: (count)},
     { title: 'Artikelnummer', field: 'articleNr' },
     { title: 'Farbcode', field: 'colorcode' },
     { title: 'Motivnummer', field: 'motivNr' },
@@ -29,17 +32,19 @@ function Editable() {
    
   ]);
 
+ 
+
   function createOrder() {
-    alert('test');
+    console.log("test"); //hier API Aufruf
   }
 
- 
+
 
   return (
   
     <>
     
-    <MaterialTable
+    <MaterialTable 
       title="Bestellung anlegen"
       columns={columns}
       data={data}
@@ -50,7 +55,9 @@ function Editable() {
               setData([...data, newData]);
               console.log(newData);
               
-              //count= count+1;  irgendwo muss count für die Position hochgezählt werden
+              countIndex();
+       
+
               resolve();
             }, 1000)
           }),
@@ -84,7 +91,7 @@ function Editable() {
     /> 
     
     <Button onClick={createOrder} style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
-          Bestellung anlegen
+          Bestellung abschicken
           </Button>
    </>
   )
