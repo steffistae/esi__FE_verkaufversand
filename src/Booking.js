@@ -124,7 +124,7 @@ class Booking extends Component {
             <AppBarSales />
 
             <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-              <h2>Status prüfen</h2>
+              <h2>Prüfen und Auslagern</h2>
               <Button
                 type="submit"
                 style={{ margin: "10px" }}
@@ -147,7 +147,7 @@ class Booking extends Component {
               <div style={{ paddingTop: "5px" }}>
                 <MaterialTable
                   style={{ marginLeft: "20px", marginRight: "00px" }}
-                  title="Status der aktuellen Aufträge"
+                  title="Versandbereite Aufträge"
                   columns={[
                     { title: "ProductionOrderNr", field: "prodOrderNr" },
                     { title: "OrderNr", field: "orderNr" },
