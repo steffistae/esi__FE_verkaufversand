@@ -121,9 +121,6 @@ class Kundenanfrage extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
-                        onClick: () =>
-                          this.tableRef.current &&
-                          this.tableRef.current.onQueryChange(),
                       },
                     ]}
                     options={{

@@ -22,11 +22,11 @@ class Booking extends Component {
       data: null,
     };
   }
-  changeHandler = (e) => {
+  changeHandler = e => {
     this.setState({ [e.target.name]: parseInt(e.target.value) });
   };
 
-  submitHandler = (e) => {
+  submitHandler = e => {
     var trigger = "4";
     axios
       .get(
@@ -160,9 +160,8 @@ class Booking extends Component {
                       icon: "refresh",
                       tooltip: "Refresh",
                       isFreeAction: true,
-                      onClick: () =>
-                        this.tableRef.current &&
-                        this.tableRef.current.onQueryChange(),
+                      onClick: (e) =>
+                        this.submitHandler(e),
                     },
                   ]}
                   options={{

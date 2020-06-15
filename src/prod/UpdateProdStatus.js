@@ -189,10 +189,10 @@ class UpdateProdStatus extends Component {
                             </div>
                         </div>
 
-                        <div style={{ maxWidth: "100%" }}>
+                        
                             <div style={{ paddingTop: "5px" }}>
                                 <MaterialTable
-                                    style={{ marginLeft: "20px", marginRight: "00px" }}
+                                    style={{ marginLeft: "20px", marginRight: "20px" }}
                                     title="Produktionsstatus der aktuellen Aufträge"
                                     columns={[
                                         { title: "Production Order Nr", field: "prodOrderNum" },
@@ -204,16 +204,7 @@ class UpdateProdStatus extends Component {
                                         { title: "Delta E", field: "deltaE" },
                                     ]}
                                     data={this.state.prodStatus}
-                                    actions={[
-                                        {
-                                            icon: "refresh",
-                                            tooltip: "Refresh",
-                                            isFreeAction: true,
-                                            onClick: () =>
-                                                this.tableRef.current &&
-                                                this.tableRef.current.onQueryChange(),
-                                        },
-                                    ]}
+                                    
                                     options={{
                                         headerStyle: {
                                             backgroundColor: "#3f51b5",
@@ -222,7 +213,7 @@ class UpdateProdStatus extends Component {
                                     }}
                                 />
                             </div>
-                        </div>
+                        
                     </form>
 
 

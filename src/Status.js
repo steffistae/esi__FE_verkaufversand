@@ -123,9 +123,6 @@ class Status extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
-                        onClick: () =>
-                          this.tableRef.current &&
-                          this.tableRef.current.onQueryChange(),
                       },
                     ]}
                     options={{
@@ -133,7 +130,7 @@ class Status extends Component {
                         backgroundColor: "#3f51b5",
                         color: "#FFFF",
                       },
-                    }}
+                    }} 
                   />
                 </div>
               </div>
