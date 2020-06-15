@@ -173,10 +173,10 @@ class OrderMaterial extends Component {
           </form>
 
           <hr style={{
-            color: "#282c34",
-            backgroundColor: "#282c34",
+            color: "#3f51b5",
+            backgroundColor: "#3f51b5",
             height: 2,
-            borderColor: "#282c34"
+            borderColor: "#3f51b5"
           }} />
 
           <form onSubmit={this.submitHandler}>
@@ -242,11 +242,12 @@ class OrderMaterial extends Component {
             </div>
 
             <hr style={{
-              color: '#282c34',
-              backgroundColor: '#282c34',
+              color: "#3f51b5",
+              backgroundColor: "#3f51b5",
               height: 2,
-              borderColor: '#282c34'
+              borderColor: "#3f51b5"
             }} />
+
           </form>
 
           <form onSubmit={this.submitHandlerRestock}>

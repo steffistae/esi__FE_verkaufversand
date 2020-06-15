@@ -2,17 +2,24 @@ import React, { Component } from 'react'
 import '../App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from '../components/GlobalAppBar';
 import ProdAppBar from '../components/ProdAppBar';
+import MaterialTable from "material-table";
 
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
-import { FormLabel } from '@material-ui/core';
-import { RadioGroup } from '@material-ui/core';
-import { FormControlLabel } from '@material-ui/core';
-import { Radio } from '@material-ui/core';
+
 
 import axios from 'axios'
+
+var emptyStatus = {
+    prodOrderNum: '',
+    endDate: '',
+    colorHEX: '',
+    ProdSortNum: '',
+    prodStatus: '',
+    quantity: '',
+    deltaE: '',
+}
 
 
 class UpdateProdStatus extends Component {
@@ -23,7 +30,9 @@ class UpdateProdStatus extends Component {
             prodOrderNr: '', //Nummer
             statusID: '3', //ID des Kunden
             statusdescription: 'Produktion abgeschlossen', //String mit Beschreibung
-            data: null
+            data: null,
+
+            prodStatus: [],
         }
     }
 
@@ -55,12 +64,44 @@ class UpdateProdStatus extends Component {
             })
     }
 
+    submitHandlerGetStatus = e => {
+        e.preventDefault()
+        console.log(this.state)
+        this.setState(
+            { newProd: true }
+        )
+        axios
+            .get('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/readorderinfo')
+            .then((res) => {
+                var data = JSON.stringify(res.data)
+                data = JSON.parse(data)
+                data = data.body
+                console.log(data)
+                return data
+            })
+            .then(data => {
+                console.log("data: " + data)
+                this.setState({ prodStatus: data })
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
     setnewProd(event) {
         console.log(event.target.value)
     }
 
     render() {
-        const { prodOrderNr } = this.state;
+        const {
+            prodOrderNr,
+            endDate,
+            colorHEX,
+            ProdSortNum,
+            prodStatus,
+            quantity,
+            deltaE,
+        } = this.state;
         let content = '';
         return (
             <>
@@ -68,7 +109,7 @@ class UpdateProdStatus extends Component {
                     <div><ProdAppBar /></div>
                     <form onSubmit={this.submitHandler}>
 
-                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus der Aufträge auf "erledigt" updaten </h2>
+                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus für Auftrag updaten </h2>
 
                             <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
                                 <FormControl>
@@ -93,22 +134,98 @@ class UpdateProdStatus extends Component {
                                         </Grid >
 
                                     </Grid>
-                                    <div>
-                                        <h2>
-                                            Bestätigung: {content = this.state.data}
-                                        </h2>
-                                    </div>
+
                                 </FormControl>
+                                <div>
+                                    <h3>
+                                        Bestätigung: {content = this.state.data}
+                                    </h3>
+                                </div>
                             </div>
                         </div>
                     </form>
 
                     <hr style={{
-                        color: "#282c34",
-                        backgroundColor: "#282c34",
+                        color: "#3f51b5",
+                        backgroundColor: "#3f51b5",
                         height: 2,
-                        borderColor: "#282c34"
+                        borderColor: "#3f51b5"
                     }} />
+
+                    <form onSubmit={this.submitHandlerGetStatus}>
+
+                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus der anstehenden Aufträge einsehen </h2>
+
+                            <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
+                                <FormControl>
+                                    <Grid container
+                                        direction="row"
+                                        justify="center"
+                                        alignItems="flex-start">
+
+                                        <Grid
+                                            container spacing={3}>
+                                            <Grid item xs={6} sm={6}>
+                                                <TextField
+                                                    label="Produktionsordernummer"
+                                                    type="text"
+                                                    name="prodOrderNr"
+                                                    value={prodOrderNr}
+                                                    onChange={this.changeHandler} />
+                                            </Grid>
+                                            <Grid item xs={6} sm={6}>
+                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Produktionsstatus abfragen</Button>
+                                            </Grid>
+                                        </Grid >
+
+                                    </Grid>
+
+                                </FormControl>
+                                <div>
+                                    <h3>
+                                        Bestätigung: {content = this.state.data}
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style={{ maxWidth: "100%" }}>
+                            <div style={{ paddingTop: "5px" }}>
+                                <MaterialTable
+                                    style={{ marginLeft: "20px", marginRight: "00px" }}
+                                    title="Produktionsstatus der aktuellen Aufträge"
+                                    columns={[
+                                        { title: "Production Order Nr", field: "prodOrderNum" },
+                                        { title: "End Date", field: "endDate" },
+                                        { title: "HEX color", field: "colorHEX" },
+                                        { title: "Prod Sort Nr", field: "ProdSortNum" },
+                                        { title: "Prod Status", field: "prodStatus" },
+                                        { title: "Quantity", field: "quantity" },
+                                        { title: "Delta E", field: "deltaE" },
+                                    ]}
+                                    data={this.state.prodStatus}
+                                    actions={[
+                                        {
+                                            icon: "refresh",
+                                            tooltip: "Refresh",
+                                            isFreeAction: true,
+                                            onClick: () =>
+                                                this.tableRef.current &&
+                                                this.tableRef.current.onQueryChange(),
+                                        },
+                                    ]}
+                                    options={{
+                                        headerStyle: {
+                                            backgroundColor: "#3f51b5",
+                                            color: "#FFFF",
+                                        },
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    </form>
+
+
                 </div>
             </>
         );
