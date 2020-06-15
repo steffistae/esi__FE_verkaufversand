@@ -25,6 +25,7 @@ function App() {
    <Route path="/customerrequest" component={Kundenanfrage} />
    <Route path="/retoure" component={Retoure} />
    <Route path="/sending" component={Sending} /> 
+   <Route path="/" component={Home} />
 
 
  </Switch>

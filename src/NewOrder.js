@@ -20,7 +20,7 @@ class NewOrder extends Component {
       colorCode: "",
       quantity: "",
       motivNr: "",
-      lineItem2: "",  
+      lineItem2: "2",  
       articleNr2: "",
       colorCode2: "",
       quantity2: "",
