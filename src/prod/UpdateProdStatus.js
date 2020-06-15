@@ -4,11 +4,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import ProdAppBar from '../components/ProdAppBar';
 import MaterialTable from "material-table";
-
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
-
-
+import FooterPage from '../components/Footer';
 import axios from 'axios'
 
 var emptyStatus = {
@@ -167,10 +165,10 @@ class UpdateProdStatus extends Component {
                                             container spacing={3}>
                                             <Grid item xs={6} sm={6}>
                                                 <TextField
-                                                    label="Produktionsordernummer"
+                                                    label="Production Status"
                                                     type="text"
-                                                    name="prodOrderNr"
-                                                    value={prodOrderNr}
+                                                    name="prodStatus"
+                                                    value={prodStatus}
                                                     onChange={this.changeHandler} />
                                             </Grid>
                                             <Grid item xs={6} sm={6}>
@@ -224,9 +222,8 @@ class UpdateProdStatus extends Component {
                             </div>
                         </div>
                     </form>
-
-
                 </div>
+                <FooterPage />
             </>
         );
     }

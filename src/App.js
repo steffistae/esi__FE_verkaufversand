@@ -9,13 +9,12 @@ import Booking from './Booking';
 import Retoure from './Retoure';
 import OrderMaterial from './prod/OrderMaterial';
 import OrderPickup from './prod/OrderPickup';
-import GetProdStatus from './prod/GetProdStatus';
 import UpdateProdStatus from './prod/UpdateProdStatus';
 import SplitLargeOrders from './prod/SplitLargeOrders';
 import GetCSV from './prod/getCSV';
 import Kundenanfrage from './Kundenanfrage'
 import Sending from './Sending'
-
+import FAQ from './FAQ'
 
 function App() {
   return (
@@ -33,10 +32,10 @@ function App() {
         <Route path="/sending" component={Sending} />
         <Route path="/orderMaterial" component={OrderMaterial} />
         <Route path="/orderPickup" component={OrderPickup} />
-        <Route path="/getProdStatus" component={GetProdStatus} />
         <Route path="/updateProdStatus" component={UpdateProdStatus} />
         <Route path="/splitLargeOrders" component={SplitLargeOrders} />
         <Route path="/getCSV" component={GetCSV} />
+        <Route path="/faq" component={FAQ} />
         <Route path="/" component={Home} />
 
       </Switch>
