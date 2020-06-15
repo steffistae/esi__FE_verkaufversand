@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import '../App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from '../components/GlobalAppBar';  
-import ProdAppBar from '../components/ProdAppBar';  
+import GlobalAppBar from '../components/GlobalAppBar';
+import ProdAppBar from '../components/ProdAppBar';
 
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
@@ -65,45 +65,50 @@ class UpdateProdStatus extends Component {
         return (
             <>
                 <div>
+                    <div><ProdAppBar /></div>
                     <form onSubmit={this.submitHandler}>
-                        <div>
-                            <ProdAppBar />
-                        </div>
 
-                        <div style={{ padding: '20px' }} ><h2>Produktionsstatus der Aufträge auf "erledigt" updaten </h2></div>
+                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus der Aufträge auf "erledigt" updaten </h2>
 
-                        <div style={{ width: '800px', padding: '20px' }}>
-                            <FormControl>
-                                <Grid container
-                                    direction="row"
-                                    justify="center"
-                                    alignItems="flex-start"
-                                >
+                            <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
+                                <FormControl>
+                                    <Grid container
+                                        direction="row"
+                                        justify="center"
+                                        alignItems="flex-start">
 
-                                    <Grid
-                                        container spacing={3}>
-                                        <Grid item xs={6} sm={6}>
-                                            <TextField
-                                                label="Produktionsordernummer"
-                                                type="text"
-                                                name="prodOrderNr"
-                                                value={prodOrderNr}
-                                                onChange={this.changeHandler} />
-                                        </Grid>
-                                        <Grid item xs={6} sm={6}>
-                                            <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Auftragsstatus updaten</Button>
-                                        </Grid>
-                                    </Grid >
+                                        <Grid
+                                            container spacing={3}>
+                                            <Grid item xs={6} sm={6}>
+                                                <TextField
+                                                    label="Produktionsordernummer"
+                                                    type="text"
+                                                    name="prodOrderNr"
+                                                    value={prodOrderNr}
+                                                    onChange={this.changeHandler} />
+                                            </Grid>
+                                            <Grid item xs={6} sm={6}>
+                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Auftragsstatus updaten</Button>
+                                            </Grid>
+                                        </Grid >
 
-                                </Grid>
-                                <div>
-                                    <h2>
-                                        Bestätigung: {content = this.state.data}
-                                    </h2>
-                                </div>
-                            </FormControl>
+                                    </Grid>
+                                    <div>
+                                        <h2>
+                                            Bestätigung: {content = this.state.data}
+                                        </h2>
+                                    </div>
+                                </FormControl>
+                            </div>
                         </div>
                     </form>
+
+                    <hr style={{
+                        color: "#282c34",
+                        backgroundColor: "#282c34",
+                        height: 2,
+                        borderColor: "#282c34"
+                    }} />
                 </div>
             </>
         );

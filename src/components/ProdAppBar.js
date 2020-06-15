@@ -29,15 +29,12 @@ export default function ProdAppBar() {
                             <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" color="inherit" aria-label="menu">
                                 <MenuIcon />
                             </IconButton> 
-                            
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
-                            <Button component={Link} to="/orderMaterial" color="inherit">Material bestellen</Button>
-                            <Button  component={Link} to="/orderPickup" color="inherit">Aufträge abholen lassen</Button>
-                            <Button  component={Link} to="/getProdStatus" color="inherit">Produktionsstatus anzeigen</Button>
-                            <Button  component={Link} to="/updateProdStatus" color="inherit">Produktionsstatus updaten</Button>
+                            <Button component={Link} to="/orderMaterial" color="inherit">Material</Button>
+                            <Button  component={Link} to="/updateProdStatus" color="inherit">Produktionsstatus</Button>
                             <Button  component={Link} to="/splitLargeOrders" color="inherit">Aufträge aufteilen</Button>
-                            <Button  component={Link} to="/getCSV" color="inherit">CSV Datei erstellen</Button>
+                            <Button  component={Link} to="/getCSV" color="inherit">Export CSV</Button>
 
                             </ButtonGroup>
 

@@ -18,30 +18,28 @@ import Kundenanfrage from './Kundenanfrage'
 
 function App() {
   return (
-<>
+    <>
 
-<Switch>
+      <Switch>
 
-   <Route path="/home" component={Home} />
-   <Route path="/newcustomer" component={NewCustomer} />
-   <Route path="/neworder" component={NewOrder} />
-   <Route path="/booking" component={Booking} />
-   <Route path="/status" component={Status} />
-   <Route path="/customerrequest" component={Kundenanfrage} />
-   <Route path="/retoure" component={Retoure} />
-   <Route path="/orderMaterial" component={OrderMaterial} />
-   <Route path="/orderPickup" component={OrderPickup} />
-   <Route path="/getProdStatus" component={GetProdStatus} />
-   <Route path="/updateProdStatus" component={UpdateProdStatus} />
-   <Route path="/splitLargeOrders" component={SplitLargeOrders} />
-   <Route path="/getCSV" component={GetCSV} />
+        <Route path="/home" component={Home} />
+        <Route path="/newcustomer" component={NewCustomer} />
+        <Route path="/neworder" component={NewOrder} />
+        <Route path="/booking" component={Booking} />
+        <Route path="/status" component={Status} />
+        <Route path="/customerrequest" component={Kundenanfrage} />
+        <Route path="/retoure" component={Retoure} />
+        <Route path="/orderMaterial" component={OrderMaterial} />
+        <Route path="/orderPickup" component={OrderPickup} />
+        <Route path="/getProdStatus" component={GetProdStatus} />
+        <Route path="/updateProdStatus" component={UpdateProdStatus} />
+        <Route path="/splitLargeOrders" component={SplitLargeOrders} />
+        <Route path="/getCSV" component={GetCSV} />
+        <Route path="/" component={Home} />
 
+      </Switch>
 
-
- </Switch>
- 
-
-</>
+    </>
   );
 }
 

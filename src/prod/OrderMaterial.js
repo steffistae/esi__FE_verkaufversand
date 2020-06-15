@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import '../App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
 import GlobalAppBar from '../components/GlobalAppBar';
 import ProdAppBar from '../components/ProdAppBar';
 
@@ -53,16 +54,6 @@ var testDataShirts = {
   "fkmaterials": 0
 }
 
-// {
-
-//   viskositaet: 0.101,
-//   ppml: 900,
-//   deltaE: 1,
-//   saugfaehigkeit: 28.3,
-//   weissgrad: 97
-
-// }
-
 class OrderMaterial extends Component {
   constructor(props) {
     super(props)
@@ -72,12 +63,30 @@ class OrderMaterial extends Component {
       statusID: '3', //ID des Kunden
       statusdescription: 'Chargennummer', //String mit Beschreibung
       dataColor: testDataColor,
-      dataShirt: testDataShirts
+      dataShirt: testDataShirts,
+      responseOrder: '',
+      responseRestock: '',
     }
   }
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  submitHandlerOrder = e => {
+    e.preventDefault()
+    console.log("Button pressed submitHandlerMawi")
+    this.setState(
+      { responseOrder: 'Die Materialwirtschaft wurde benachrichtigt und wird die Ware bald liefern' }
+    )
+  }
+
+  submitHandlerRestock = e => {
+    e.preventDefault()
+    console.log("Button pressed submitHandlerMawi")
+    this.setState(
+      { responseRestock: 'Die Materialwirtschaft wurde benachrichtigt und wird die Materialien bald abholen' }
+    )
   }
 
   submitHandler = e => {
@@ -86,31 +95,6 @@ class OrderMaterial extends Component {
     this.setState(
       { newProd: true }
     )
-
-    // axios
-    //   .post('https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/Prod/')
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     var data = JSON.stringify(res.data)
-    //     data = JSON.parse(data)
-    //     data = data.body.message
-    //     return data
-    //   })
-    //   .then(data => {
-    //     console.log("data: " + data)
-    //     this.setState({ data: data })
-    //   })
-    //   .catch(error => {
-    //     console.log(error)
-    //   })
-
-    var config = {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-        'crossDomain': true,
-      }
-    };
 
     var data = {
       "chargesNum": this.state.chargennummer
@@ -123,10 +107,10 @@ class OrderMaterial extends Component {
         res = JSON.parse(res)
 
         if (res.chargeColor === undefined) {
-          this.setState({dataColor: testDataColor})
+          this.setState({ dataColor: testDataColor })
           this.setState({ dataShirt: res })
         } else {
-          this.setState({dataShirt: testDataShirts})
+          this.setState({ dataShirt: testDataShirts })
           this.setState({ dataColor: res })
         }
         return res
@@ -149,63 +133,159 @@ class OrderMaterial extends Component {
     return (
       <>
         <div>
+          <div> <ProdAppBar /> </div>
+
+          <form onSubmit={this.submitHandlerOrder}>
+
+            <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Material bestellen </h2>
+
+              <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
+                <FormControl>
+                  <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start">
+
+                    <Grid
+                      container spacing={3}>
+                      <Grid item xs={6} sm={6}>
+                        <form>
+                          <Checkbox value="T-Shirts" inputProps={{ 'aria-label': 'Checkbox A' }} /> T-Shirts <br />
+                          <Checkbox value="Cyan" inputProps={{ 'aria-label': 'Checkbox A' }} /> Cyan 10L <br />
+                          <Checkbox value="Magenta" inputProps={{ 'aria-label': 'Checkbox A' }} /> Magenta 10L <br />
+                          <Checkbox value="Yellow" inputProps={{ 'aria-label': 'Checkbox A' }} /> Yellow 10L<br />
+                          <Checkbox value="Key" inputProps={{ 'aria-label': 'Checkbox A' }} /> Key 10L<br />
+                        </form>
+                      </Grid>
+
+                      <Grid item xs={6} sm={6}>
+                        <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained">Material ordern</Button>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                </FormControl>
+                <h3>Bestätigung: {content = this.state.responseOrder}</h3>
+
+              </div>
+            </div>
+
+          </form>
+
+          <hr style={{
+            color: "#282c34",
+            backgroundColor: "#282c34",
+            height: 2,
+            borderColor: "#282c34"
+          }} />
+
           <form onSubmit={this.submitHandler}>
-            <div>
-              <ProdAppBar />
-            </div>
 
-            <div style={{ padding: '20px' }} ><h2>Qualitätswerte für Chargennummer ermitteln </h2></div>
+            <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Qualitätswerte für Chargennummer ermitteln </h2>
 
-            <div style={{ width: '800px', padding: '20px' }}>
-              <FormControl>
-                <Grid container
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start"
-                >
+              <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
+                <FormControl>
+                  <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                  >
 
-                  <Grid
-                    container spacing={3}>
-                    <Grid item xs={6} sm={6}>
-                      <TextField
-                        label="Chargennummer"
-                        type="text"
-                        name="chargennummer"
-                        value={chargennummer}
-                        onChange={this.changeHandler} />
+                    <Grid
+                      container spacing={3}>
+                      <Grid item xs={6} sm={6}>
+                        <TextField
+                          label="Chargennummer"
+                          type="text"
+                          name="chargennummer"
+                          value={chargennummer}
+                          onChange={this.changeHandler} />
+                      </Grid>
+                      <Grid item xs={6} sm={6}>
+                        <Button type="submit" style={{ float: 'left', margin: '14px', width: "200px" }} color="primary" variant="contained">Qualitätswerte abfragen</Button>
+                      </Grid>
+                    </Grid >
+
+                  </Grid>
+                </FormControl>
+                <div style={{ width: '500px', padding: '0px', paddingLeft: '0px' }}>
+                  <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start"
+                  >
+
+                    <Grid
+                      container spacing={100}>
+                      <Grid item xs={6} sm={6} mr={100}>
+                        <h3> Farbparameter </h3>
+                        Chargennummer: {content = this.state.dataColor.idcharges} <br />
+                        Artikel: {content = this.state.dataColor.material.name} <br />
+                        Beschreibung: {content = this.state.dataColor.material.description} <br />
+                        PPML: {content = this.state.dataColor.chargeColor.ppml} <br />
+                        Viskosität: {content = this.state.dataColor.chargeColor.viscosity} <br />
+                        Delta E: {content = this.state.dataColor.chargeColor.deltaE} <br /> <br />
+                      </Grid>
+
+                      <Grid item xs={6} sm={6} mx={100} pl={100}>
+                        <h3> T-Shirt Parameter </h3>
+                        Chargennummer: {content = this.state.dataShirt.idcharges} <br />
+                        Artikel: {content = this.state.dataShirt.material.name} <br />
+                        Saugfähigkeit Shirt: {content = this.state.dataShirt.chargeShirt.absorbency} <br />
+                        Weißgrad Shirt: {content = this.state.dataShirt.chargeShirt.whiteness} <br />
+                      </Grid>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
-                      <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Qualitätswerte abfragen</Button>
-                    </Grid>
-                  </Grid >
-
-                </Grid>
-                <div>
-                  <h2> Farbparameter: </h2>
-
-                    Chargennummer: {content = this.state.dataColor.idcharges} <br />
-                    Artikel: {content = this.state.dataColor.material.name} <br />
-                    Beschreibung: {content = this.state.dataColor.material.description} <br />
-                    PPML: {content = this.state.dataColor.chargeColor.ppml} <br />
-                    Viskosität: {content = this.state.dataColor.chargeColor.viscosity} <br />
-                    Delta E: {content = this.state.dataColor.chargeColor.deltaE} <br /> <br />
-
-                    <h2> T-Shirt Parameter: </h2>
-
-                    Chargennummer: {content = this.state.dataShirt.idcharges} <br />
-                    Artikel: {content = this.state.dataShirt.material.name} <br />
-                    Saugfähigkeit Shirt: {content = this.state.dataShirt.chargeShirt.absorbency} <br />
-                    Weißgrad Shirt: {content = this.state.dataShirt.chargeShirt.whiteness} <br />
+                  </Grid>
                 </div>
-              </FormControl>
+              </div>
+
             </div>
+
+            <hr style={{
+              color: '#282c34',
+              backgroundColor: '#282c34',
+              height: 2,
+              borderColor: '#282c34'
+            }} />
+          </form>
+
+          <form onSubmit={this.submitHandlerRestock}>
+
+            <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Material wieder einlagern </h2>
+
+              <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
+                <FormControl>
+                  <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start">
+
+                    <Grid
+                      container spacing={3}>
+                      <Grid item xs={6} sm={6}>
+                        <form>
+                          <Checkbox value="T-Shirts" inputProps={{ 'aria-label': 'Checkbox A' }} /> T-Shirts <br />
+                          <Checkbox value="Farbe" inputProps={{ 'aria-label': 'Checkbox A' }} /> Farbe <br />
+                        </form>
+                      </Grid>
+
+                      <Grid item xs={6} sm={6}>
+                        <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained">Materialwirtschaft benachrichtigen</Button>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                </FormControl>
+                <h3>Bestätigung: {content = this.state.responseRestock}</h3>
+
+              </div>
+            </div>
+
           </form>
         </div>
       </>
     );
-
   }
 }
-
 
 export default OrderMaterial; 

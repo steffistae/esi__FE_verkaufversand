@@ -30,4 +30,16 @@
   color: #61dafb;
 }
 
+.verticalLine {
+  border-left: thick solid #ff0000;
+}
+
+
+.textBorder {
+  color: 'blue';
+  font-weight: 'bold';
+  font-size: 20;
+  border-color: 'black';
+  border-width: 1;
+}
 
