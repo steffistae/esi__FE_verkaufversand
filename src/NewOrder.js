@@ -14,26 +14,51 @@ class NewOrder extends Component {
 
     this.state = {
       customerID: "",
-      lineItem: "",
+      toStock: false,
+      lineItem: "1",
       articleNr: "",
       colorCode: "",
       quantity: "",
       motivNr: "",
-      toStock: true,
+      lineItem2: "",  
+      articleNr2: "",
+      colorCode2: "",
+      quantity2: "",
+      motivNr2: ""
     };
   }
 
-  changeHandler = (e) => {
+  changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
+    this.setState({toStock: true})
   };
 
-  submitHandler = (e) => {
+  submitHandler = e => {
+    const data = {
+      customerID: this.state.customerID,
+      lineItem: this.state.lineItem,
+      articleNr: this.state.articleNr,
+      colorCode: this.state.colorCode,
+      quantity: this.state.quantity,
+      motivNr: this.state.motivNr,
+      toStock: this.state.toStock
+    }
+    const data2 = {
+      customerID: this.state.customerID,
+      lineItem: this.state.lineItem2,
+      articleNr: this.state.articleNr2,
+      colorCode: this.state.colorCode2,
+      quantity: this.state.quantity2,
+      motivNr: this.state.motivNr2,
+      toStock: this.state.toStock
+    }
+
     e.preventDefault();
-    console.log(this.state);
+    console.log([{data},{data2}]);
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addorder",
-        this.state
+        [{data},{data2}]
       )
       .then((response) => {
         console.log(response);
@@ -47,10 +72,15 @@ class NewOrder extends Component {
     const {
       customerID,
       lineItem,
+      lineItem2,
       articleNr,
+      articleNr2,
       colorCode,
+      colorCode2,
       quantity,
+      quantity2,
       motivNr,
+      motivNr2,
       toStock,
     } = this.state;
     let content = "";
@@ -99,7 +129,7 @@ class NewOrder extends Component {
                     <Grid item xs={2} sm={2}>
                       <TextField
                         label="Position"
-                        type="text"
+                        type="number"
                         name="lineItem"
                         value={lineItem}
                         onChange={this.changeHandler}
@@ -117,7 +147,7 @@ class NewOrder extends Component {
                     <Grid item xs={2} sm={2}>
                       <TextField
                         label="Farbcode"
-                        type="number"
+                        type="text"
                         name="colorCode"
                         value={colorCode}
                         onChange={this.changeHandler}
@@ -126,7 +156,7 @@ class NewOrder extends Component {
                     <Grid item xs={2} sm={2}>
                       <TextField
                         label="Menge"
-                        type="text"
+                        type="number"
                         name="quantity"
                         value={quantity}
                         onChange={this.changeHandler}
@@ -138,6 +168,52 @@ class NewOrder extends Component {
                         type="text"
                         name="motivNr"
                         value={motivNr}
+                        onChange={this.changeHandler}
+                      />
+                    </Grid>
+                    <Grid item xs={2} sm={2}></Grid>
+                    <Grid item xs={2} sm={2}>
+                      <TextField
+                        label="Position"
+                        type="number"
+                        name="lineItem2"
+                        value={lineItem2}
+                        onChange={this.changeHandler}
+                      />
+                    </Grid>
+                    <Grid item xs={2} sm={2}>
+                      <TextField
+                        label="Artikelnummer"
+                        type="text"
+                        name="articleNr2"
+                        value={articleNr2}
+                        onChange={this.changeHandler}
+                      />
+                    </Grid>
+                    <Grid item xs={2} sm={2}>
+                      <TextField
+                        label="Farbcode"
+                        type="text"
+                        name="colorCode2"
+                        value={colorCode2}
+                        onChange={this.changeHandler}
+                      />
+                    </Grid>
+                    <Grid item xs={2} sm={2}>
+                      <TextField
+                        label="Menge"
+                        type="number"
+                        name="quantity2"
+                        value={quantity2}
+                        onChange={this.changeHandler}
+                      />
+                    </Grid>
+                    <Grid item xs={2} sm={2}>
+                      <TextField
+                        label="Motivnummer"
+                        type="text"
+                        name="motivNr2"
+                        value={motivNr2}
                         onChange={this.changeHandler}
                       />
                     </Grid>

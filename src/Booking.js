@@ -14,7 +14,7 @@ class Booking extends Component {
       error: null,
       isLoaded: false,
       orderNr: "",
-      prodOrderNr: "",
+      prodOrderNr: "TEST_J",
       fkmaterials: "",
       quantity: "",
       customerID: "",
@@ -221,7 +221,7 @@ class Booking extends Component {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            margin: "10px",
+                            margin: "5px",
                           }}
                         >
                           <TextField
