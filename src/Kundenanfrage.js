@@ -25,7 +25,6 @@ class Kundenanfrage extends Component {
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusvo?orderNr=" +
           this.state.orderNr
       )
-      .then((result) => console.log(result.data))
       .then(
         (result) => {
           this.setState({
@@ -42,9 +41,8 @@ class Kundenanfrage extends Component {
             error,
           });
         }
-      );
+      )
     e.preventDefault();
-    console.log(this.state.orderNr);
   };
   
 

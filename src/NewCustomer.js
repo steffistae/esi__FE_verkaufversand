@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import AppBarSales from './components/AppBarSales'; 
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
-import { Radio } from '@material-ui/core';
 
 class NewCustomer extends Component {
 	constructor(props) {

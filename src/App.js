@@ -14,6 +14,7 @@ import UpdateProdStatus from './prod/UpdateProdStatus';
 import SplitLargeOrders from './prod/SplitLargeOrders';
 import GetCSV from './prod/getCSV';
 import Kundenanfrage from './Kundenanfrage'
+import Sending from './Sending'
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/status" component={Status} />
         <Route path="/customerrequest" component={Kundenanfrage} />
         <Route path="/retoure" component={Retoure} />
+        <Route path="/sending" component={Sending} />
         <Route path="/orderMaterial" component={OrderMaterial} />
         <Route path="/orderPickup" component={OrderPickup} />
         <Route path="/getProdStatus" component={GetProdStatus} />

@@ -14,18 +14,20 @@ class Booking extends Component {
       error: null,
       isLoaded: false,
       orderNr: "",
-      prodOrderNr: "",
+      prodOrderNr: "TEST_J",
       fkmaterials: "",
       quantity: "",
+      customerID: "",
+      checked: false,
       data: null,
     };
   }
-  changeHandler = e => {
+  changeHandler = (e) => {
     this.setState({ [e.target.name]: parseInt(e.target.value) });
   };
 
-  submitHandler = e => {
-    var trigger = '4';
+  submitHandler = (e) => {
+    var trigger = "4";
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
@@ -37,7 +39,7 @@ class Booking extends Component {
             isLoaded: true,
             items: result.data,
           });
-          console.log(result)
+          console.log(result);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -48,24 +50,42 @@ class Booking extends Component {
             error,
           });
         }
-      )
+      );
     e.preventDefault();
     console.log(trigger);
   };
 
   bookingMaWi() {
-    const data = {
-      fkmaterials: this.state.fkmaterials,
-      quantity: this.state.quantity,
-      prodOrderNr: "",
-    };
+//    const data = {
+//      fkmaterials: this.state.fkmaterials,
+//      quantity: this.state.quantity,
+//      customerID: this.state.customerID,
+//      prodOrderNr: "",
+//    };
+
+    const data = [{
+      "fkmaterials": this.state.fkmaterials,
+      "quantity": this.state.quantity
+    },{
+      "productionOrderNr": this.state.prodOrderNr    }
+    ]
+  
+
     console.log({ data });
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", { data })
+      .post(" https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/Prod/goods/orders", { data })
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.message;
+        console.log(data);
+        return data;
+      })
       .then((result) => {
         console.log({ data });
       });
-  }
+  };
 
   bookingOrder() {
     const data = {
@@ -88,7 +108,10 @@ class Booking extends Component {
       fkmaterials,
       quantity,
       prodOrderNr,
+      checked,
+      customerID,
     } = this.state;
+    let content = "";
     return (
       <>
         <div>
@@ -129,6 +152,7 @@ class Booking extends Component {
                     { title: "ProductionOrderNr", field: "prodOrderNr" },
                     { title: "OrderNr", field: "orderNr" },
                     { title: "StatusID", field: "statusID" },
+                    { title: "Geprüft", field: "checked"},
                   ]}
                   data={this.state.items}
                   actions={[
@@ -197,7 +221,7 @@ class Booking extends Component {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            margin: "10px",
+                            margin: "5px",
                           }}
                         >
                           <TextField
@@ -218,6 +242,15 @@ class Booking extends Component {
                             variant="outlined"
                             onChange={this.changeHandler}
                           />
+                          <TextField
+                            name="customerID"
+                            label="Kundennummer"
+                            value={customerID}
+                            style={{ paddingLeft: "5px" }}
+                            id="outlined-basic"
+                            variant="outlined"
+                            onChange={this.changeHandler}
+                          />
 
                           <Button
                             onClick={() => this.bookingMaWi()}
@@ -227,6 +260,9 @@ class Booking extends Component {
                           >
                             Auslagern
                           </Button>
+                        </div>
+                        <div>
+                          <h3>Bestätigung: {(content = this.state.data)}</h3>
                         </div>
                       </form>
                     </div>

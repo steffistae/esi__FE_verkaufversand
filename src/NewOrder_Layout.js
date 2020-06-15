@@ -2,13 +2,13 @@ import React from 'react';
 import './App.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import GlobalAppBar from './components/GlobalAppBar';  
+import AppBarSales from './components/AppBarSales';  
 import Editable from './components/OrderTable';  
 
 
 
 
-function NewOrder() {
+function NewOrderLayout() {
   return (
 
 <>
@@ -18,7 +18,7 @@ function NewOrder() {
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
       
-    <GlobalAppBar/>
+    <AppBarSales/>
       
     <div style={{ paddingTop: '20px', paddingLeft: '20px'}} ><h2>Neue Bestellung anlegen</h2></div>
         
@@ -31,13 +31,9 @@ function NewOrder() {
         Aufrufen
         </Button>
         </div>
-        <div >
-          <Button style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
-          Bestellung anlegen
-          </Button>
-        </div>
 
-        <div style={{ paddingTop: '60px'}} >
+        <div style={{ paddingTop: '20px'}} >
+
         <Editable/>
         </div>
         </div>
@@ -49,4 +45,4 @@ function NewOrder() {
   );
 }
 
-export default NewOrder;
+export default NewOrderLayout;
