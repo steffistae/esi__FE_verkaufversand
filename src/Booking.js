@@ -56,24 +56,15 @@ class Booking extends Component {
   };
 
   bookingMaWi() {
-//    const data = {
-//      fkmaterials: this.state.fkmaterials,
-//      quantity: this.state.quantity,
-//      customerID: this.state.customerID,
-//      prodOrderNr: "",
-//    };
-
-    const data = [{
-      "fkmaterials": this.state.fkmaterials,
-      "quantity": this.state.quantity
-    },{
-      "productionOrderNr": this.state.prodOrderNr    }
-    ]
-  
-
+    const data = {
+      fkmaterials: this.state.fkmaterials,
+      quantity: this.state.quantity,
+      customerID: this.state.customerID,
+      prodOrderNr: "",
+    };
     console.log({ data });
     axios
-      .post(" https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/Prod/goods/orders", { data })
+      .post("https://jsonplaceholder.typicode.com/posts", { data })
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
@@ -85,7 +76,7 @@ class Booking extends Component {
       .then((result) => {
         console.log({ data });
       });
-  };
+  }
 
   bookingOrder() {
     const data = {
