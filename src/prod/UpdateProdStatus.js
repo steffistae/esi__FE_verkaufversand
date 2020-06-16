@@ -202,7 +202,7 @@ class UpdateProdStatus extends Component {
                             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
                             <div style={{ paddingTop: "5px" }}>
                                 <MaterialTable
-                                    style={{ marginLeft: "20px", marginRight: "00px" }}
+                                    style={{ marginLeft: "20px", marginRight: "20px" }}
                                     title="Produktionsstatus der aktuellen Aufträge"
                                     columns={[
                                         { title: "Production Order Nr", field: "prodOrderNum" },
@@ -210,8 +210,7 @@ class UpdateProdStatus extends Component {
                                         { title: "HEX color", field: "colorHEX" },
                                         { title: "Prod Sort Nr", field: "ProdSortNum" },
                                         { title: "Prod Status", field: "prodStatus" },
-                                        { title: "Quantity", field: "quantity" },
-                                        { title: "Delta E", field: "deltaE" },
+                                        
                                     ]}
 
                                     data={this.state.prodStatus}
@@ -232,10 +231,10 @@ class UpdateProdStatus extends Component {
                                     }}
                                 />
                             </div>
-                        </div>
+                        
                     </form>
                 </div>
-                <FooterPage />
+                <FooterPage /> 
             </>
         );
     }

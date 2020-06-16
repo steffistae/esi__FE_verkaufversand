@@ -1,21 +1,17 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import FooterPage from '../components/Footer';
 
 
 function Editable() {
   const { useState } = React;
 
-  
-  let count = 2 //für Position
-
-  function countIndex() {   //für Position
-    count=count+1;
-    console.log(count);
-  }
+  const [count, incrementCount] = useState(1);
+  const [customerId, setCustomerId] = useState('');
 
   const [columns, setColumns] = useState([
-    { title: 'Position', field: 'position', initialEditValue: (count)},
     { title: 'Artikelnummer', field: 'articleNr' },
     { title: 'Farbcode', field: 'colorcode' },
     { title: 'Motivnummer', field: 'motivNr' },
@@ -23,19 +19,29 @@ function Editable() {
     {
       title: 'Stock or Sale?',
       field: 'toStock',
-      lookup: { 0: 'for Stock', 1: 'for Sale' },
+      lookup: { true: 'for Stock', false: 'for Sale' },
     },
   ]);
 
   const [data, setData] = useState([
-    { position: '1', articleNr: '1234567', colorcode: '#123456', motivNr: '86', quantity: '2', toStock: '0' },
+    { position: '1', articleNr: '1000001', colorcode: '#21AD35', motivNr: '3459', quantity: '1', toStock: '0' },
    
   ]);
 
  
 
   function createOrder() {
-    console.log("test"); //hier API Aufruf
+    console.log(data.map((element) => {
+      return {
+        customerID: customerId,
+        lineItem: element.tableData.id + 1 + '',
+        articleNr: element.articleNr,
+        colorCode: element.colorcode,
+        quantity: element.quantity,
+        motivNr: element.motivNr,
+        toStock: element.toStock,
+      };
+    }));   //hier API Aufruf: newData schicken
   }
 
 
@@ -43,7 +49,19 @@ function Editable() {
   return (
   
     <>
-    
+      
+        <div style={{ maxWidth: '100%' }}>
+        <div style={{display:'flex', alignItems:'center', margin:'20px'}}>
+        <form noValidate autoComplete="off">
+        <TextField id="outlined-basic" label="Kundennummer" variant="outlined"
+        value={customerId}
+        onChange={(e) => setCustomerId(e.target.value)} />
+        </form>
+        <Button style={{margin:'5px'}} variant="contained" color="primary">
+        Aufrufen
+        </Button>
+        </div> </div>
+
     <MaterialTable 
       title="Bestellung anlegen"
       columns={columns}
@@ -52,12 +70,11 @@ function Editable() {
         onRowAdd: newData =>
           new Promise((resolve, reject) => {
             setTimeout(() => {
+              incrementCount(count + 1);
               setData([...data, newData]);
-              console.log(newData);
+              console.log(count, newData);
               
-              countIndex();
        
-
               resolve();
             }, 1000)
           }),
@@ -93,7 +110,9 @@ function Editable() {
     <Button onClick={createOrder} style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
           Bestellung abschicken
           </Button>
+          <FooterPage/>
    </>
+   
   )
 }
 

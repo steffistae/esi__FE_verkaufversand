@@ -18,15 +18,27 @@ const data = {
             title: "Wie lege ich einen neuen Auftrag an?",
             content: `Bitte klicken Sie hierfür in dem Drop-Down Menü links auf "Vertrieb & Versand" und wählen Sie die Registerkarte "Neue Bestellung" rechts oben aus. Hier können Sie nun alle Daten eingeben und zur Datenbank hinzufügen. Die Produktion wird daraufhin automatisch verständigt. `,
         },
+        {
+            title: "Wie aktualisiere ich eine Tabelle?",
+            content: `Bitte klicken Sie hierfür in der Tabelle auf den refresh-Button oben rechts. `,
+        },
+        {
+            title: "Wie lege ich eine neue Retoure an?",
+            content: `Bitte klicken Sie hierfür in dem Drop-Down Menü links auf "Vertrieb & Versand" und wählen Sie die Registerkarte "Retoure" rechts oben aus. Hier können Sie nun alle Daten eingeben und zur Datenbank hinzufügen. Bei einer notwendigen Neuproduktion wird die Produktion automatisch benachrichtigt `,
+        },
+        {
+            title: "Wie füge ich einen neuen Geschäftskunden zur Kundenkartei hinzu?",
+            content: `Bitte klicken Sie hierfür in dem Drop-Down Menü links auf "Vertrieb & Versand" und wählen Sie die Registerkarte "Neuer Kunde" rechts oben aus. Hier können Sie nun alle Daten eingeben und zur Datenbank hinzufügen. Achten Sie darauf, bei Geschäftskunde "Ja" zu wählen. `,
+        },
     ],
 };
 
 const stylesFAQ = {
     bgColor: 'white',
-    titleTextColor: 'red',
-    rowTitleColor: "red",
+    titleTextColor: 'black',
+    rowTitleColor: "black",
     rowContentColor: 'grey',
-    arrowColor: "red",
+    arrowColor: "black",
 };
 
 class FAQ extends Component {
