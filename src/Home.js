@@ -13,8 +13,7 @@ function App() {
       <GlobalAppBar />
       <div>
         <div style={{ padding: '50px', display: 'flex', justifyContent: 'center' }}><img width='200px' src={logo} alt="Logo" /></div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}><h1>Welcome to YourShirt!</h1></div>
-        <div style={{ display: 'flex', justifyContent: 'center' }}><h2>First, choose your Working Area. :) </h2></div>
+        <div style={{ display: 'flex', justifyContent: 'center' }}><h1>Willkommen bei YourShirt!</h1></div>
       </div>
 
       <FooterPage />

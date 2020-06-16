@@ -11,6 +11,7 @@ var styleFooter = {
   bottom: "0",
   height: "25px",
   width: "100%",
+  color: '#000000',
 }
 
 var phantom = {
@@ -26,7 +27,7 @@ function Footer({ children }) {
       <div>
         <div style={phantom} />
         <div style={styleFooter}>
-          <a href="/faq" color="#FFFFFF">Haben Sie Fragen? Hier geht es zu den FAQ</a>
+          <a href="/faq" color="#000000">Haben Sie Fragen? Hier geht es zu den FAQ</a>
           {children}
         </div>
       </div>

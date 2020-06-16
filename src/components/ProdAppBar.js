@@ -33,9 +33,9 @@ export default function ProdAppBar() {
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
-                                                <Button component={Link} to="/orderMaterial" color="inherit">Material</Button>
-                                                <Button component={Link} to="/updateProdStatus" color="inherit">Produktionsstatus</Button>
-                                                <Button component={Link} to="/splitLargeOrders" color="inherit">Aufträge aufteilen</Button>
+                                                <Button component={Link} to="/orderMaterial" color="inherit">Materialmanagement</Button>
+                                                <Button component={Link} to="/updateProdStatus" color="inherit">Produktionsmanagement</Button>
+                                                <Button component={Link} to="/splitLargeOrders" color="inherit">Auftragsmanagement</Button>
                                                 <Button component={Link} to="/getCSV" color="inherit">Export CSV</Button>
 
                                         </ButtonGroup>
@@ -54,7 +54,7 @@ export default function ProdAppBar() {
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>
                                         <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
                                         <MenuItem component={Link} to="/updateProdStatus" onClick={handleClose}>Produktion</MenuItem>  
-                                        <MenuItem onClick={handleClose}>Mawi</MenuItem>
+                                        <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
 
                                 </Menu>

@@ -55,7 +55,7 @@ export default function GlobalAppBar() {
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
                                         <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
                                         <MenuItem component={Link} to="/getprodstatus" onClick={handleClose}>Produktion</MenuItem>  
-                                        <MenuItem onClick={handleClose}>Mawi</MenuItem>  
+                                        <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>  
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
 
                                 </Menu>  
