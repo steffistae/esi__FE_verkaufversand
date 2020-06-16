@@ -60,8 +60,9 @@ class Sending extends Component {
                   style={{ margin: "20px" }}
                   color="primary"
                   variant="contained"
+                  disabled={!this.state.orderNr}
                 >
-                  Submit
+                  Label anfordern
                 </Button>
 
                 <div>

@@ -60,7 +60,7 @@ function Editable() {
           <form noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
-              label="Kundennummer"
+              label="Kundennummer*"
               variant="outlined"
               value={customerId}
               onChange={(e) => setCustomerId(e.target.value)}
@@ -120,6 +120,7 @@ function Editable() {
         style={{ float: "right", margin: "5px" }}
         variant="contained"
         color="primary"
+        disabled={!customerId}
       >
         Bestellung abschicken
       </Button>
