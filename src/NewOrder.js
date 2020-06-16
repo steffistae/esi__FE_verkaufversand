@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import AppBarSales from "./components/AppBarSales";
 import { FormControl } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
+import FooterPage from './components/Footer';
 
 class NewOrder extends Component {
   constructor(props) {
@@ -240,6 +241,7 @@ class NewOrder extends Component {
             </div>
           </form>
         </div>
+        <FooterPage/>
       </>
     );
   }

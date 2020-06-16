@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import AppBarSales from './components/AppBarSales';  
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import FooterPage from './components/Footer';
 
 
 class Retoure extends Component {
@@ -124,6 +125,7 @@ class Retoure extends Component {
 				</div>    
 			</form>
 		</div>
+		<FooterPage/>
 		</>        
 			);
 		}
