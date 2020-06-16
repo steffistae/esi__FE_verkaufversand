@@ -8,7 +8,6 @@ import Status from './Status';
 import Booking from './Booking';
 import Retoure from './Retoure';
 import OrderMaterial from './prod/OrderMaterial';
-import OrderPickup from './prod/OrderPickup';
 import UpdateProdStatus from './prod/UpdateProdStatus';
 import SplitLargeOrders from './prod/SplitLargeOrders';
 import GetCSV from './prod/getCSV';
@@ -31,7 +30,6 @@ function App() {
         <Route path="/retoure" component={Retoure} />
         <Route path="/sending" component={Sending} />
         <Route path="/orderMaterial" component={OrderMaterial} />
-        <Route path="/orderPickup" component={OrderPickup} />
         <Route path="/updateProdStatus" component={UpdateProdStatus} />
         <Route path="/splitLargeOrders" component={SplitLargeOrders} />
         <Route path="/getCSV" component={GetCSV} />

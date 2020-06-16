@@ -14,7 +14,8 @@ class GetCSV extends Component {
         this.state = {
             data: [],
             name: this.props.filename ? this.props.filename : 'data',
-            url: ''
+            url: '',
+            status: '',
         };
     }
 
@@ -32,7 +33,9 @@ class GetCSV extends Component {
         e.preventDefault()
         console.log(this.state)
         this.setState(
-            { newProd: true }
+            {
+                newProd: true,
+            }
         )
         axios
             .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', { crossdomain: true })
@@ -40,12 +43,10 @@ class GetCSV extends Component {
                 console.log(res.data)
                 var data = JSON.stringify(res.data)
                 data = JSON.parse(data)
-                data = data.url
                 return data
             })
             .then(data => {
-                console.log("data: " + data)
-                this.setState({ url: data })
+                this.setState({ url: data.body.url, status: data.body.status })
             })
             .catch(error => {
                 console.log(error)
@@ -81,7 +82,7 @@ class GetCSV extends Component {
                                         container spacing={3}>
                                         <Grid item xs={6} sm={6}>
                                             <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
-                                            title="Erstellen Sie eine CSV-Datei mit den Nächsten anstehenden Aufträgen bequem per Knopfdruck">
+                                                title="Erstellen Sie eine CSV-Datei mit den Nächsten anstehenden Aufträgen bequem per Knopfdruck">
                                                 CSV-Datei erstellen</Button>
                                         </Grid>
                                         <Grid item xs={6} sm={6}>
@@ -96,6 +97,9 @@ class GetCSV extends Component {
                                 </Grid>
 
                             </FormControl>
+
+                            <h3>Bestätigung: {content = this.state.status}</h3>
+
                         </div>
                     </form>
                 </div>

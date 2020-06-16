@@ -196,7 +196,7 @@ class UpdateProdStatus extends Component {
                                 style={{
                                     display: "flex",
                                     alignItems: "center",
-                                    margin: "20px",
+                                    margin: "0px",
                                 }}
                             ></div>
                             <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
