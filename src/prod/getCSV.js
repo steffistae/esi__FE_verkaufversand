@@ -80,12 +80,14 @@ class GetCSV extends Component {
                                     <Grid
                                         container spacing={3}>
                                         <Grid item xs={6} sm={6}>
-                                            <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">CSV-Datei erstellen</Button>
+                                            <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
+                                            title="Erstellen Sie eine CSV-Datei mit den Nächsten anstehenden Aufträgen bequem per Knopfdruck">
+                                                CSV-Datei erstellen</Button>
                                         </Grid>
                                         <Grid item xs={6} sm={6}>
 
                                             <a href={this.state.url} target="_blank" rel="noopener noreferrer" download>
-                                                <Button style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">
+                                                <Button style={{ float: 'left', margin: '20px' }} color="primary" variant="contained" title="Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern">
                                                     <i className="fas fa-download" /> Download CSV-File  </Button>
                                             </a>
 

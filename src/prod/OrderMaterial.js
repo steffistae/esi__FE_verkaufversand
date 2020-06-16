@@ -153,7 +153,9 @@ class OrderMaterial extends Component {
                       </Grid>
 
                       <Grid item xs={6} sm={6}>
-                        <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained">Material ordern</Button>
+                        <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained"
+                        title="Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten und klicken Sie dann hier"
+                        >Material ordern</Button>
                       </Grid>
                     </Grid>
                   </Grid>
@@ -196,7 +198,9 @@ class OrderMaterial extends Component {
                           onChange={this.changeHandler} />
                       </Grid>
                       <Grid item xs={6} sm={6}>
-                        <Button type="submit" style={{ float: 'left', margin: '14px', width: "200px" }} color="primary" variant="contained">Qualitätswerte abfragen</Button>
+                        <Button type="submit" style={{ float: 'left', margin: '14px', width: "200px" }} color="primary" variant="contained"
+                        title="Um die Qualitätswerte für eine Charge abzufragen geben Sie bitte links in das Feld die Nummer ein welche auf dem entsprechenden Material aufgedruckt ist und klicken Sie nachfolgend hier"
+                        >Qualitätswerte abfragen</Button>
                       </Grid>
                     </Grid >
 
@@ -265,7 +269,9 @@ class OrderMaterial extends Component {
                       </Grid>
 
                       <Grid item xs={6} sm={6}>
-                        <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained">Materialwirtschaft benachrichtigen</Button>
+                        <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained"
+                        title="Wenn Sie Material einlagern möchten wählen Sie bitte links die entsprechende Position aus und drücken Sie hier. Die Materialwirtschaft wird dann benachrichtigt werden und sich darum kümmern"
+                        >Materialwirtschaft benachrichtigen</Button>
                       </Grid>
                     </Grid>
                   </Grid>

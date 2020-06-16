@@ -19,7 +19,6 @@ var emptyStatus = {
     deltaE: '',
 }
 
-
 class UpdateProdStatus extends Component {
     constructor(props) {
         super(props)
@@ -31,6 +30,7 @@ class UpdateProdStatus extends Component {
             data: null,
 
             prodStatus: [],
+            tableRef: '',
         }
     }
 
@@ -107,7 +107,7 @@ class UpdateProdStatus extends Component {
                     <div><ProdAppBar /></div>
                     <form onSubmit={this.submitHandler}>
 
-                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus für Auftrag updaten </h2>
+                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus updaten und Auftrag abholen lassen </h2>
 
                             <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
                                 <FormControl>
@@ -127,7 +127,9 @@ class UpdateProdStatus extends Component {
                                                     onChange={this.changeHandler} />
                                             </Grid>
                                             <Grid item xs={6} sm={6}>
-                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Auftragsstatus updaten</Button>
+                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
+                                                    title="Geben Sie links in das Textfeld die Produktionsordernummer ein welche auf dem Etikett der T-Shirts aufgedruckt ist und klicken Sie dann hier. Hierdurch werden der Status der Bestellung bei V&V geupdated und die Materialwirtschaft benachrichtigt um die Order abzuholen"
+                                                >Auftragsstatus updaten</Button>
                                             </Grid>
                                         </Grid >
 
@@ -168,11 +170,13 @@ class UpdateProdStatus extends Component {
                                                     label="Production Status"
                                                     type="text"
                                                     name="prodStatus"
-                                                    value={prodStatus}
+                                                    value={""}
                                                     onChange={this.changeHandler} />
                                             </Grid>
                                             <Grid item xs={6} sm={6}>
-                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained">Produktionsstatus abfragen</Button>
+                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
+                                                    title="Wenn Sie alle offenen und geplanten Aufträge in der Datenbank einsehen möchten dann klicken Sie bitte hier"
+                                                >Produktionsstatus abfragen</Button>
                                             </Grid>
                                         </Grid >
 
@@ -188,6 +192,14 @@ class UpdateProdStatus extends Component {
                         </div>
 
                         <div style={{ maxWidth: "100%" }}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    margin: "20px",
+                                }}
+                            ></div>
+                            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
                             <div style={{ paddingTop: "5px" }}>
                                 <MaterialTable
                                     style={{ marginLeft: "20px", marginRight: "00px" }}
@@ -201,15 +213,15 @@ class UpdateProdStatus extends Component {
                                         { title: "Quantity", field: "quantity" },
                                         { title: "Delta E", field: "deltaE" },
                                     ]}
+
                                     data={this.state.prodStatus}
                                     actions={[
                                         {
-                                            icon: "refresh",
+                                            icon: "done_all",
                                             tooltip: "Refresh",
                                             isFreeAction: true,
-                                            onClick: () =>
-                                                this.tableRef.current &&
-                                                this.tableRef.current.onQueryChange(),
+                                            onClick: (e) =>
+                                                this.submitHandlerGetStatus(e),
                                         },
                                     ]}
                                     options={{
