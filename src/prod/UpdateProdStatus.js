@@ -198,8 +198,7 @@ class UpdateProdStatus extends Component {
                                         { title: "HEX color", field: "colorHEX" },
                                         { title: "Prod Sort Nr", field: "ProdSortNum" },
                                         { title: "Prod Status", field: "prodStatus" },
-                                        { title: "Quantity", field: "quantity" },
-                                        { title: "Delta E", field: "deltaE" },
+                                        
                                     ]}
                                     data={this.state.prodStatus}
                                     
@@ -214,7 +213,7 @@ class UpdateProdStatus extends Component {
                         
                     </form>
                 </div>
-                <FooterPage />
+                <FooterPage /> 
             </>
         );
     }

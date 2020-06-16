@@ -125,15 +125,7 @@ class Booking extends Component {
 
             <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
               <h2>Prüfen und Auslagern</h2>
-              <Button
-                type="submit"
-                style={{ margin: "10px" }}
-                variant="contained"
-                color="primary"
-              >
-                {" "}
-                Status aktualisieren
-              </Button>{" "}
+              
             </div>
             <div style={{ maxWidth: "100%" }}>
               <div
@@ -194,7 +186,7 @@ class Booking extends Component {
                         />
 
                         <Button
-                          onClick={() => this.submitHandler()}
+                          onClick={() => this.bookingOrder()}
                           style={{ float: "left", margin: "10px" }}
                           variant="contained"
                           color="primary"

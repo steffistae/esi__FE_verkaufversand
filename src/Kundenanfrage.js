@@ -121,6 +121,8 @@ class Kundenanfrage extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
+                        onClick: (e) =>
+                        this.submitHandler(e)
                       },
                     ]}
                     options={{

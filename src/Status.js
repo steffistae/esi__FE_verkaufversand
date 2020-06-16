@@ -123,6 +123,8 @@ class Status extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
+                        onClick: (e) =>
+                        this.submitHandler(e),
                       },
                     ]}
                     options={{
@@ -130,7 +132,7 @@ class Status extends Component {
                         backgroundColor: "#3f51b5",
                         color: "#FFFF",
                       },
-                    }} 
+                    }}
                   />
                 </div>
               </div>
