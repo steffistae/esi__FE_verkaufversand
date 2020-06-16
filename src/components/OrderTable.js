@@ -29,7 +29,7 @@ function Editable() {
   ]);
 
   const [data, setData] = useState([
-    { position: '1', articleNr: '1234567', colorcode: '#123456', motivNr: '86', quantity: '2', toStock: '0' },
+    { position: '1', articleNr: '1000001', colorcode: '#21AD35', motivNr: '3459', quantity: '1', toStock: '0' },
    
   ]);
 
