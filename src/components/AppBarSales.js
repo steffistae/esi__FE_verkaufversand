@@ -31,13 +31,14 @@ export default function GlobalAppBar() {
                             </Typography>
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
+                            
                             <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
                             <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
-                            <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
                             <Button  component={Link} to="/customerrequest" color="inherit">Kundenanfrage</Button>
                             <Button  component={Link} to="/status" color="inherit">Status</Button>
-                            <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
+                            <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
                             <Button  component={Link} to="/sending" color="inherit">Versandlabel</Button>
+                            <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
                             </ButtonGroup>
 
                             </Toolbar>
@@ -53,8 +54,10 @@ export default function GlobalAppBar() {
                                 >  
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
                                         <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
-                                        <MenuItem onClick={handleClose}>Produktion</MenuItem>  
+                                        <MenuItem component={Link} to="/getprodstatus" onClick={handleClose}>Produktion</MenuItem>  
                                         <MenuItem onClick={handleClose}>Mawi</MenuItem>  
+                                        <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
+
                                 </Menu>  
                         </div>  
 

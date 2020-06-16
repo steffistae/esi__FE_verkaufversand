@@ -2,6 +2,7 @@ import React from 'react';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FooterPage from '../components/Footer';
 
 
 function Editable() {
@@ -23,7 +24,7 @@ function Editable() {
   ]);
 
   const [data, setData] = useState([
-    
+    { position: '1', articleNr: '1000001', colorcode: '#21AD35', motivNr: '3459', quantity: '1', toStock: '0' },
    
   ]);
 
@@ -109,7 +110,9 @@ function Editable() {
     <Button onClick={createOrder} style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
           Bestellung abschicken
           </Button>
+          <FooterPage/>
    </>
+   
   )
 }
 

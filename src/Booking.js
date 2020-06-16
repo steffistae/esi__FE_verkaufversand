@@ -4,6 +4,7 @@ import MaterialTable from "material-table";
 import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import FooterPage from './components/Footer'; 
 
 class Booking extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class Booking extends Component {
       error: null,
       isLoaded: false,
       orderNr: "",
-      prodOrderNr: "",
+      prodOrderNr: "TEST_J",
       fkmaterials: "",
       quantity: "",
       customerID: "",
@@ -22,11 +23,11 @@ class Booking extends Component {
       data: null,
     };
   }
-  changeHandler = (e) => {
+  changeHandler = e => {
     this.setState({ [e.target.name]: parseInt(e.target.value) });
   };
 
-  submitHandler = (e) => {
+  submitHandler = e => {
     var trigger = "4";
     axios
       .get(
@@ -124,16 +125,8 @@ class Booking extends Component {
             <AppBarSales />
 
             <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-              <h2>Status prüfen</h2>
-              <Button
-                type="submit"
-                style={{ margin: "10px" }}
-                variant="contained"
-                color="primary"
-              >
-                {" "}
-                Status aktualisieren
-              </Button>{" "}
+              <h2>Prüfen und Auslagern</h2>
+              
             </div>
             <div style={{ maxWidth: "100%" }}>
               <div
@@ -147,7 +140,7 @@ class Booking extends Component {
               <div style={{ paddingTop: "5px" }}>
                 <MaterialTable
                   style={{ marginLeft: "20px", marginRight: "00px" }}
-                  title="Status der aktuellen Aufträge"
+                  title="Versandbereite Aufträge"
                   columns={[
                     { title: "ProductionOrderNr", field: "prodOrderNr" },
                     { title: "OrderNr", field: "orderNr" },
@@ -160,9 +153,8 @@ class Booking extends Component {
                       icon: "refresh",
                       tooltip: "Refresh",
                       isFreeAction: true,
-                      onClick: () =>
-                        this.tableRef.current &&
-                        this.tableRef.current.onQueryChange(),
+                      onClick: (e) =>
+                        this.submitHandler(e),
                     },
                   ]}
                   options={{
@@ -195,7 +187,7 @@ class Booking extends Component {
                         />
 
                         <Button
-                          onClick={() => this.submitHandler()}
+                          onClick={() => this.bookingOrder()}
                           style={{ float: "left", margin: "10px" }}
                           variant="contained"
                           color="primary"
@@ -221,7 +213,7 @@ class Booking extends Component {
                           style={{
                             display: "flex",
                             alignItems: "center",
-                            margin: "10px",
+                            margin: "5px",
                           }}
                         >
                           <TextField
@@ -272,6 +264,7 @@ class Booking extends Component {
             </div>
           </form>
         </div>
+        <FooterPage/>
       </>
     );
   }

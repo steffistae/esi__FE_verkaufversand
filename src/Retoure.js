@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import AppBarSales from './components/AppBarSales';  
 import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
+import FooterPage from './components/Footer';
 
 
 class Retoure extends Component {
@@ -16,18 +17,23 @@ class Retoure extends Component {
             prodOrderNr: '', //Nummer
             customerID: '', //ID des Kunden
             lack: '', //String mit Beschreibung
-			newProd: false, //boolean
+			newProd: '', //boolean
 			data: null,
 		}
     }
 
     changeHandler = e => {
 		this.setState({ [e.target.name]: e.target.value })
-		this.setState(
-			{newProd: true}
-		)
+		if (e.target.value === "false") {
+			this.setState({newProd: false})
+			return this.newProd
+		}
+		else if (e.target.value === "true"){
+			this.setState({newProd: true})
+			return this.newProd
+		}
 	}
-
+ 
 	submitHandler = e => {
 		e.preventDefault()
 		console.log(this.state)
@@ -100,8 +106,8 @@ class Retoure extends Component {
 						</Grid>
 						<Grid item xs={6} sm={6}>
 						<div onChange={this.changeHandler}> Neue Produktion <br/>
-                            <input type="radio" value={newProd} name="newProd"/> Ja <br/>
-							<input type="radio" name="newProd"/> Nein <br/>
+                            <input type="radio" value={true} name="newProd" /> Ja <br/>
+							<input type="radio" value={false} name="newProd"/> Nein <br/>
                         </div>
 						</Grid>
 							  			
@@ -119,6 +125,7 @@ class Retoure extends Component {
 				</div>    
 			</form>
 		</div>
+		<FooterPage/>
 		</>        
 			);
 		}

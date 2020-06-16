@@ -4,6 +4,7 @@ import MaterialTable from "material-table";
 import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import FooterPage from './components/Footer';
 
 class Status extends Component {
   constructor(props) {
@@ -123,9 +124,8 @@ class Status extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
-                        onClick: () =>
-                          this.tableRef.current &&
-                          this.tableRef.current.onQueryChange(),
+                        onClick: (e) =>
+                        this.submitHandler(e),
                       },
                     ]}
                     options={{
@@ -139,6 +139,7 @@ class Status extends Component {
               </div>
             </form>
           </div>
+          <FooterPage/>
         </>
       );
     }
