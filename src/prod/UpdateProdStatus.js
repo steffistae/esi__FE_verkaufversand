@@ -34,6 +34,7 @@ class UpdateProdStatus extends Component {
         }
     }
 
+
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
@@ -210,7 +211,7 @@ class UpdateProdStatus extends Component {
                                         { title: "HEX color", field: "colorHEX" },
                                         { title: "Prod Sort Nr", field: "ProdSortNum" },
                                         { title: "Prod Status", field: "prodStatus" },
-                                        
+
                                     ]}
 
                                     data={this.state.prodStatus}
@@ -231,10 +232,10 @@ class UpdateProdStatus extends Component {
                                     }}
                                 />
                             </div>
-                        
+                        </div>
                     </form>
                 </div>
-                <FooterPage /> 
+                <FooterPage />
             </>
         );
     }
