@@ -30,8 +30,15 @@ class NewOrder extends Component {
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
-    this.setState({toStock: true})
-  };
+    if (e.target.value === "false") {
+			this.setState({toStock: false})
+			return this.toStock
+		}
+		else if (e.target.value === "true"){
+			this.setState({toStock: true})
+			return this.toStock
+		}
+  }
 
   submitHandler = e => {
     const data = {
@@ -110,11 +117,11 @@ class NewOrder extends Component {
                 />
               </form>
             </div>
-            <div style={{ paddingLeft: "20px",paddingTop: "10px" }} onChange={this.changeHandler}>
+            <div onChange={this.changeHandler} style={{ paddingLeft: "20px",paddingTop: "10px" }} >
               {" "}
               Auf Lager:
-              <input type="radio" value={toStock} name="toStock" /> Ja
-              <input type="radio" name="toStock" /> Nein
+              <input type="radio" value={true} name="newProd" /> Ja
+							<input type="radio" value={false} name="newProd"/> Nein <br/>
             </div>
 
             <div style={{ maxWidth: "100%", padding: "20px" }}>

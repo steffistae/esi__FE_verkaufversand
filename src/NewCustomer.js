@@ -29,9 +29,14 @@ class NewCustomer extends Component {
 
 	changeHandler = e => {
 		this.setState({ [e.target.name]: e.target.value })
-		this.setState(
-			{business: true}
-		)
+		if (e.target.value === "false") {
+			this.setState({business: false})
+			return this.business
+		}
+		else if (e.target.value === "true"){
+			this.setState({business: true})
+			return this.business
+		}
 	}
 
 	submitHandler = e => {
@@ -134,7 +139,7 @@ class NewCustomer extends Component {
 						<Grid item xs={6} sm={6}>
 						<TextField
 							label="Telefon"
-							type="text"
+							type="number"
 							name="phone"
 							value={phone}
 							onChange={this.changeHandler} />
@@ -149,8 +154,8 @@ class NewCustomer extends Component {
 						</Grid>
 						<Grid item xs={6} sm={6}>
 						<div onChange={this.changeHandler}> Geschäftskunde <br/>
-                            <input type="radio" value={business} name="business"/> Ja <br/>
-                            <input type="radio" name="business"/> Nein
+                            <input type="radio" value={true} name="business"/> Ja <br/>
+                            <input type="radio" value={false} name="business"/> Nein
                         </div>
 						</Grid>
 						<Grid item xs={6} sm={6}>
