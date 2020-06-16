@@ -1,6 +1,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 import Button from '@material-ui/core/Button';
+import FooterPage from '../components/Footer';
 
 
 function Editable() {
@@ -35,7 +36,7 @@ function Editable() {
  
 
   function createOrder() {
-    console.log("test"); //hier API Aufruf
+    console.log(data); //hier API Aufruf
   }
 
 
@@ -93,7 +94,9 @@ function Editable() {
     <Button onClick={createOrder} style={{float: 'right', margin:'5px'}} variant="contained" color="primary">
           Bestellung abschicken
           </Button>
+          <FooterPage/>
    </>
+   
   )
 }
 
