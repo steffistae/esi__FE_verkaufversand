@@ -24,7 +24,7 @@ class Booking extends Component {
     };
   }
   changeHandler = e => {
-    this.setState({ [e.target.name]: parseInt(e.target.value) });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   submitHandler = e => {
@@ -182,7 +182,6 @@ class Booking extends Component {
                           onChange={this.changeHandler}
                           style={{ float: "left", margin: "5px" }}
                           id="outlined-basic"
-                          label="OrderNr"
                           variant="outlined"
                         />
 

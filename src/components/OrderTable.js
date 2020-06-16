@@ -25,12 +25,7 @@ function Editable() {
   ]);
 
   const [data, setData] = useState([
-    {
-      articleNr: "1000001",
-      colorcode: "#21AD35",
-      motivNr: "3459",
-      quantity: "1",
-    },
+    
   ]);
 
   function createOrder() {
@@ -43,7 +38,7 @@ function Editable() {
           colorCode: element.colorcode,
           quantity: element.quantity,
           motivNr: element.motivNr,
-          toStock: tostock,
+          toStock: parseInt(tostock),
         };
       })
     );
@@ -75,8 +70,8 @@ function Editable() {
         </div>
         <div style={{paddingLeft: "20px", paddingBottom: "20px"}} onChange={(e) => settoStock(e.target.value)}>
           Produktion auf Lager? <br />
-          <input type="radio" value={true} name="tostock" /> Ja <br />
-          <input type="radio" value={false} name="tostock" /> Nein <br />
+          <input type="radio" value={1} name="tostock" /> Ja <br />
+          <input type="radio" value={0} name="tostock" /> Nein <br />
         </div>
       </div>
 
