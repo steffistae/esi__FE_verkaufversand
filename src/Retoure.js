@@ -37,19 +37,20 @@ class Retoure extends Component {
     console.log(this.state);
     axios
       .post(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addcustomer",
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
         this.state
       )
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.answer;
         console.log(data);
         return data;
       })
       .then((response) => {
-        console.log(response);
+        console.log(response)
+        return response;
       })
       .then((response) => this.setState({ response }))
       .catch((error) => {
@@ -134,8 +135,7 @@ class Retoure extends Component {
                       disabled={
                         (!this.state.prodOrderNr,
                         !this.state.customerID,
-                        !this.state.lack,
-                        !this.state.newProd)
+                        !this.state.lack)
                       }
                     >
                       Submit
@@ -143,7 +143,7 @@ class Retoure extends Component {
                   </Grid>
                 </Grid>
                 <div>
-                  <h3>Bestätigung: {(content = this.state.data)}</h3>
+                  <h3>Bestätigung: {(content = this.state.response)}</h3>
                 </div>
               </FormControl>
             </div>

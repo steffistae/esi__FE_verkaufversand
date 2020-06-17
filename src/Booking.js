@@ -222,7 +222,7 @@ class Booking extends Component {
                             value={fkmaterials}
                             style={{ float: "left", paddingLeft: "0px" }}
                             id="outlined-basic"
-                            label="Artikelnummer"
+                            label="Artikelnummer*"
                            
                             onChange={this.changeHandler}
                           />

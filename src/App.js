@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import NewCustomer from './NewCustomer';
+import AllCustomer from './Kundenkartei'
 import NewOrder from './NewOrder';
 import Home from './Home';
 import Status from './Status';
@@ -23,6 +24,7 @@ function App() {
 
         <Route path="/home" component={Home} />
         <Route path="/newcustomer" component={NewCustomer} />
+        <Route path="/allcustomer" component={AllCustomer} />
         <Route path="/neworder" component={NewOrder} />
         <Route path="/booking" component={Booking} />
         <Route path="/status" component={Status} />

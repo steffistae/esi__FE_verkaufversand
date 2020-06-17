@@ -35,6 +35,7 @@ export default function GlobalAppBar() {
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
                             
                             <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
+                            <Button component={Link} to="/allcustomer" color="inherit">Kundenkartei</Button>
                             <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
                             <Button  component={Link} to="/customerrequest" color="inherit">Kundenanfrage</Button>
                             <Button  component={Link} to="/status" color="inherit">Status</Button>

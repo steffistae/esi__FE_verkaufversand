@@ -15,14 +15,14 @@ function Editable() {
   const [tostock, settoStock] = useState();
 
   const [columns, setColumns] = useState([
-    { title: "Materialnummer", field: "materialNr" },
-    { title: "Farbcode", field: "colorCode" },
-    { title: "Motivnummer", field: "motivNr" },
+    { title: "Materialnummer", field: "materialNr", tooltip: "8-stellige Nummer: 10000001" },
+    { title: "Farbcode", field: "colorCode", tooltip: "HEX-Code: #282C34"},
+    { title: "Motivnummer", field: "motivNr", tooltip:"4-stellige Nummer: 3489" },
     { title: "Anzahl", field: "quantity", type: "numeric" },
     {
       //      title: 'Stock or Sale?',
       //      field: 'toStock',
-      //      lookup: { true: 'for Stock', false: 'for Sale' },
+      //      lookup: { true: 'for Stock', false: 'for Sale' }, 
     },
   ]);
 
@@ -65,14 +65,12 @@ function Editable() {
       .then(console.log(body))
       .then((response) => {
         console.log(response);
-        answer = response.body.message
-        return answer;
       })
       .catch((error) => {
         console.log(error);
       });
   }
-
+  let content = '';
   return (
     <>
 
@@ -88,7 +86,7 @@ function Editable() {
                  <form noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
-              label="Kundennummer*"
+              label="Kundennummer"
               value={customerId}
               onChange={(e) => setCustomerId(e.target.value)}
               title="Die Angabe einer Kundennummer ist nur für Bestellungen notwendig, die nicht auf Lager produziert werden."
@@ -158,7 +156,7 @@ function Editable() {
         Bestellung abschicken
       </Button>
       <div style={{paddingLeft: "20px"}}>
-        <h3>Bestätigung: {(answer)}</h3>
+        <h3>Bestätigung: {(content = "")}</h3>
       </div>
       <FooterPage />
     </>
