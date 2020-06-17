@@ -99,8 +99,8 @@ class OrderManagement extends Component {
                 </FormControl>
 
                 <div>
-                  Erstellen Sie eine CSV-Datei mit den offenen Aufträgen per Knopfdruck. Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern.
-                                    <h3>Bestätigung: {content = this.state.status}</h3>
+                  Erstellen Sie eine CSV-Datei mit den offenen Aufträgen per Knopfdruck. Im Hintergrund werden dabei alle anstehenden Aufträge nach dem Enddatum und dem Delta-E Schema sortiert und exportiert. Nachdem Sie die CSV-Datei erstellt haben, können Sie sie mit einem Klick auf das Icon herunterladen und abspeichern.
+                  <h3>Bestätigung: {content = this.state.status}</h3>
                 </div>
               </div>
 
@@ -117,7 +117,7 @@ class OrderManagement extends Component {
           <div style={{ padding: '20px' }} >
             <h2>Große Aufträge aufsplitten</h2>
 
-            In Arbeit
+            (In Arbeit) Hier können Sie in Zukunft manuell große Aufträge aufteilen und so einplanen, dass die Produktion bestmöglich ausgelastet ist.
           </div>
         </div>
         <FooterPage />

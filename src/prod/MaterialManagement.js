@@ -197,7 +197,7 @@ class MaterialManagement extends Component {
                           label="Chargennummer"
                           type="text"
                           name="chargennummer"
-                          title="Um die Qualitätswerte für eine Charge abzufragen geben Sie bitte in dieses Feld die Nummer ein welche auf dem entsprechenden Material aufgedruckt ist und klicken Sie nachfolgend auf die rechte blaue Schaltfläche."
+                          title="Die Chargennummer könnte so aussehen: 2"
                           value={chargennummer}
                           onChange={this.changeHandler} />
                       </Grid>
