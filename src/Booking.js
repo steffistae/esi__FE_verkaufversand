@@ -182,7 +182,7 @@ class Booking extends Component {
                           onChange={this.changeHandler}
                           style={{ float: "left", margin: "5px" }}
                           id="outlined-basic"
-                          variant="outlined"
+                          
                         />
 
                         <Button
@@ -221,7 +221,7 @@ class Booking extends Component {
                             style={{ float: "left", paddingLeft: "0px" }}
                             id="outlined-basic"
                             label="Artikelnummer"
-                            variant="outlined"
+                           
                             onChange={this.changeHandler}
                           />
                           <TextField
@@ -230,7 +230,7 @@ class Booking extends Component {
                             value={quantity}
                             style={{ paddingLeft: "5px" }}
                             id="outlined-basic"
-                            variant="outlined"
+                           
                             onChange={this.changeHandler}
                           />
                           <TextField
@@ -239,7 +239,7 @@ class Booking extends Component {
                             value={customerID}
                             style={{ paddingLeft: "5px" }}
                             id="outlined-basic"
-                            variant="outlined"
+                           
                             onChange={this.changeHandler}
                           />
 

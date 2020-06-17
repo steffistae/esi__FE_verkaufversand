@@ -45,7 +45,8 @@ class Sending extends Component {
             <div style={{ padding: "20px" }}>
               <h2>Versandlabel drucken</h2>
             </div>
-            <div style={{ width: "800px", padding: "20px" }}>
+            <div style={{ width: "800px", paddingLeft: "20px" }}
+            >
               <FormControl>
                 <TextField
                   label="Ordernummer"

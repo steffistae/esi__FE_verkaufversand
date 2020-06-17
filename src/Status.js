@@ -89,7 +89,7 @@ class Status extends Component {
                       value={trigger}
                       onChange={this.changeHandler}
                       id="outlined-basic"
-                      variant="outlined"
+                    
                       title=
                       "Status 1: Bestellung eingegangen, Status 2: Bestellung an Produktion übergeben, Status 3: Produktion abgeschlossen, Status 4: Bestellung versandbereit, Status 5: Bestellung versendet"
                     />
