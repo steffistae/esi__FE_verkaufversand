@@ -7,6 +7,7 @@ import Home from './Home';
 import Status from './sales/Status';
 import Booking from './sales/Booking';
 import Retoure from './sales/Retoure';
+import ProdHome from './prod/ProdHome';
 import MaterialManagement from './prod/MaterialManagement';
 import ProdManagement from './prod/ProdManagement';
 import OrderManagement from './prod/OrderManagement';
@@ -28,6 +29,7 @@ function App() {
         <Route path="/sales/customerrequest" component={Kundenanfrage} />
         <Route path="/sales/retoure" component={Retoure} />
         <Route path="/sales/sending" component={Sending} />
+        <Route path="/prod/ProdHome" component={ProdHome} />
         <Route path="/prod/MaterialManagement" component={MaterialManagement} />
         <Route path="/prod/ProdManagement" component={ProdManagement} />
         <Route path="/prod/OrderManagement" component={OrderManagement} />

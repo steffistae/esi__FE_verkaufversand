@@ -28,8 +28,9 @@ export default function ProdAppBar() {
                                                 <MenuIcon />
                                         </IconButton>
 
-                                        <Typography variant="h4" > 
-                                                YOURSHIRT |  Produktion
+                                        <Typography variant="h4" >
+                                                <a href="/home" style={{ color: 'white', textDecoration: 'none' }} >YOURSHIRT</a>    |
+                                                 <a href="/prod/ProdHome" style={{ color: 'white', textDecoration: 'none' }} > Produktion</a>
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
@@ -51,7 +52,7 @@ export default function ProdAppBar() {
                                 >
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>
                                         <MenuItem component={Link} to="/sales/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
-                                        <MenuItem component={Link} to="/prod/ProdManagement" onClick={handleClose}>Produktion</MenuItem>
+                                        <MenuItem component={Link} to="/prod/ProdHome" onClick={handleClose}>Produktion</MenuItem>
                                         <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>
 
