@@ -24,7 +24,7 @@ class Booking extends Component {
     };
   }
   changeHandler = e => {
-    this.setState({ [e.target.name]: parseInt(e.target.value) });
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   submitHandler = e => {
@@ -175,15 +175,14 @@ class Booking extends Component {
                     >
                       <form noValidate autoComplete="off">
                         <TextField
-                          label="Ordernummer"
+                          label="Ordernummer*"
                           type="text"
                           name="orderNr"
                           value={orderNr}
                           onChange={this.changeHandler}
                           style={{ float: "left", margin: "5px" }}
                           id="outlined-basic"
-                          label="OrderNr"
-                          variant="outlined"
+                          
                         />
 
                         <Button
@@ -191,6 +190,7 @@ class Booking extends Component {
                           style={{ float: "left", margin: "10px" }}
                           variant="contained"
                           color="primary"
+                          disabled={!this.state.orderNr}
                         >
                           {" "}
                           Prüfen
@@ -200,12 +200,13 @@ class Booking extends Component {
                           style={{ float: "left", margin: "10px" }}
                           variant="contained"
                           color="primary"
+                          disabled={!this.state.orderNr}
                         >
                           {" "}
                           Auslagern
                         </Button>
 
-                        <div style={{ paddingTop: "60px", paddingLeft: "0px" }}>
+                        <div style={{ paddingTop: "100px", paddingLeft: "0px" }}>
                           <h2>Auslagerung Stock</h2>
                         </div>
 
@@ -222,25 +223,25 @@ class Booking extends Component {
                             style={{ float: "left", paddingLeft: "0px" }}
                             id="outlined-basic"
                             label="Artikelnummer"
-                            variant="outlined"
+                           
                             onChange={this.changeHandler}
                           />
                           <TextField
                             name="quantity"
-                            label="Menge"
+                            label="Menge*"
                             value={quantity}
                             style={{ paddingLeft: "5px" }}
                             id="outlined-basic"
-                            variant="outlined"
+                           
                             onChange={this.changeHandler}
                           />
                           <TextField
                             name="customerID"
-                            label="Kundennummer"
+                            label="Kundennummer*"
                             value={customerID}
                             style={{ paddingLeft: "5px" }}
                             id="outlined-basic"
-                            variant="outlined"
+                           
                             onChange={this.changeHandler}
                           />
 
@@ -249,6 +250,7 @@ class Booking extends Component {
                             style={{ margin: "20px" }}
                             color="primary"
                             variant="contained"
+                            disabled={!this.state.fkmaterials, !this.state.quantity, !this.state.customerID}
                           >
                             Auslagern
                           </Button>

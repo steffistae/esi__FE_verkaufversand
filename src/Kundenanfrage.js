@@ -81,13 +81,13 @@ class Kundenanfrage extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Ordernummer"
+                      label="Ordernummer*"
                       type="text"
                       name="orderNr"
                       value={orderNr}
                       onChange={this.changeHandler}
                       id="outlined-basic"
-                      variant="outlined"
+                     
                     />
                   </form>
 
@@ -97,6 +97,7 @@ class Kundenanfrage extends Component {
                       style={{ float: "left", margin: "20px" }}
                       variant="contained"
                       color="primary"
+                      disabled={!this.state.orderNr}
                     >
                       Prüfen
                     </Button>
