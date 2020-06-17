@@ -15,6 +15,10 @@ const data = {
                 'Diese finden Sie wenn Sie auf den Reiter "Produktion" gehen und dann auf die Registerkarte Produktionsstatus klicken. Hier gibt es nun den Button "Produktionsstatus abfragen" mit dem Sie alle offenen und geplanten Aufträge in der Datenbank abfragen können. Diese werden Ihnen dann in der Tabelle darunter anschaulich dargestellt.',
         },
         {
+            title: "Was bedeutet * in einem Eingabefeld?",
+            content: `Der Stern kennzeichnet ein Pflichtfeld. Bitte befüllen Sie dieses Feld. Erst danach ist es möglich, die entsprechende Funktion der Seite auszuführen.`,
+        },
+        {
             title: "Wie lege ich einen neuen Auftrag an?",
             content: `Bitte klicken Sie hierfür in dem Drop-Down Menü links auf "Vertrieb & Versand" und wählen Sie die Registerkarte "Neue Bestellung" rechts oben aus. Hier können Sie nun alle Daten eingeben und zur Datenbank hinzufügen. Die Produktion wird daraufhin automatisch verständigt. `,
         },

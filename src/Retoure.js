@@ -83,7 +83,7 @@ class Retoure extends Component {
                   <Grid container spacing={3}>
                     <Grid item xs={6} sm={6}>
                       <TextField
-                        label="Produktionsordernummer"
+                        label="Produktionsordernummer*"
                         type="text"
                         name="prodOrderNr"
                         value={prodOrderNr}
@@ -92,7 +92,7 @@ class Retoure extends Component {
                     </Grid>
                     <Grid item xs={6} sm={6}>
                       <TextField
-                        label="Kundennummer"
+                        label="Kundennummer*"
                         type="text"
                         name="customerID"
                         value={customerID}
@@ -101,7 +101,7 @@ class Retoure extends Component {
                     </Grid>
                     <Grid item xs={6} sm={6}>
                       <TextField
-                        label="Mangel"
+                        label="Mangel*"
                         type="text"
                         name="lack"
                         value={lack}

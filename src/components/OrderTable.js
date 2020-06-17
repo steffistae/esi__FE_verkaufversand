@@ -13,8 +13,8 @@ function Editable() {
   const [tostock, settoStock] = useState();
 
   const [columns, setColumns] = useState([
-    { title: "Artikelnummer", field: "articleNr" },
-    { title: "Farbcode", field: "colorcode" },
+    { title: "Materialnummer", field: "materialNr" },
+    { title: "Farbcode", field: "colorCode" },
     { title: "Motivnummer", field: "motivNr" },
     { title: "Anzahl", field: "quantity", type: "numeric" },
     {
@@ -32,19 +32,38 @@ function Editable() {
     console.log(
       data.map((element) => {
         return {
-          customerID: customerId,
-          lineItem: element.tableData.id + 1 + "",
-          articleNr: element.articleNr,
-          colorCode: element.colorcode,
-          quantity: element.quantity,
-          motivNr: element.motivNr,
+          customerID: parseInt(customerId),
+          lineItem: parseInt(element.tableData.id + 14 + ""), //wieder von 12 auf 1 ändern!
+          materialNr: parseInt(element.materialNr),
+          colorCode: element.colorCode,
+          quantity: parseInt(element.quantity),
+          motivNr: parseInt(element.motivNr),
           toStock: parseInt(tostock),
         };
       })
     );
+    const createOrder =
+    
+    data.map((element) => {
+      return {
+        customerID: parseInt(customerId),
+        lineItem: parseInt(element.tableData.id + 14 + ""), //wieder von 12 auf 1 ändern!
+        materialNr: parseInt(element.materialNr),
+        colorCode: element.colorCode,
+        quantity: parseInt(element.quantity),
+        motivNr: parseInt(element.motivNr),
+        toStock: parseInt(tostock),
+      };
+    })
+    
+    /*var newOrder = JSON.stringify(createOrder)
+    console.log(newOrder)*/
+    var body= createOrder
+    console.log(body)
+    body=JSON.stringify({body})
     axios
-      .post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addOrder', data)
-      .then(console.log(data))
+      .post('https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addorder', body)
+      .then(console.log(body))
       .then(response => {
 				console.log(response)
 			})
@@ -60,10 +79,11 @@ function Editable() {
           <form noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
-              label="Kundennummer*"
+              label="Kundennummer"
               variant="outlined"
               value={customerId}
               onChange={(e) => setCustomerId(e.target.value)}
+              title="Die Angabe einer Kundennummer ist nur für Bestellungen notwendig, die nicht auf Lager produziert werden."
             />
           </form>{" "}
           <br />
@@ -120,7 +140,6 @@ function Editable() {
         style={{ float: "right", margin: "5px" }}
         variant="contained"
         color="primary"
-        disabled={!customerId}
       >
         Bestellung abschicken
       </Button>
