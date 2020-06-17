@@ -78,16 +78,18 @@ class GetCSV extends Component {
 
                                         <Grid
                                             container spacing={3}>
+                                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                                             <Grid item xs={6} sm={6}>
                                                 <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
+
                                                     title="Erstellen Sie eine CSV-Datei mit den Nächsten anstehenden Aufträgen bequem per Knopfdruck">
                                                     CSV-Datei erstellen</Button>
                                             </Grid>
                                             <Grid item xs={6} sm={6}>
-
                                                 <a href={this.state.url} target="_blank" rel="noopener noreferrer" download>
-                                                    <Button style={{ float: 'left', margin: '20px' }} color="primary" variant="contained" title="Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern">
-                                                        <i className="fas fa-download" /> Download CSV-File  </Button>
+                                                    <Button style={{ float: 'left', margin: '20px', height: '65px' }} alt="Download CSV-Datei" color="primary" variant="contained" title="Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern"
+                                                    disabled={!this.state.url}>
+                                                    <i className="fa fa-download" icon="download" />  </Button>
                                                 </a>
 
                                             </Grid>
