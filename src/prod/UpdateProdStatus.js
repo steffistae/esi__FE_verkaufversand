@@ -18,6 +18,8 @@ var emptyStatus = {
     selectProdStatus: '',
     quantity: '',
     deltaE: '',
+    orderNumber: '',
+    lineItem: '',
 }
 
 class UpdateProdStatus extends Component {
@@ -126,6 +128,8 @@ class UpdateProdStatus extends Component {
             prodStatus,
             quantity,
             deltaE,
+            orderNumber,
+            lineItem,
         } = this.state;
         let content = '';
         return (
@@ -213,11 +217,6 @@ class UpdateProdStatus extends Component {
                                     </Grid>
 
                                 </FormControl>
-                                <div>
-                                    <h3>
-                                        Bestätigung: {content = this.state.data}
-                                    </h3>
-                                </div>
                             </div>
                         </div>
 
@@ -236,7 +235,8 @@ class UpdateProdStatus extends Component {
                                     title="Produktionsstatus der Aufträge"
                                     columns={[
                                         { title: "Production Order Nr", field: "prodOrderNum" },
-                                        { title: "Prod Sort Nr", field: "ProdSortNum" },
+                                        { title: "Order Nr", field: "orderNumber" },
+                                        { title: "Line Item", field: "lineItem" },
                                         { title: "End Date", field: "endDate" },
                                         { title: "HEX color", field: "colorHEX" },
                                         { title: "Prod Status", field: "prodStatus" },
