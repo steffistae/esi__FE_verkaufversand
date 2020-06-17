@@ -23,13 +23,14 @@ export default function ProdAppBar() {
                 <>
                         <AppBar position="static">
                                 <Toolbar>
-                                        
+
                                         <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" color="inherit" aria-label="menu">
                                                 <MenuIcon />
                                         </IconButton>
 
                                         <Typography variant="h4" >
-                                                YOURSHIRT   |   Produktion
+                                                
+                                                <a href="/home" color="white" underline="none" >YOURSHIRT</a>    |   <a href="/updateProdStatus" color="white" underline="none">Produktion</a>
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
@@ -53,9 +54,9 @@ export default function ProdAppBar() {
                                 >
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>
                                         <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
-                                        <MenuItem component={Link} to="/updateProdStatus" onClick={handleClose}>Produktion</MenuItem>  
+                                        <MenuItem component={Link} to="/updateProdStatus" onClick={handleClose}>Produktion</MenuItem>
                                         <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>
-                                        <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
+                                        <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>
 
                                 </Menu>
                         </div>

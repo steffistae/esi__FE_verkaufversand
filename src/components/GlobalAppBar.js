@@ -27,7 +27,7 @@ export default function GlobalAppBar() {
                                 <MenuIcon />
                             </IconButton> 
                             <Typography variant="h4" >
-                                YOURSHIRT   |   Home    
+                            <a href="/home" color="white" underline="none" >YOURSHIRT</a>    |   <a href="/updateProdStatus" color="white" underline="none">HOME</a>
                             </Typography>
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
