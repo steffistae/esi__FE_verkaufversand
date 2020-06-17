@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./App.css";
+import "../App.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import AppBarSales from "./components/AppBarSales";
+import AppBarSales from "../components/AppBarSales";
 import { FormControl } from "@material-ui/core";
 import { Grid } from "@material-ui/core";
-import FooterPage from "./components/Footer";
+import FooterPage from "../components/Footer";
 
 class NewCustomer extends Component {
   constructor(props) {

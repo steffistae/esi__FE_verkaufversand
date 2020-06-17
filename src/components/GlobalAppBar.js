@@ -32,7 +32,7 @@ export default function GlobalAppBar() {
                             </Typography>
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
-                            <Button component={Link} to="/newcustomer" color="inherit">Verkauf & Versand</Button>
+                            <Button component={Link} to="/sales/newcustomer" color="inherit">Verkauf & Versand</Button>
                             <Button  component={Link} to="/prod/ProdManagement" color="inherit">Produktion</Button>
                             <Button  component={Link} to="/home" color="inherit">Materialwirtschaft</Button>
                             <Button  component={Link} to="/faq" color="inherit">Hilfe & FAQ</Button>
@@ -50,7 +50,7 @@ export default function GlobalAppBar() {
                                         onClose={handleClose}  
                                 >  
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
-                                        <MenuItem component={Link} to="/newcustomer" onClick={handleClose}>Verkauf & Versand</MenuItem>  
+                                        <MenuItem component={Link} to="/sales/newcustomer" onClick={handleClose}>Verkauf & Versand</MenuItem>  
                                         <MenuItem component={Link} to="/prod/ProdManagement" onClick={handleClose}>Produktion</MenuItem>  
                                         <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>  
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  

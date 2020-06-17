@@ -50,7 +50,7 @@ export default function ProdAppBar() {
                                         onClose={handleClose}
                                 >
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>
-                                        <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
+                                        <MenuItem component={Link} to="/sales/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
                                         <MenuItem component={Link} to="/prod/ProdManagement" onClick={handleClose}>Produktion</MenuItem>
                                         <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>

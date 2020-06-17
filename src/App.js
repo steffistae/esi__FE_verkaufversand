@@ -1,18 +1,17 @@
 import React from 'react';
 import './App.css';
 import { Route, Switch } from 'react-router-dom';
-import NewCustomer from './NewCustomer';
-import NewOrder from './NewOrder';
+import NewCustomer from './sales/NewCustomer';
+import NewOrder from './sales/NewOrder';
 import Home from './Home';
-import Status from './Status';
-import Booking from './Booking';
-import Retoure from './Retoure';
+import Status from './sales/Status';
+import Booking from './sales/Booking';
+import Retoure from './sales/Retoure';
 import MaterialManagement from './prod/MaterialManagement';
 import ProdManagement from './prod/ProdManagement';
 import OrderManagement from './prod/OrderManagement';
-import GetCSV from './prod/getCSV';
-import Kundenanfrage from './Kundenanfrage'
-import Sending from './Sending'
+import Kundenanfrage from './sales/Kundenanfrage'
+import Sending from './sales/Sending'
 import FAQ from './FAQ'
 
 function App() {
@@ -22,17 +21,16 @@ function App() {
       <Switch>
 
         <Route path="/home" component={Home} />
-        <Route path="/newcustomer" component={NewCustomer} />
-        <Route path="/neworder" component={NewOrder} />
-        <Route path="/booking" component={Booking} />
-        <Route path="/status" component={Status} />
-        <Route path="/customerrequest" component={Kundenanfrage} />
-        <Route path="/retoure" component={Retoure} />
-        <Route path="/sending" component={Sending} />
+        <Route path="/sales/newcustomer" component={NewCustomer} />
+        <Route path="/sales/neworder" component={NewOrder} />
+        <Route path="/sales/booking" component={Booking} />
+        <Route path="/sales/status" component={Status} />
+        <Route path="/sales/customerrequest" component={Kundenanfrage} />
+        <Route path="/sales/retoure" component={Retoure} />
+        <Route path="/sales/sending" component={Sending} />
         <Route path="/prod/MaterialManagement" component={MaterialManagement} />
         <Route path="/prod/ProdManagement" component={ProdManagement} />
         <Route path="/prod/OrderManagement" component={OrderManagement} />
-        <Route path="/getCSV" component={GetCSV} />
         <Route path="/faq" component={FAQ} />
         <Route path="/" component={Home} />
        

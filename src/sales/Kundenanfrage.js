@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
-import AppBarSales from "./components/AppBarSales";
+import AppBarSales from "../components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FooterPage from './components/Footer';
+import FooterPage from '../components/Footer';
 
-class Status extends Component {
+class Kundenanfrage extends Component {
   constructor(props) {
     super(props);
 
@@ -15,16 +15,16 @@ class Status extends Component {
       isLoaded: false,
       items: [],
       stateID: '',
-      trigger: '',
+      orderNr: '',
     };
   }
 
   submitHandler = e => {
-    console.log(this.state.trigger)
+    console.log(this.state.orderNr)
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
-          this.state.trigger
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusvo?orderNr=" +
+          this.state.orderNr
       )
       .then(
         (result) => {
@@ -32,7 +32,6 @@ class Status extends Component {
             isLoaded: true,
             items: result.data,
           });
-          console.log(result)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -45,7 +44,6 @@ class Status extends Component {
         }
       )
     e.preventDefault();
-    console.log(this.state.trigger);
   };
   
 
@@ -54,7 +52,7 @@ class Status extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error, isLoaded, items, stateID, orderNr } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -70,7 +68,7 @@ class Status extends Component {
               <AppBarSales />
 
               <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-                <h2>Status prüfen</h2>
+                <h2>Kundenanfrage prüfen</h2>
               </div>
 
               <div style={{ maxWidth: "100%" }}>
@@ -83,15 +81,13 @@ class Status extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Status ID*"
-                      type="number"
-                      name="trigger"
-                      value={trigger}
+                      label="Ordernummer*"
+                      type="text"
+                      name="orderNr"
+                      value={orderNr}
                       onChange={this.changeHandler}
                       id="outlined-basic"
-                    
-                      title=
-                      "Status 1: Bestellung eingegangen, Status 2: Bestellung an Produktion übergeben, Status 3: Produktion abgeschlossen, Status 4: Bestellung versandbereit, Status 5: Bestellung versendet"
+                     
                     />
                   </form>
 
@@ -101,7 +97,7 @@ class Status extends Component {
                       style={{ float: "left", margin: "20px" }}
                       variant="contained"
                       color="primary"
-                      disabled={!this.state.trigger}
+                      disabled={!this.state.orderNr}
                     >
                       Prüfen
                     </Button>
@@ -111,7 +107,7 @@ class Status extends Component {
                 <div style={{ paddingTop: "25px" }}>
                   <MaterialTable
                     style={{ marginLeft: "20px", marginRight: "20px" }}
-                    title="Status der aktuellen Aufträge"
+                    title="Status der Bestellung"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
                       { title: "OrderNr", field: "orderNr" },
@@ -128,7 +124,7 @@ class Status extends Component {
                         tooltip: "Refresh",
                         isFreeAction: true,
                         onClick: (e) =>
-                        this.submitHandler(e),
+                        this.submitHandler(e)
                       },
                     ]}
                     options={{
@@ -149,4 +145,4 @@ class Status extends Component {
   }
 }
 
-export default Status;
+export default Kundenanfrage;
