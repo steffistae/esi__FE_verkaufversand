@@ -22,7 +22,7 @@ var emptyStatus = {
     lineItem: '',
 }
 
-class UpdateProdStatus extends Component {
+class ProdManagement extends Component {
     constructor(props) {
         super(props)
 
@@ -237,6 +237,7 @@ class UpdateProdStatus extends Component {
                                         { title: "Production Order Nr", field: "prodOrderNum" },
                                         { title: "Order Nr", field: "orderNumber" },
                                         { title: "Line Item", field: "lineItem" },
+                                        { title: "Artikel Nr", field: "articleNumber" },
                                         { title: "End Date", field: "endDate" },
                                         { title: "HEX color", field: "colorHEX" },
                                         { title: "Prod Status", field: "prodStatus" },
@@ -271,4 +272,4 @@ class UpdateProdStatus extends Component {
     }
 }
 
-export default UpdateProdStatus; 
+export default ProdManagement; 

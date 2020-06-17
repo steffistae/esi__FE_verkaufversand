@@ -88,8 +88,8 @@ class GetCSV extends Component {
                                             <Grid item xs={6} sm={6}>
                                                 <a href={this.state.url} target="_blank" rel="noopener noreferrer" download>
                                                     <Button style={{ float: 'left', margin: '20px', height: '65px' }} alt="Download CSV-Datei" color="primary" variant="contained" title="Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern"
-                                                    disabled={!this.state.url}>
-                                                    <i className="fa fa-download" icon="download" />  </Button>
+                                                        disabled={!this.state.url}>
+                                                        <i className="fa fa-download" icon="download" />  </Button>
                                                 </a>
 
                                             </Grid>
@@ -106,6 +106,13 @@ class GetCSV extends Component {
 
                         </div>
                     </form>
+
+                    <div style={{ padding: '20px' }} >
+                        <h2>Große Aufträge aufsplitten</h2>
+
+                        <button class="addMore" margin="15px" title="Hier können Sie Aufträge aufteilen, um eine optimale Produktionsauslastung sicherzustellen">?</button>
+
+                    </div>
                 </div>
                 <FooterPage />
             </>

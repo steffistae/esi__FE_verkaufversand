@@ -8,9 +8,9 @@ import Home from './Home';
 import Status from './Status';
 import Booking from './Booking';
 import Retoure from './Retoure';
-import OrderMaterial from './prod/OrderMaterial';
-import UpdateProdStatus from './prod/UpdateProdStatus';
-import SplitLargeOrders from './prod/SplitLargeOrders';
+import MaterialManagement from './prod/MaterialManagement';
+import ProdManagement from './prod/ProdManagement';
+import OrderManagement from './prod/OrderManagement';
 import GetCSV from './prod/getCSV';
 import Kundenanfrage from './Kundenanfrage'
 import Sending from './Sending'
@@ -31,9 +31,9 @@ function App() {
         <Route path="/customerrequest" component={Kundenanfrage} />
         <Route path="/retoure" component={Retoure} />
         <Route path="/sending" component={Sending} />
-        <Route path="/orderMaterial" component={OrderMaterial} />
-        <Route path="/updateProdStatus" component={UpdateProdStatus} />
-        <Route path="/splitLargeOrders" component={SplitLargeOrders} />
+        <Route path="/prod/MaterialManagement" component={MaterialManagement} />
+        <Route path="/prod/ProdManagement" component={ProdManagement} />
+        <Route path="/prod/OrderManagement" component={OrderManagement} />
         <Route path="/getCSV" component={GetCSV} />
         <Route path="/faq" component={FAQ} />
         <Route path="/" component={Home} />

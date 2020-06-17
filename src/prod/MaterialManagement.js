@@ -48,7 +48,7 @@ var testDataShirts = {
   "fkmaterials": 0
 }
 
-class OrderMaterial extends Component {
+class MaterialManagement extends Component {
   constructor(props) {
     super(props)
 
@@ -305,4 +305,4 @@ class OrderMaterial extends Component {
   }
 }
 
-export default OrderMaterial; 
+export default MaterialManagement; 

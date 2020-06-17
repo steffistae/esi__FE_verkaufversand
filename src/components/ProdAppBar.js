@@ -28,17 +28,14 @@ export default function ProdAppBar() {
                                                 <MenuIcon />
                                         </IconButton>
 
-                                        <Typography variant="h4" >
-                                                
-                                                <a href="/home" color="white" underline="none" >YOURSHIRT</a>    |   <a href="/updateProdStatus" color="white" underline="none">Produktion</a>
+                                        <Typography variant="h4" > 
+                                                YOURSHIRT |  Produktion
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
-                                                <Button component={Link} to="/orderMaterial" color="inherit">Materialmanagement</Button>
-                                                <Button component={Link} to="/updateProdStatus" color="inherit">Produktionsmanagement</Button>
-                                                <Button component={Link} to="/splitLargeOrders" color="inherit">Auftragsmanagement</Button>
-                                                <Button component={Link} to="/getCSV" color="inherit">Export CSV</Button>
-
+                                                <Button component={Link} to="/prod/MaterialManagement" color="inherit">Materialmanagement</Button>
+                                                <Button component={Link} to="/prod/ProdManagement" color="inherit">Produktionsmanagement</Button>
+                                                <Button component={Link} to="/prod/OrderManagement" color="inherit">Auftragsmanagement</Button>
                                         </ButtonGroup>
 
                                 </Toolbar>
@@ -54,7 +51,7 @@ export default function ProdAppBar() {
                                 >
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>
                                         <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
-                                        <MenuItem component={Link} to="/updateProdStatus" onClick={handleClose}>Produktion</MenuItem>
+                                        <MenuItem component={Link} to="/prod/ProdManagement" onClick={handleClose}>Produktion</MenuItem>
                                         <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>
 
