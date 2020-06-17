@@ -87,7 +87,7 @@ class Kundenanfrage extends Component {
                       value={orderNr}
                       onChange={this.changeHandler}
                       id="outlined-basic"
-                      variant="outlined"
+                     
                     />
                   </form>
 

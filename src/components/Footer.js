@@ -26,7 +26,7 @@ function Footer({ children }) {
       <div>
         <div style={phantom} />
         <div style={styleFooter}>
-          <a href="/faq" color="#FFFFFF">Haben Sie Fragen? Hier geht es zu den FAQ</a>
+          <a href="/faq" style={{ color: '#ffffff' }}>Haben Sie Fragen? Hier geht es zu den FAQ</a>
           {children}
         </div>
       </div>

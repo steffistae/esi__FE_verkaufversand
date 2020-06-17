@@ -75,13 +75,20 @@ function Editable() {
 
   return (
     <>
-      <div style={{ maxWidth: "100%" }}>
-        <div style={{ display: "flex", alignItems: "center", margin: "20px" }}>
-          <form noValidate autoComplete="off">
+
+              <div style={{ maxWidth: "100%" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    paddingLeft: "20px",
+                    paddingBottom: "20px",
+                  }}
+                >
+                 <form noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
-              label="Kundennummer"
-              variant="outlined"
+              label="Kundennummer*"
               value={customerId}
               onChange={(e) => setCustomerId(e.target.value)}
               title="Die Angabe einer Kundennummer ist nur für Bestellungen notwendig, die nicht auf Lager produziert werden."
@@ -94,12 +101,15 @@ function Editable() {
           onChange={(e) => settoStock(e.target.value)}
         >
           Produktion auf Lager? <br />
+          
           <input type="radio" value={1} name="tostock" /> Ja <br />
           <input type="radio" value={0} name="tostock" /> Nein <br />
         </div>
-      </div>
+                  </div>
+                  
 
       <MaterialTable
+       style={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}
         title="Bestellung anlegen"
         columns={columns}
         data={data}
@@ -141,7 +151,7 @@ function Editable() {
 
       <Button
         onClick={createOrder}
-        style={{ float: "right", margin: "5px" }}
+        style={{ float: "right", margin: "20px" }}
         variant="contained"
         color="primary"
       >

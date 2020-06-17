@@ -27,8 +27,10 @@ export default function GlobalAppBar() {
                                 <MenuIcon />
                             </IconButton> 
                             <Typography variant="h4" >
-                                YOURSHIRT   |   Verkauf & Versand      
-                            </Typography>
+                                                
+                                                <a href="/home" style={{color: 'white', textDecoration: 'none' }} >YOURSHIRT</a>    |  
+                                                 <a href="/status" style={{color: 'white', textDecoration: 'none' }} > Verkauf & Versand</a>
+                                        </Typography>
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
                             
@@ -54,7 +56,7 @@ export default function GlobalAppBar() {
                                 >  
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
                                         <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
-                                        <MenuItem component={Link} to="/getprodstatus" onClick={handleClose}>Produktion</MenuItem>  
+                                        <MenuItem component={Link} to="/updateprodstatus" onClick={handleClose}>Produktion</MenuItem>  
                                         <MenuItem onClick={handleClose}>Mawi</MenuItem>  
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
 
