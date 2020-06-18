@@ -81,10 +81,11 @@ class AllCustomer extends Component {
                       { title: "CustomerID", field: "customerID" },
                       { title: "Vorname", field: "firstName" },
                       { title: "Nachname", field: "surName" },
-                      {
-                        title: "Firma",
-                        field: "company",
-                      },
+                      { title: "Firma", field: "company"},
+                      { title: "Straße", field: "street" },
+                      { title: "PLZ", field: "PostCode" },
+                      { title: "Stadt", field: "city" },
+                      { title: "Telefon", field: "phone" },
                       { title: "E-Mail", field: "mail" },
                       { title: "Kundentyp", field: "business", lookup: {0: 'Privatkunde', 1: 'Geschäftskunde'} },
                     ]}
