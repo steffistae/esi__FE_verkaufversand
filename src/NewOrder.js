@@ -24,10 +24,10 @@ function NewOrderLayout() {
         
       
 
-        <div style={{ paddingTop: '20px'}} >
+       
 
         <Editable/>
-        </div>
+      
         
 
         

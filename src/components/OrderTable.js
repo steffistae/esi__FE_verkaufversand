@@ -7,17 +7,24 @@ import axios from "axios";
 
 var answer = null;
 
-function Editable() {
-  const { useState } = React;
 
+function Editable() {
+
+  const { useState } = React;
   const [count, incrementCount] = useState(1);
   const [customerId, setCustomerId] = useState("");
   const [tostock, settoStock] = useState();
-
   const [columns, setColumns] = useState([
     { title: "Materialnummer", field: "materialNr", tooltip: "8-stellige Nummer: 10000001" },
-    { title: "Farbcode", field: "colorCode", tooltip: "HEX-Code: #282C34"},
-    { title: "Motivnummer", field: "motivNr", tooltip:"4-stellige Nummer: 3489" },
+    {
+      title: "Farbcode", field: "colorCode", tooltip: "HEX-Code: #282C34", cellStyle: (input, rowData) => {
+       // console.log('column', data);
+        return {
+          backgroundColor: rowData?.colorCode || input,
+        };
+      }
+    },
+    { title: "Motivnummer", field: "motivNr", tooltip: "4-stellige Nummer: 3489" },
     { title: "Anzahl", field: "quantity", type: "numeric" },
     {
       //      title: 'Stock or Sale?',
@@ -39,6 +46,7 @@ function Editable() {
           quantity: parseInt(element.quantity),
           motivNr: parseInt(element.motivNr),
           toStock: parseInt(tostock),
+          hexBackground: element.colorCode,
         };
       })
     );
@@ -71,19 +79,21 @@ function Editable() {
       });
   }
   let content = '';
+
+
   return (
     <>
 
-              <div style={{ maxWidth: "100%" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    paddingLeft: "20px",
-                    paddingBottom: "20px",
-                  }}
-                >
-                 <form noValidate autoComplete="off">
+      <div style={{ maxWidth: "100%" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            paddingTop: "10px",
+            margin: "20px",
+          }}
+        >
+          <form noValidate autoComplete="off">
             <TextField
               id="outlined-basic"
               label="Kundennummer"
@@ -93,69 +103,84 @@ function Editable() {
             />
           </form>{" "}
           <br />
+
+          <div
+            style={{ paddingLeft: "20px", float: "left" }}
+            onChange={(e) => settoStock(e.target.value)}
+          >
+            Produktion auf Lager? <br />
+
+            <input type="radio" value={1} name="tostock" /> Ja <br />
+            <input type="radio" value={0} name="tostock" /> Nein <br />
+          </div>
         </div>
-        <div
-          style={{ paddingLeft: "20px", paddingBottom: "20px" }}
-          onChange={(e) => settoStock(e.target.value)}
-        >
-          Produktion auf Lager? <br />
-          
-          <input type="radio" value={1} name="tostock" /> Ja <br />
-          <input type="radio" value={0} name="tostock" /> Nein <br />
-        </div>
-                  </div>
-                  
 
-      <MaterialTable
-       style={{ marginTop: "20px", marginLeft: "20px", marginRight: "20px" }}
-        title="Bestellung anlegen"
-        columns={columns}
-        data={data}
-        editable={{
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                incrementCount(count + 1);
-                setData([...data, newData]);
-                console.log(count, newData);
 
-                resolve();
-              }, 1000);
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
+        <MaterialTable
+          style={{ marginTop: "40px", marginLeft: "20px", marginRight: "20px" }}
+          title="Bestellung anlegen"
+          columns={columns}
+          data={data}
+          options={{
+            headerStyle: {
+              backgroundColor: "#3f51b5",
+              color: "#FFFF",
+            },
+            // rowStyle: rowData => ({
+            //   backgroundColor: rowData.colorCode ? rowData.colorCode : null,
+            // }),
+            // cellStyle: (...all) => {
+            //   console.log(all);
+            //   return {};
+            // }
+          }}
 
-                resolve();
-              }, 1000);
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
+          editable={{
+            onRowAdd: (newData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  incrementCount(count + 1);
+                  setData([...data, newData]);
+                  console.log(count, newData);
+                  console.log('NEW COLOR', newData.colorCode);
+                
+                  resolve();
+                }, 1000);
+              }),
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const dataUpdate = [...data];
+                  const index = oldData.tableData.id;
+                  dataUpdate[index] = newData;
+                  setData([...dataUpdate]);
 
-                resolve();
-              }, 1000);
-            }),
-        }}
-      />
+                  resolve();
+                }, 1000);
+              }),
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  const dataDelete = [...data];
+                  const index = oldData.tableData.id;
+                  dataDelete.splice(index, 1);
+                  setData([...dataDelete]);
 
+                  resolve();
+                }, 1000);
+              }),
+          }}
+        />
+      </div>
       <Button
         onClick={createOrder}
         style={{ float: "right", margin: "20px" }}
         variant="contained"
         color="primary"
       >
-        Bestellung abschicken
+        Speichern & an Produktion schicken
       </Button>
-      <div style={{paddingLeft: "20px"}}>
+      <div style={{ paddingLeft: "20px" }}>
         <h3>Bestätigung: {(content = "")}</h3>
       </div>
       <FooterPage />
