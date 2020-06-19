@@ -9,6 +9,9 @@ import { Grid } from '@material-ui/core';
 import FooterPage from '../components/Footer';
 import axios from 'axios'
 
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 var emptyStatus = {
     prodOrderNum: '',
     endDate: '',
@@ -34,24 +37,27 @@ class ProdManagement extends Component {
             selectProdStatus: '',
             prodStatus: [],
             tableRef: '',
+            data: '',
+            setData: '',
+            userInput: false,
         }
     }
-
 
     changeHandler = e => {
         this.setState({ [e.target.name]: e.target.value })
         console.log([e.target.name] + " + " + e.target.value)
     }
 
-    submitHandler = e => {
-        e.preventDefault()
+    submitHandler = async (e) => {
         console.log(this.state)
         this.setState(
             { newProd: true }
         )
 
-        axios
-            .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/updateprodstatus', this.state)
+        console.log("Sie haben diesen Auftrag erfolgreich als abgeschlossen aktualisiert: " + e)
+
+        await axios
+            .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/updateprodstatus', { "prodOrderNum": e })
             .then((res) => {
                 console.log(res.data)
                 var data = JSON.stringify(res.data)
@@ -115,6 +121,30 @@ class ProdManagement extends Component {
 
     }
 
+    /** Added Popup to confirm if status shall be updated. If yes, calls POST */
+    submitPopup = (rowData) => {
+        confirmAlert({
+            title: "Auftragsstatus aktualisieren",
+            message: "Sind Sie sicher, dass Sie den Auftragsstatus auf 'produziert' ändern möchten?",
+            buttons: [
+                {
+                    label: 'Ja',
+                    onClick: () => {
+                        console.log("User pressed yes");
+                        this.submitHandler(rowData.prodOrderNum)
+                    }
+                },
+                {
+                    label: 'Abbrechen',
+                    onClick: () => {
+                    }
+                }
+            ]
+        })
+        console.log(this.state.userInput)
+    };
+
+
     setnewProd(event) {
         console.log(event.target.value)
     }
@@ -168,13 +198,7 @@ class ProdManagement extends Component {
                                     </Grid>
 
                                 </FormControl>
-                                <div>
-                                    Wenn eine Bestellung fertig produziert ist dann geben Sie bitte in das Textfeld die Produktionsordernummer ein, welche auf dem Etikett der T-Shirts aufgedruckt ist und klicken Sie dann rechts auf die Schaltfläche. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.
 
-                                    <h3>
-                                        Bestätigung: {content = this.state.data}
-                                    </h3>
-                                </div>
                             </div>
                         </div>
                     </form>
@@ -213,58 +237,75 @@ class ProdManagement extends Component {
                                                 >Produktionsstatus abfragen</Button>
                                             </Grid>
                                         </Grid >
-
                                     </Grid>
-
                                 </FormControl>
                             </div>
-                        </div>
 
-                        <div style={{ maxWidth: "100%" }}>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    margin: "0px",
-                                }}
-                            ></div>
-                            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
-                            <div style={{ paddingTop: "5px" }}>
-                                <MaterialTable
-                                    style={{ marginLeft: "20px", marginRight: "20px" }}
-                                    title="Produktionsstatus der Aufträge"
-                                    columns={[
-                                        { title: "Production Order Nr", field: "prodOrderNum" },
-                                        { title: "Order Nr", field: "orderNumber" },
-                                        { title: "Line Item", field: "lineItem" },
-                                        { title: "Artikel Nr", field: "articleNumber" },
-                                        { title: "End Date", field: "endDate" },
-                                        { title: "HEX color", field: "colorHEX" },
-                                        { title: "Prod Status", field: "prodStatus" },
-                                        { title: "Anzahl", field: "quantity" },
-                                        { title: "Delta E", field: "deltaE" },
-                                    ]}
+                            <div style={{ width: '1200px', padding: '20px' }}>
+                                Wenn eine Bestellung fertig produziert ist dann geben Sie bitte in das Textfeld die Produktionsordernummer ein, welche auf dem Etikett der T-Shirts aufgedruckt ist und klicken Sie dann rechts auf die Schaltfläche. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.
 
-                                    data={this.state.prodStatus}
-                                    actions={[
-                                        {
-                                            icon: "done_all",
-                                            tooltip: "Refresh",
-                                            isFreeAction: true,
-                                            onClick: (e) =>
-                                                this.submitHandlerGetStatus(e),
-                                        },
-                                    ]}
-                                    options={{
-                                        headerStyle: {
-                                            backgroundColor: "#3f51b5",
-                                            color: "#FFFF",
-                                        },
-                                    }}
-                                />
+                                    <h3>
+                                    Bestätigung: {content = this.state.data}
+                                </h3>
                             </div>
                         </div>
+
+
                     </form>
+
+                    <div style={{ maxWidth: "100%" }}>
+                        <div
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                margin: "0px",
+                            }}
+                        ></div>
+                        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+                        <div style={{ paddingTop: "5px" }}>
+                            <MaterialTable
+                                style={{ marginLeft: "20px", marginRight: "20px" }}
+                                title="Produktionsstatus der Aufträge"
+                                columns={[
+                                    { title: "Production Order Nr", field: "prodOrderNum" },
+                                    { title: "Order Nr", field: "orderNumber" },
+                                    { title: "Line Item", field: "lineItem" },
+                                    { title: "Artikel Nr", field: "articleNumber" },
+                                    { title: "End Date", field: "endDate" },
+                                    { title: "HEX color", field: "colorHEX" },
+                                    { title: "Prod Status", field: "prodStatus" },
+                                    { title: "Anzahl", field: "quantity" },
+                                    { title: "Delta E", field: "deltaE" },
+                                ]}
+
+                                data={this.state.prodStatus}
+                                options={{
+                                    headerStyle: {
+                                        backgroundColor: "#3f51b5",
+                                        color: "#FFFF",
+                                    },
+                                }}
+
+
+                                actions={[
+                                    rowData => ({
+                                        icon: 'update',
+                                        tooltip: 'Produktion abschließen',
+                                        onClick: (event, rowData) => this.submitPopup(rowData),
+                                        disabled: rowData.prodStatus == 'open' || rowData.prodStatus == 'produced'
+                                    }),
+                                    {
+                                        icon: "done_all",
+                                        tooltip: "Refresh",
+                                        isFreeAction: true,
+                                        onClick: (e) =>
+                                            this.submitHandlerGetStatus(e),
+                                    },
+                                    
+                                ]}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <FooterPage />
             </>
