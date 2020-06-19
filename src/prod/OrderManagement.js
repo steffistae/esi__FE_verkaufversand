@@ -7,6 +7,11 @@ import { Grid } from '@material-ui/core';
 import FooterPage from '../components/Footer';
 import axios from 'axios'
 
+import MaterialTable from "material-table";
+
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 
 class OrderManagement extends Component {
   constructor(props) {
@@ -16,14 +21,20 @@ class OrderManagement extends Component {
       name: this.props.filename ? this.props.filename : 'data',
       url: '',
       status: '',
+      items: [],
+      chosen: [],
+      selected: [],
+      lengthSelected: 0,
     };
+
+    this.submitHandlerGetStatus()
   }
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value })
   }
 
-  submitHandler = e => {
+  submitHandler = async (e) => {
     var test = {
       "key1": "value1",
       "key2": "value2",
@@ -37,8 +48,15 @@ class OrderManagement extends Component {
         newProd: true,
       }
     )
-    axios
-      .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', { crossdomain: true })
+
+    var body = {
+      "prodOrderNum": this.state.selected,
+    }
+
+    console.log(body)
+    await axios
+      .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', body)
+      // .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', { crossdomain: true }, body)
       .then((res) => {
         console.log(res.data)
         var data = JSON.stringify(res.data)
@@ -51,11 +69,58 @@ class OrderManagement extends Component {
       .catch(error => {
         console.log(error)
       })
+
+      this.submitHandlerGetStatus()
+  }
+
+  submitHandlerGetStatus = e => {
+    if (typeof e != 'undefined') {
+      e.preventDefault();
+    }
+    console.log(this.state)
+    this.setState(
+      { newProd: true }
+    )
+
+    axios
+      .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/readorderinfo', { "orderStatus": 'open' })
+      .then((res) => {
+        var data = JSON.stringify(res.data)
+        data = JSON.parse(data)
+        data = data.body
+        console.log(data)
+        return data
+      })
+      .then(data => {
+        console.log("data: " + data)
+        this.setState({ prodStatus: data })
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   setnewProd(event) {
     console.log(event.target.value)
   }
+
+  toggle = prodOrderNum => {
+    const selected = this.state.selected;
+
+    if (selected.includes(prodOrderNum)) {
+      selected.splice(selected.indexOf(prodOrderNum), 1);
+      this.lengthSelected = 0;
+    }
+    else {
+      selected.push(prodOrderNum);
+      this.lengthSelected = 1;
+    }
+
+    this.setState({ selected });
+    localStorage.setItem("chosen", JSON.stringify(selected));
+
+    console.log(this.state);
+  };
 
   render() {
     const { prodOrderNr } = this.state;
@@ -81,7 +146,7 @@ class OrderManagement extends Component {
                       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
                       <Grid item xs={6} sm={6}>
                         <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
-
+                          disabled={!this.lengthSelected}
                           title="Erstellen Sie eine CSV-Datei mit den Nächsten anstehenden Aufträgen bequem per Knopfdruck">
                           CSV-Datei erstellen</Button>
                       </Grid>
@@ -119,6 +184,77 @@ class OrderManagement extends Component {
 
             (In Arbeit) Hier können Sie in Zukunft manuell große Aufträge aufteilen und so einplanen, dass die Produktion bestmöglich ausgelastet ist.
           </div>
+
+          <div style={{ maxWidth: "100%" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: "0px",
+              }}
+            ></div>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"></link>
+            <div style={{ paddingTop: "5px" }}>
+              <MaterialTable
+                style={{ marginLeft: "20px", marginRight: "20px" }}
+                title="Produktionsstatus der Aufträge"
+                columns={[
+                  {
+                    title: "Auswahl für CSV",
+                    render: rowData => { /** https://stackoverflow.com/questions/55639508/how-to-set-custom-onchange-onclick-functions-for-material-table-select-checkboxe */
+                      return (
+                        <input
+                          className="toggle_checkbox toggle"
+                          type="checkbox"
+                          onChange={this.toggle.bind(this, rowData.prodOrderNum)}
+                          checked={this.state.selected.includes(rowData.prodOrderNum)}
+                        />
+                      );
+                    },
+                    cellStyle: {
+                      width: 20,
+                      maxWidth: 20,
+                      padding: 20
+                    },
+                    headerStyle: {
+                      width: 20,
+                      maxWidth: 20,
+                      padding: 20
+                    }
+                  },
+                  { title: "Production Order Nr", field: "prodOrderNum" },
+                  { title: "Order Nr", field: "orderNumber" },
+                  { title: "Line Item", field: "lineItem" },
+                  { title: "Artikel Nr", field: "articleNumber" },
+                  { title: "End Date", field: "endDate" },
+                  { title: "HEX color", field: "colorHEX" },
+                  { title: "Prod Status", field: "prodStatus" },
+                  { title: "Anzahl", field: "quantity" },
+                  { title: "Delta E", field: "deltaE" },
+                ]}
+
+                data={this.state.prodStatus}
+                options={{
+                  headerStyle: {
+                    backgroundColor: "#3f51b5",
+                    color: "#FFFF",
+                  },
+                }}
+
+                actions={[
+                  {
+                    icon: "done_all",
+                    tooltip: "Refresh",
+                    isFreeAction: true,
+                    onClick: (e) =>
+                      this.submitHandlerGetStatus(e),
+                  },
+
+                ]}
+              />
+            </div>
+          </div>
+
         </div>
         <FooterPage />
       </>
