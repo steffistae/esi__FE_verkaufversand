@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
-import AppBarSales from "../components/AppBarSales";
+import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FooterPage from '../components/Footer';
+import FooterPage from './components/Footer';
 
-class Status extends Component {
+class AllCustomer extends Component {
   constructor(props) {
     super(props);
 
@@ -15,24 +15,22 @@ class Status extends Component {
       isLoaded: false,
       items: [],
       stateID: '',
-      trigger: '',
     };
   }
 
   submitHandler = e => {
-    console.log(this.state.trigger)
+    console.log(this.state)
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
-          this.state.trigger
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getallcustomers"
       )
       .then(
-        (result) => {
+        (response) => {
           this.setState({
             isLoaded: true,
-            items: result.data,
+            items: response.data.body,
           });
-          console.log(result)
+          console.log(response.data.body)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -45,7 +43,6 @@ class Status extends Component {
         }
       )
     e.preventDefault();
-    console.log(this.state.trigger);
   };
   
 
@@ -70,56 +67,27 @@ class Status extends Component {
               <AppBarSales />
 
               <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-                <h2>Status prüfen</h2>
+                <h2>Kundenkartei YourShirt</h2>
               </div>
 
               <div style={{ maxWidth: "100%" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    margin: "20px",
-                  }}
-                >
-                  <form noValidate autoComplete="off">
-                    <TextField
-                      label="Status ID*"
-                      type="number"
-                      name="trigger"
-                      value={trigger}
-                      onChange={this.changeHandler}
-                      id="outlined-basic"
-                    
-                      title=
-                      "Status 1: Bestellung eingegangen, Status 2: in Produktion, Status 3: Produktion abgeschlossen, Status 4: Bestellung versandbereit, Status 5: Bestellung ausgebucht, Status 6: Bestellung geprüft und versandbereit"
-                    />
-                  </form>
 
-                  <div>
-                    <Button
-                      type="submit"
-                      style={{ float: "left", margin: "20px" }}
-                      variant="contained"
-                      color="primary"
-                      disabled={!this.state.trigger}
-                    >
-                      Prüfen
-                    </Button>
-                  </div>
-                </div>
 
                 <div style={{ paddingTop: "25px" }}>
                   <MaterialTable
                     style={{ marginLeft: "20px", marginRight: "20px" }}
-                    title="Status der aktuellen Aufträge"
+                    title="Daten aller Kunden"
                     columns={[
-                      { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
-                      { title: "StatusID", field: "statusID" },
-                      {
-                        title: "StatusDescription",
-                        field: "Statusdescription",
-                      },
+                      { title: "CustomerID", field: "customerID" },
+                      { title: "Vorname", field: "firstName" },
+                      { title: "Nachname", field: "surName" },
+                      { title: "Firma", field: "company"},
+                      { title: "Straße", field: "street" },
+                      { title: "PLZ", field: "PostCode" },
+                      { title: "Stadt", field: "city" },
+                      { title: "Telefon", field: "phone" },
+                      { title: "E-Mail", field: "mail" },
+                      { title: "Kundentyp", field: "business", lookup: {0: 'Privatkunde', 1: 'Geschäftskunde'} },
                     ]}
                     data={this.state.items}
                     actions={[
@@ -149,4 +117,4 @@ class Status extends Component {
   }
 }
 
-export default Status;
+export default AllCustomer;

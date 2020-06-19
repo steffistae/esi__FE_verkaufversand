@@ -218,7 +218,7 @@ class NewCustomer extends Component {
                         !this.state.mail)
                       }
                     >
-                      Submit
+                      Kunden speichern
                     </Button>
                   </Grid>
                 </Grid>
