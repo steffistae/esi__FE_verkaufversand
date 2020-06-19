@@ -1,157 +1,159 @@
 import React, { Component } from "react";
 import axios from "axios";
-import "./App.css";
+import MaterialTable from "material-table";
+import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import AppBarSales from "./components/AppBarSales";
-import { FormControl } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
-import FooterPage from "./components/Footer";
+import FooterPage from './components/Footer';
 
 class Retoure extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      prodOrderNr: "", //Nummer
-      customerID: "", //ID des Kunden
-      lack: "", //String mit Beschreibung
-      newProd: "", //boolean
-      data: null,
+      error: null,
+      isLoaded: false,
+      items: [],
+      stateID: '',
+      trigger: '',
     };
   }
 
-  changeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-    if (e.target.value === "false") {
-      this.setState({ newProd: false });
-      return this.newProd;
-    } else if (e.target.value === "true") {
-      this.setState({ newProd: true });
-      return this.newProd;
-    }
-  };
-
-  submitHandler = (e) => {
-    e.preventDefault();
-    console.log(this.state);
+  submitHandler = e => {
+    console.log(this.state.trigger)
     axios
-      .post(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
-        this.state
+      .get(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
+          this.state.trigger
       )
-      .then((res) => {
-        console.log(res.data);
-        var data = JSON.stringify(res.data);
-        data = JSON.parse(data);
-        data = data.answer;
-        console.log(data);
-        return data;
-      })
-      .then((response) => {
-        console.log(response)
-        return response;
-      })
-      .then((response) => this.setState({ response }))
-      .catch((error) => {
-        console.log(error);
-      });
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result.data,
+          });
+          console.log(result)
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error,
+          });
+        }
+      )
+    e.preventDefault();
+    console.log(this.state.trigger);
+  };
+  
+
+  changeHandler = e => {
+    this.setState({ [e.target.name]: e.target.value })
   };
 
   render() {
-    const { prodOrderNr, customerID, lack, newProd } = this.state;
-    let content = "";
-    return (
-      <>
-        <div>
-          <form onSubmit={this.submitHandler}>
-            <div>
+    const { error, isLoaded, items, stateID, trigger } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else {
+      return (
+        <>
+          <div>
+            <form onSubmit={this.submitHandler}>
+              <link
+                rel="stylesheet"
+                href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              />
+
               <AppBarSales />
-            </div>
 
-            <div style={{ padding: "20px" }}>
-              <h2>Retoure anlegen</h2>
-            </div>
+              <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
+                <h2>Retoure anlegen</h2>
+              </div>
 
-            <div style={{ width: "800px", padding: "20px" }}>
-              <FormControl>
-                <Grid
-                  container
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start"
+              <div style={{ maxWidth: "100%" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "20px",
+                  }}
                 >
-                  <Grid container spacing={3}>
-                    <Grid item xs={6} sm={6}>
-                      <TextField
-                        label="Produktionsordernummer*"
-                        type="text"
-                        name="prodOrderNr"
-                        value={prodOrderNr}
-                        onChange={this.changeHandler}
-                      />
-                    </Grid>
-                    <Grid item xs={6} sm={6}>
-                      <TextField
-                        label="Kundennummer*"
-                        type="text"
-                        name="customerID"
-                        value={customerID}
-                        onChange={this.changeHandler}
-                      />
-                    </Grid>
-                    <Grid item xs={6} sm={6}>
-                      <TextField
-                        label="Mangel*"
-                        type="text"
-                        name="lack"
-                        value={lack}
-                        onChange={this.changeHandler}
-                      />
-                    </Grid>
-                    <Grid item xs={6} sm={6}>
-                      <div onChange={this.changeHandler}>
-                        {" "}
-                        Neue Produktion <br />
-                        <input
-                          type="radio"
-                          value={true}
-                          name="newProd"
-                        /> Ja <br />
-                        <input
-                          type="radio"
-                          value={false}
-                          name="newProd"
-                        /> Nein <br />
-                      </div>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={6} sm={6}>
+                  <form noValidate autoComplete="off">
+                    <TextField
+                      label="Kundennummer*"
+                      type="number"
+                      name="trigger"
+                      value={trigger}
+                      onChange={this.changeHandler}
+                      id="outlined-basic"
+                    
+                    />
+                  </form>
+
+                  <div>
                     <Button
                       type="submit"
                       style={{ float: "left", margin: "20px" }}
-                      color="primary"
                       variant="contained"
-                      disabled={
-                        (!this.state.prodOrderNr,
-                        !this.state.customerID,
-                        !this.state.lack)
-                      }
+                      color="primary"
+                      disabled={!this.state.trigger}
                     >
-                      Submit
+                      Bestellungen anzeigen
                     </Button>
-                  </Grid>
-                </Grid>
-                <div>
-                  <h3>Bestätigung: {(content = this.state.response)}</h3>
+                  </div>
                 </div>
-              </FormControl>
-            </div>
-          </form>
-        </div>
-        <FooterPage />
-      </>
-    );
+
+                <div style={{ paddingTop: "25px" }}>
+                  <MaterialTable
+                    style={{ marginLeft: "20px", marginRight: "20px" }}
+                    title="Bestellungen des Kunden"
+                    columns={[
+                      { title: "ProductionOrderNr", field: "prodOrderNr" },
+                      { title: "OrderNr", field: "orderNr" },
+                      { title: "StatusID", field: "statusID" },
+                      {
+                        title: "StatusDescription",
+                        field: "Statusdescription",
+                      },
+                    ]}
+                    data={this.state.items}
+                    actions={[
+                      {
+                        icon: "refresh",
+                        tooltip: "Refresh",
+                        isFreeAction: true,
+                        onClick: (e) =>
+                        this.submitHandler(e),
+                      },
+                      {
+                        icon: "sync",
+                        tooltip: "Retoure",
+                        onClick: (event, rowData) => console.log(rowData)
+                      },
+                      {
+                        icon: "build",
+                        tooltip: "Neuproduktion",
+                        onClick: (event, rowData) => console.log(rowData)
+                      }
+                    ]}
+                    options={{
+                      headerStyle: {
+                        backgroundColor: "#3f51b5",
+                        color: "#FFFF",
+                      },
+                    }}
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+          <FooterPage/>
+        </>
+      );
+    }
   }
 }
 

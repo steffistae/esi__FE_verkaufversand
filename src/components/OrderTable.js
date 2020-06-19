@@ -110,7 +110,7 @@ function Editable() {
           >
             Produktion auf Lager? <br />
 
-            <input type="radio" value={1} name="tostock" /> Ja <br />
+            <input type="radio" value={1} defaultChecked name="tostock" /> Ja <br />
             <input type="radio" value={0} name="tostock" /> Nein <br />
           </div>
         </div>
