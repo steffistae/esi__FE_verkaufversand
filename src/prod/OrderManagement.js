@@ -12,6 +12,8 @@ import MaterialTable from "material-table";
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
+import Icon from '@material-ui/core/Icon';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 class OrderManagement extends Component {
   constructor(props) {
@@ -70,7 +72,7 @@ class OrderManagement extends Component {
         console.log(error)
       })
 
-      this.submitHandlerGetStatus()
+    this.submitHandlerGetStatus()
   }
 
   submitHandlerGetStatus = e => {
@@ -164,26 +166,18 @@ class OrderManagement extends Component {
                 </FormControl>
 
                 <div>
-                  Erstellen Sie eine CSV-Datei mit den offenen Aufträgen per Knopfdruck. Im Hintergrund werden dabei alle anstehenden Aufträge nach dem Enddatum und dem Delta-E Schema sortiert und exportiert. Nachdem Sie die CSV-Datei erstellt haben, können Sie sie mit einem Klick auf das Icon herunterladen und abspeichern.
+                  <h3>Hier finden Sie eine Schritt für Schritt Anleitung, wie Sie eine CSV Datei mit den anstehenden Aufträgen auswählen, sortieren und abspeichern können:</h3>
+                  <ol role="listitem" class="item">
+                    <li value="-" role="listitem" class="">In der Auflistung unterhalb finden Sie alle offenen Aufträge, welche noch nicht eingeplant sind. Wählen Sie zuerst die Aufträge aus, welche Sie als nächstes einplanen möchten, indem Sie auf die jeweilige Zeile anwählen mit diesem Icon: <Icon>checkbox</Icon> </li>
+                    <li value="-" role="listitem" class="">Klicken Sie anschließend oberhalb dieses Texts auf 'CSV-Datei erstellen'. Dabei werden für die ausgewählten Aufträge alle relevanten Informationen aus der Datenbank zusammengefasst und als CSV-Datei exportiert.</li>
+                    <li value="-" role="listitem" class="">Wenn das geklappt hat drücken Sie bitte auf die nun aktivierte Schaltfläche mit dem Download-Zeichen, um die Datei herunterzuladen und abzuspeichern.</li>
+                  </ol>
                   <h3>Bestätigung: {content = this.state.status}</h3>
                 </div>
               </div>
 
             </div>
           </form>
-
-          <hr style={{
-            color: "#3f51b5",
-            backgroundColor: "#3f51b5",
-            height: 2,
-            borderColor: "#3f51b5"
-          }} />
-
-          <div style={{ padding: '20px' }} >
-            <h2>Große Aufträge aufsplitten</h2>
-
-            (In Arbeit) Hier können Sie in Zukunft manuell große Aufträge aufteilen und so einplanen, dass die Produktion bestmöglich ausgelastet ist.
-          </div>
 
           <div style={{ maxWidth: "100%" }}>
             <div
@@ -253,6 +247,20 @@ class OrderManagement extends Component {
                 ]}
               />
             </div>
+          </div>
+
+
+          <hr style={{
+            color: "#3f51b5",
+            backgroundColor: "#3f51b5",
+            height: 2,
+            borderColor: "#3f51b5"
+          }} />
+
+          <div style={{ padding: '20px' }} >
+            <h2>Große Aufträge aufsplitten</h2>
+
+            (In Arbeit) Hier können Sie in Zukunft manuell große Aufträge aufteilen und so einplanen, dass die Produktion bestmöglich ausgelastet ist.
           </div>
 
         </div>
