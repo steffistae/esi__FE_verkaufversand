@@ -1,12 +1,16 @@
 import React, { Component } from "react";
 import axios from "axios";
-import MaterialTable from "material-table";
-import AppBarSales from "./components/AppBarSales";
+import "../App.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FooterPage from './components/Footer';
+import AppBarSales from "../components/AppBarSales";
+import { FormControl } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import FooterPage from "../components/Footer";
 
-class Status extends Component {
+import MaterialTable from "material-table";
+
+class Retoure extends Component {
   constructor(props) {
     super(props);
 
@@ -14,25 +18,26 @@ class Status extends Component {
       error: null,
       isLoaded: false,
       items: [],
-      stateID: '',
-      trigger: '',
+      stateID: "",
+      trigger: "",
+      lack: "",
     };
   }
 
-  submitHandler = e => {
-    console.log(this.state.trigger)
+  submitHandler = (e) => {
+    console.log(this.state.trigger);
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getorders?orderNr=" +
           this.state.trigger
       )
       .then(
-        (result) => {
+        (response) => {
           this.setState({
             isLoaded: true,
-            items: result.data,
+            items: response.data.orderDetails,
           });
-          console.log(result)
+          console.log(response);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -43,18 +48,40 @@ class Status extends Component {
             error,
           });
         }
-      )
+      );
     e.preventDefault();
     console.log(this.state.trigger);
   };
-  
 
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  createRetoure(rowData) { //mit Neuproduktion
+    console.log(rowData);
+    rowData.price = true
+    console.log(rowData.price);
+    axios
+      .post("", rowData)
+      .then((result) => {
+        console.log(rowData);
+      });
+  }
+
+  createNewOrder(rowData) { //ohne Neuproduktion
+    console.log(rowData);
+    rowData.price = false
+    console.log(rowData.price);
+    axios
+      .post("", rowData)
+      .then((result) => {
+        console.log(rowData);
+      });
+  }
+
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error, isLoaded, items, stateID, trigger, lack } = this.state;
+    let content = '';
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -70,7 +97,7 @@ class Status extends Component {
               <AppBarSales />
 
               <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-                <h2>Status prüfen</h2>
+                <h2>Retoure anlegen</h2>
               </div>
 
               <div style={{ maxWidth: "100%" }}>
@@ -83,15 +110,12 @@ class Status extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Status ID*"
-                      type="number"
+                      label="Ordernummer*"
+                      type="text"
                       name="trigger"
                       value={trigger}
                       onChange={this.changeHandler}
                       id="outlined-basic"
-                    
-                      title=
-                      "Status 1: Bestellung eingegangen, Status 2: in Produktion, Status 3: Produktion abgeschlossen, Status 4: Bestellung versandbereit, Status 5: Bestellung ausgebucht, Status 6: Bestellung geprüft und versandbereit"
                     />
                   </form>
 
@@ -103,7 +127,7 @@ class Status extends Component {
                       color="primary"
                       disabled={!this.state.trigger}
                     >
-                      Prüfen
+                      Bestellungen anzeigen
                     </Button>
                   </div>
                 </div>
@@ -111,15 +135,18 @@ class Status extends Component {
                 <div style={{ paddingTop: "25px" }}>
                   <MaterialTable
                     style={{ marginLeft: "20px", marginRight: "20px" }}
-                    title="Status der aktuellen Aufträge"
+                    title="Bestellpositionen"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
-                      { title: "StatusID", field: "statusID" },
+                      { title: "Position", field: "lineItem" },
+                      { title: "Artikelnummer", field: "articleNr" },
+                      { title: "Menge", field: "quantity" },
+                      { title: "Mangel", field: "lack" },
                       {
-                        title: "StatusDescription",
-                        field: "Statusdescription",
-                      },
+                        title: "Preis",
+                        field: "price",
+                        lookup: { null: "kein Preis vorhanden" },
+                      }, //prodOrderNr, lineItem, artikelnummer, quantity, preis
                     ]}
                     data={this.state.items}
                     actions={[
@@ -127,8 +154,17 @@ class Status extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
-                        onClick: (e) =>
-                        this.submitHandler(e),
+                        onClick: (e) => this.submitHandler(e),
+                      },
+                      {
+                        icon: "sync",
+                        tooltip: "Retoure",
+                        onClick: (event, rowData) => this.createRetoure(rowData),
+                      },
+                      {
+                        icon: "build",
+                        tooltip: "Neuproduktion",
+                        onClick: (event, rowData) => this.createNewOrder(rowData),
                       },
                     ]}
                     options={{
@@ -137,16 +173,21 @@ class Status extends Component {
                         color: "#FFFF",
                       },
                     }}
+                   
                   />
                 </div>
               </div>
             </form>
           </div>
-          <FooterPage/>
+          <div style={{paddingLeft:"20px"}}>
+            <h3>Bestätigung: {(content = "")}</h3>
+          </div>
+          <FooterPage />
+          
         </>
       );
     }
   }
 }
 
-export default Status;
+export default Retoure;

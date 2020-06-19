@@ -11,6 +11,7 @@ var styleFooter = {
   bottom: "0",
   height: "25px",
   width: "100%",
+  color: '#000000',
 }
 
 var phantom = {

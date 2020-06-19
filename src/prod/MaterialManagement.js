@@ -48,7 +48,7 @@ var testDataShirts = {
   "fkmaterials": 0
 }
 
-class OrderMaterial extends Component {
+class MaterialManagement extends Component {
   constructor(props) {
     super(props)
 
@@ -99,6 +99,7 @@ class OrderMaterial extends Component {
         console.log(res)
         var res = JSON.stringify(res.data)
         res = JSON.parse(res)
+
 
         if (res.chargeColor === undefined) {
           this.setState({ dataColor: testDataColor })
@@ -154,15 +155,17 @@ class OrderMaterial extends Component {
 
                       <Grid item xs={6} sm={6}>
                         <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained"
-                        title="Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten und klicken Sie dann hier"
+                          title="Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten und klicken Sie dann hier"
                         >Material ordern</Button>
                       </Grid>
                     </Grid>
                   </Grid>
 
                 </FormControl>
+                <div>
+                  Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten und klicken Sie dann auf die blaue Schaltfläche.
                 <h3>Bestätigung: {content = this.state.responseOrder}</h3>
-
+                </div>
               </div>
             </div>
 
@@ -194,18 +197,25 @@ class OrderMaterial extends Component {
                           label="Chargennummer"
                           type="text"
                           name="chargennummer"
+                          title="Die Chargennummer könnte so aussehen: 2"
                           value={chargennummer}
                           onChange={this.changeHandler} />
                       </Grid>
+
                       <Grid item xs={6} sm={6}>
                         <Button type="submit" style={{ float: 'left', margin: '14px', width: "200px" }} color="primary" variant="contained"
-                        title="Um die Qualitätswerte für eine Charge abzufragen geben Sie bitte links in das Feld die Nummer ein welche auf dem entsprechenden Material aufgedruckt ist und klicken Sie nachfolgend hier"
+                          disabled={!this.state.chargennummer}
                         >Qualitätswerte abfragen</Button>
                       </Grid>
                     </Grid >
-
                   </Grid>
                 </FormControl>
+                <div>
+                  Um die Qualitätswerte für eine Charge abzufragen geben Sie bitte in dem Feld links oberherhalb die Nummer ein, welche auf dem entsprechenden Material aufgedruckt ist, und klicken Sie nachfolgend auf die rechte Schaltfläche.
+                  Die Werte können Sie anschließend unter Farbparameter beziehungsweise unter T-Shirt Parameter entnehmen.
+                </div>
+
+
                 <div style={{ width: '500px', padding: '0px', paddingLeft: '0px' }}>
                   <Grid container
                     direction="row"
@@ -270,14 +280,19 @@ class OrderMaterial extends Component {
 
                       <Grid item xs={6} sm={6}>
                         <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained"
-                        title="Wenn Sie Material einlagern möchten wählen Sie bitte links die entsprechende Position aus und drücken Sie hier. Die Materialwirtschaft wird dann benachrichtigt werden und sich darum kümmern"
+                          title="Wenn Sie Material einlagern möchten wählen Sie bitte links die entsprechende Position aus und drücken Sie hier. Die Materialwirtschaft wird dann benachrichtigt werden und sich darum kümmern"
                         >Materialwirtschaft benachrichtigen</Button>
                       </Grid>
                     </Grid>
                   </Grid>
 
                 </FormControl>
+
+                <div>
+                  Wenn Sie Material einlagern möchten wählen Sie bitte links die entsprechende Position aus und drücken Sie hier. Die Materialwirtschaft wird dann benachrichtigt werden und sich darum kümmern.
                 <h3>Bestätigung: {content = this.state.responseRestock}</h3>
+
+                </div>
 
               </div>
             </div>
@@ -290,4 +305,4 @@ class OrderMaterial extends Component {
   }
 }
 
-export default OrderMaterial; 
+export default MaterialManagement; 

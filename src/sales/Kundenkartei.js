@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
-import AppBarSales from "./components/AppBarSales";
+import AppBarSales from "../components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FooterPage from './components/Footer';
+import FooterPage from '../components/Footer';
 
-class Kundenanfrage extends Component {
+class AllCustomer extends Component {
   constructor(props) {
     super(props);
 
@@ -15,23 +15,22 @@ class Kundenanfrage extends Component {
       isLoaded: false,
       items: [],
       stateID: '',
-      orderNr: '',
     };
   }
 
   submitHandler = e => {
-    console.log(this.state.orderNr)
+    console.log(this.state)
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusvo?orderNr=" +
-          this.state.orderNr
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getallcustomers"
       )
       .then(
-        (result) => {
+        (response) => {
           this.setState({
             isLoaded: true,
-            items: result.data,
+            items: response.data.body,
           });
+          console.log(response.data.body)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -52,7 +51,7 @@ class Kundenanfrage extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, orderNr } = this.state;
+    const { error, isLoaded, items, stateID, trigger } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -68,54 +67,27 @@ class Kundenanfrage extends Component {
               <AppBarSales />
 
               <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
-                <h2>Kundenanfrage prüfen</h2>
+                <h2>Kundenkartei YourShirt</h2>
               </div>
 
               <div style={{ maxWidth: "100%" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    margin: "20px",
-                  }}
-                >
-                  <form noValidate autoComplete="off">
-                    <TextField
-                      label="Ordernummer*"
-                      type="text"
-                      name="orderNr"
-                      value={orderNr}
-                      onChange={this.changeHandler}
-                      id="outlined-basic"
-                     
-                    />
-                  </form>
 
-                  <div>
-                    <Button
-                      type="submit"
-                      style={{ float: "left", margin: "20px" }}
-                      variant="contained"
-                      color="primary"
-                      disabled={!this.state.orderNr}
-                    >
-                      Prüfen
-                    </Button>
-                  </div>
-                </div>
 
                 <div style={{ paddingTop: "25px" }}>
                   <MaterialTable
                     style={{ marginLeft: "20px", marginRight: "20px" }}
-                    title="Status der Bestellung"
+                    title="Daten aller Kunden"
                     columns={[
-                      { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
-                      { title: "StatusID", field: "statusID" },
-                      {
-                        title: "StatusDescription",
-                        field: "Statusdescription",
-                      },
+                      { title: "CustomerID", field: "customerID" },
+                      { title: "Vorname", field: "firstName" },
+                      { title: "Nachname", field: "surName" },
+                      { title: "Firma", field: "company"},
+                      { title: "Straße", field: "street" },
+                      { title: "PLZ", field: "PostCode" },
+                      { title: "Stadt", field: "city" },
+                      { title: "Telefon", field: "phone" },
+                      { title: "E-Mail", field: "mail" },
+                      { title: "Kundentyp", field: "business", lookup: {0: 'Privatkunde', 1: 'Geschäftskunde'} },
                     ]}
                     data={this.state.items}
                     actions={[
@@ -124,7 +96,7 @@ class Kundenanfrage extends Component {
                         tooltip: "Refresh",
                         isFreeAction: true,
                         onClick: (e) =>
-                        this.submitHandler(e)
+                        this.submitHandler(e),
                       },
                     ]}
                     options={{
@@ -145,4 +117,4 @@ class Kundenanfrage extends Component {
   }
 }
 
-export default Kundenanfrage;
+export default AllCustomer;

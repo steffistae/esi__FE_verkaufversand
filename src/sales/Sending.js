@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import "./App.css";
+import "../App.css";
 import QRCode from "qrcode.react";
-import AppBarSales from "./components/AppBarSales";
+import AppBarSales from "../components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { FormControl } from "@material-ui/core";
-import FooterPage from './components/Footer';
+import FooterPage from '../components/Footer';
 
 class Sending extends Component {
   constructor(props) {

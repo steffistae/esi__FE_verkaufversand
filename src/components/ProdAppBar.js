@@ -23,21 +23,20 @@ export default function ProdAppBar() {
                 <>
                         <AppBar position="static">
                                 <Toolbar>
-                                        
+
                                         <IconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick} edge="start" color="inherit" aria-label="menu">
                                                 <MenuIcon />
                                         </IconButton>
 
                                         <Typography variant="h4" >
-                                                YOURSHIRT   |   Produktion
+                                                <a href="/home" style={{ color: 'white', textDecoration: 'none' }} >YOURSHIRT</a>    |
+                                                 <a href="/prod/ProdHome" style={{ color: 'white', textDecoration: 'none' }} > Produktion</a>
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
-                                                <Button component={Link} to="/orderMaterial" color="inherit">Material</Button>
-                                                <Button component={Link} to="/updateProdStatus" color="inherit">Produktionsstatus</Button>
-                                                <Button component={Link} to="/splitLargeOrders" color="inherit">Aufträge aufteilen</Button>
-                                                <Button component={Link} to="/getCSV" color="inherit">Export CSV</Button>
-
+                                                <Button component={Link} to="/prod/MaterialManagement" color="inherit">Materialmanagement</Button>
+                                                <Button component={Link} to="/prod/ProdManagement" color="inherit">Produktionsmanagement</Button>
+                                                <Button component={Link} to="/prod/OrderManagement" color="inherit">Auftragsmanagement</Button>
                                         </ButtonGroup>
 
                                 </Toolbar>
@@ -52,10 +51,10 @@ export default function ProdAppBar() {
                                         onClose={handleClose}
                                 >
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>
-                                        <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
-                                        <MenuItem component={Link} to="/updateProdStatus" onClick={handleClose}>Produktion</MenuItem>  
-                                        <MenuItem onClick={handleClose}>Mawi</MenuItem>
-                                        <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
+                                        <MenuItem component={Link} to="/sales/status" onClick={handleClose}>Verkauf & Versand</MenuItem>
+                                        <MenuItem component={Link} to="/prod/ProdHome" onClick={handleClose}>Produktion</MenuItem>
+                                        <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>
+                                        <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>
 
                                 </Menu>
                         </div>

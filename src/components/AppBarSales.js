@@ -29,19 +29,19 @@ export default function GlobalAppBar() {
                             <Typography variant="h4" >
                                                 
                                                 <a href="/home" style={{color: 'white', textDecoration: 'none' }} >YOURSHIRT</a>    |  
-                                                 <a href="/status" style={{color: 'white', textDecoration: 'none' }} > Verkauf & Versand</a>
+                                                 <a href="/sales/status" style={{color: 'white', textDecoration: 'none' }} > Verkauf & Versand</a>
                                         </Typography>
 
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
                             
-                            <Button component={Link} to="/newcustomer" color="inherit">Neuer Kunde</Button>
-                            <Button component={Link} to="/allcustomer" color="inherit">Kundenkartei</Button>
-                            <Button  component={Link} to="/neworder" color="inherit">Neue Bestellung</Button>
-                            <Button  component={Link} to="/customerrequest" color="inherit">Kundenanfrage</Button>
-                            <Button  component={Link} to="/status" color="inherit">Status</Button>
-                            <Button  component={Link} to="/booking" color="inherit">Prüfung & Auslagerung</Button>
-                            <Button  component={Link} to="/sending" color="inherit">Versandlabel</Button>
-                            <Button  component={Link} to="/retoure" color="inherit">Retoure</Button>
+                            <Button component={Link} to="/sales/newcustomer" color="inherit">Neuer Kunde</Button>
+                            <Button component={Link} to="/sales/allcustomer" color="inherit">Kundenkartei</Button>
+                            <Button  component={Link} to="/sales/neworder" color="inherit">Neue Bestellung</Button>
+                            <Button  component={Link} to="/sales/customerrequest" color="inherit">Kundenanfrage</Button>
+                            <Button  component={Link} to="/sales/status" color="inherit">Status</Button>
+                            <Button  component={Link} to="/sales/booking" color="inherit">Prüfung & Auslagerung</Button>
+                            <Button  component={Link} to="/sales/sending" color="inherit">Versandlabel</Button>
+                            <Button  component={Link} to="/sales/retoure" color="inherit">Retoure</Button>
                             </ButtonGroup>
 
                             </Toolbar>
@@ -56,9 +56,9 @@ export default function GlobalAppBar() {
                                         onClose={handleClose}  
                                 >  
                                         <MenuItem component={Link} to="/home" onClick={handleClose}>HOME</MenuItem>  
-                                        <MenuItem component={Link} to="/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
-                                        <MenuItem component={Link} to="/updateprodstatus" onClick={handleClose}>Produktion</MenuItem>  
-                                        <MenuItem onClick={handleClose}>Mawi</MenuItem>  
+                                        <MenuItem component={Link} to="/sales/status" onClick={handleClose}>Verkauf & Versand</MenuItem>  
+                                        <MenuItem component={Link} to="/prod/ProdHome" onClick={handleClose}>Produktion</MenuItem>  
+                                        <MenuItem onClick={handleClose}>Materialwirtschaft</MenuItem>  
                                         <MenuItem component={Link} to="/faq" onClick={handleClose}>Hilfe & FAQ</MenuItem>  
 
                                 </Menu>  
