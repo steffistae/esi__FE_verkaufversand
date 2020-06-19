@@ -4,7 +4,7 @@ import MaterialTable from "material-table";
 import AppBarSales from "./components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FooterPage from './components/Footer';
+import FooterPage from "./components/Footer";
 
 class Retoure extends Component {
   constructor(props) {
@@ -14,25 +14,25 @@ class Retoure extends Component {
       error: null,
       isLoaded: false,
       items: [],
-      stateID: '',
-      trigger: '',
+      stateID: "",
+      trigger: "",
     };
   }
 
-  submitHandler = e => {
-    console.log(this.state.trigger)
+  submitHandler = (e) => {
+    console.log(this.state.trigger);
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getorders?orderNr=" +
           this.state.trigger
       )
       .then(
-        (result) => {
+        (response) => {
           this.setState({
             isLoaded: true,
-            items: result.data,
+            items: response.data.orderDetails,
           });
-          console.log(result)
+          console.log(response);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -43,18 +43,40 @@ class Retoure extends Component {
             error,
           });
         }
-      )
+      );
     e.preventDefault();
     console.log(this.state.trigger);
   };
-  
 
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value })
+  createRetoure(rowData) { //mit Neuproduktion
+    console.log(rowData);
+    rowData.price = true
+    console.log(rowData.price);
+    axios
+      .post("", rowData)
+      .then((result) => {
+        console.log(rowData);
+      });
+  }
+
+  createNewOrder(rowData) { //ohne Neuproduktion
+    console.log(rowData);
+    rowData.price = false
+    console.log(rowData.price);
+    axios
+      .post("", rowData)
+      .then((result) => {
+        console.log(rowData);
+      });
+  }
+
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
     const { error, isLoaded, items, stateID, trigger } = this.state;
+    let content = '';
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -83,13 +105,12 @@ class Retoure extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Kundennummer*"
-                      type="number"
+                      label="Ordernummer*"
+                      type="text"
                       name="trigger"
                       value={trigger}
                       onChange={this.changeHandler}
                       id="outlined-basic"
-                    
                     />
                   </form>
 
@@ -109,15 +130,18 @@ class Retoure extends Component {
                 <div style={{ paddingTop: "25px" }}>
                   <MaterialTable
                     style={{ marginLeft: "20px", marginRight: "20px" }}
-                    title="Bestellungen des Kunden"
+                    title="Bestellpositionen"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
-                      { title: "StatusID", field: "statusID" },
+                      { title: "Position", field: "lineItem" },
+                      { title: "Artikelnummer", field: "articleNr" },
+                      { title: "Menge", field: "quantity" },
+                      { title: "Mangel", field: "lack" },
                       {
-                        title: "StatusDescription",
-                        field: "Statusdescription",
-                      },
+                        title: "Preis",
+                        field: "price",
+                        lookup: { null: "kein Preis vorhanden" },
+                      }, //prodOrderNr, lineItem, artikelnummer, quantity, preis
                     ]}
                     data={this.state.items}
                     actions={[
@@ -125,19 +149,18 @@ class Retoure extends Component {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
-                        onClick: (e) =>
-                        this.submitHandler(e),
+                        onClick: (e) => this.submitHandler(e),
                       },
                       {
                         icon: "sync",
                         tooltip: "Retoure",
-                        onClick: (event, rowData) => console.log(rowData)
+                        onClick: (event, rowData) => this.createRetoure(rowData),
                       },
                       {
                         icon: "build",
                         tooltip: "Neuproduktion",
-                        onClick: (event, rowData) => console.log(rowData)
-                      }
+                        onClick: (event, rowData) => this.createNewOrder(rowData),
+                      },
                     ]}
                     options={{
                       headerStyle: {
@@ -145,12 +168,17 @@ class Retoure extends Component {
                         color: "#FFFF",
                       },
                     }}
+                   
                   />
                 </div>
               </div>
             </form>
           </div>
-          <FooterPage/>
+          <div style={{paddingLeft:"20px"}}>
+            <h3>Bestätigung: {(content = "")}</h3>
+          </div>
+          <FooterPage />
+          
         </>
       );
     }

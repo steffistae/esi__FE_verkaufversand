@@ -5,31 +5,38 @@ import TextField from "@material-ui/core/TextField";
 import FooterPage from "../components/Footer";
 import axios from "axios";
 
-var answer = null;
-
-
 function Editable() {
-
   const { useState } = React;
   const [count, incrementCount] = useState(1);
   const [customerId, setCustomerId] = useState("");
   const [tostock, settoStock] = useState();
   const [columns, setColumns] = useState([
-    { title: "Materialnummer", field: "materialNr", tooltip: "8-stellige Nummer: 10000001" },
     {
-      title: "Farbcode", field: "colorCode", tooltip: "HEX-Code: #282C34", cellStyle: (input, rowData) => {
-       // console.log('column', data);
+      title: "Materialnummer",
+      field: "materialNr",
+      tooltip: "8-stellige Nummer: 10000001",
+    },
+    {
+      title: "Farbcode",
+      field: "colorCode",
+      tooltip: "HEX-Code: #282C34",
+      cellStyle: (input, rowData) => {
+        // console.log('column', data);
         return {
           backgroundColor: rowData?.colorCode || input,
         };
-      }
+      },
     },
-    { title: "Motivnummer", field: "motivNr", tooltip: "4-stellige Nummer: 3489" },
+    {
+      title: "Motivnummer",
+      field: "motivNr",
+      tooltip: "4-stellige Nummer: 3489",
+    },
     { title: "Anzahl", field: "quantity", type: "numeric" },
     {
       //      title: 'Stock or Sale?',
       //      field: 'toStock',
-      //      lookup: { true: 'for Stock', false: 'for Sale' }, 
+      //      lookup: { true: 'for Stock', false: 'for Sale' },
     },
   ]);
 
@@ -72,18 +79,20 @@ function Editable() {
       )
       .then(console.log(body))
       .then((response) => {
-        console.log(response);
+        console.log(response.data);
+        var answer = JSON.stringify(response.data);
+        answer = JSON.parse(answer);
+        answer = answer.body.message[0];
+        console.log(answer);
+        return answer;
       })
       .catch((error) => {
         console.log(error);
       });
   }
-  let content = '';
-
-
+  let content = "";
   return (
     <>
-
       <div style={{ maxWidth: "100%" }}>
         <div
           style={{
@@ -103,18 +112,20 @@ function Editable() {
             />
           </form>{" "}
           <br />
-
           <div
             style={{ paddingLeft: "20px", float: "left" }}
             onChange={(e) => settoStock(e.target.value)}
           >
             Produktion auf Lager? <br />
-
-            <input type="radio" value={1} defaultChecked name="tostock" /> Ja <br />
+            <input
+              type="radio"
+              value={1}
+              defaultChecked
+              name="tostock"
+            /> Ja <br />
             <input type="radio" value={0} name="tostock" /> Nein <br />
           </div>
         </div>
-
 
         <MaterialTable
           style={{ marginTop: "40px", marginLeft: "20px", marginRight: "20px" }}
@@ -134,7 +145,6 @@ function Editable() {
             //   return {};
             // }
           }}
-
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve, reject) => {
@@ -142,8 +152,8 @@ function Editable() {
                   incrementCount(count + 1);
                   setData([...data, newData]);
                   console.log(count, newData);
-                  console.log('NEW COLOR', newData.colorCode);
-                
+                  console.log("NEW COLOR", newData.colorCode);
+
                   resolve();
                 }, 1000);
               }),

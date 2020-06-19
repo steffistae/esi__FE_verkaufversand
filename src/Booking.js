@@ -19,7 +19,7 @@ class Booking extends Component {
       fkmaterials: "",
       quantity: "",
       customerID: "",
-      checked: false,
+      checked: 1,
       data: null,
     };
   }
@@ -74,7 +74,7 @@ class Booking extends Component {
 
     console.log({ data });
     axios
-      .post(" https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/Prod/goods/orders", { data })
+      .post(" https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/sales/goods/orders", { data })
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
@@ -88,17 +88,24 @@ class Booking extends Component {
       });
   };
 
-  bookingOrder() {
-    const data = {
-      orderNr: this.state.orderNr,
-    };
-    console.log({ data });
+  bookingOrder(rowData) {
+    console.log(rowData);
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", { data })
+      .post("https://jsonplaceholder.typicode.com/posts", rowData)
       .then((result) => {
-        console.log({ data });
+        console.log(result);
       });
   }
+
+  checkingOrder(rowData) {
+    console.log(rowData);
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", rowData)
+      .then((result) => {
+        console.log(result);
+      });
+  }
+
 
   render() {
     const {
@@ -156,6 +163,17 @@ class Booking extends Component {
                       onClick: (e) =>
                         this.submitHandler(e),
                     },
+                    {
+                      icon: "done_all",
+                      tooltip: "Prüfen",
+                      onClick: (event, rowData) => console.log(rowData),
+                    },
+                    {
+                      icon: "send",
+                      tooltip: "Auslagern",
+                      disabled: items.orderNr = null,                     
+                      onClick: (event, rowData) => console.log(rowData),
+                    },
                   ]}
                   options={{
                     headerStyle: {
@@ -174,37 +192,6 @@ class Booking extends Component {
                       }}
                     >
                       <form noValidate autoComplete="off">
-                        <TextField
-                          label="Ordernummer*"
-                          type="text"
-                          name="orderNr"
-                          value={orderNr}
-                          onChange={this.changeHandler}
-                          style={{ float: "left", margin: "5px" }}
-                          id="outlined-basic"
-                          
-                        />
-
-                        <Button
-                          onClick={() => this.bookingOrder()}
-                          style={{ float: "left", margin: "10px" }}
-                          variant="contained"
-                          color="primary"
-                          disabled={!this.state.orderNr}
-                        >
-                          {" "}
-                          Prüfen
-                        </Button>
-                        <Button
-                          onClick={() => this.bookingOrder()}
-                          style={{ float: "left", margin: "10px" }}
-                          variant="contained"
-                          color="primary"
-                          disabled={!this.state.orderNr}
-                        >
-                          {" "}
-                          Auslagern
-                        </Button>
 
                         <div style={{ paddingTop: "100px", paddingLeft: "0px" }}>
                           <h2>Auslagerung Stock</h2>
