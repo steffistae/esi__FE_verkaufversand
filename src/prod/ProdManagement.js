@@ -9,6 +9,8 @@ import { Grid } from '@material-ui/core';
 import FooterPage from '../components/Footer';
 import axios from 'axios'
 
+import Icon from '@material-ui/core/Icon';
+
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
@@ -34,15 +36,13 @@ class ProdManagement extends Component {
             statusID: '3', //ID des Kunden
             statusdescription: 'Produktion abgeschlossen', //String mit Beschreibung
             data: null,
-            selectProdStatus: 'open',
+            selectProdStatus: '',
             prodStatus: [],
             tableRef: '',
             data: '',
             setData: '',
             userInput: false,
         }
-
-        this.submitHandlerGetStatus()
     }
 
     changeHandler = e => {
@@ -74,9 +74,14 @@ class ProdManagement extends Component {
             .catch(error => {
                 console.log(error)
             })
+
+        this.submitHandlerGetStatus()
     }
 
     submitHandlerGetStatus = e => {
+        if (typeof e != 'undefined') {
+            e.preventDefault();
+        }
         console.log(this.state)
         this.setState(
             { newProd: true }
@@ -199,10 +204,15 @@ class ProdManagement extends Component {
                                 </FormControl>
                             </div>
 
-                            <div style={{ width: '1200px', padding: '20px' }}>
-                                Wenn eine Bestellung fertig produziert ist dann suchen Sie bitte über das Suchfeld rechts den entsprechenden Auftrag in das Textfeld die Produktionsordernummer ein, welche auf dem Etikett der T-Shirts aufgedruckt ist und klicken Sie dann rechts auf die Schaltfläche. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.
-
-                                    <h3>
+                            <div style={{ width: '100%', padding: '20px' }}>
+                                <h3>Hier finden Sie eine Schritt für Schritt Anleitung, wie Sie einen produzierten Auftrag im System aktualisieren:</h3>
+                                <ol role="listitem" class="item">
+                                    <li value="-" role="listitem" class="">Wenn eine Bestellung fertig produziert ist, dann klicken Sie oberhalb auf "Produktionsstatus abfragen" und anschließend über das Suchfeld rechts den entsprechenden Auftrag mittels der Prod-Order-Nummer. Diese Nummer finden Sie auf dem Etikett der T-Shirts aufgedruckt.</li>
+                                    <li value="-" role="listitem" class="">Klicken Sie anschließend in der entsprechenden Zeile links auf das Aktualisierungssymbol: <Icon>update</Icon></li> 
+                                    <li value="-" role="listitem" class="">Bestätigen Sie dann das sich öffnende Pop-up Fenster. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.</li>
+                                    <li value="-" role="listitem" class="">Sie erhalten nachfolgend eine Bestätigung der Datenbank ob die Aktualisierung erfolgreich war.</li>
+                                </ol>
+                                <h3>
                                     Bestätigung: {content = this.state.data}
                                 </h3>
                             </div>
@@ -258,7 +268,7 @@ class ProdManagement extends Component {
                                         onClick: (e) =>
                                             this.submitHandlerGetStatus(e),
                                     },
-                                    
+
                                 ]}
                             />
                         </div>
