@@ -34,13 +34,15 @@ class ProdManagement extends Component {
             statusID: '3', //ID des Kunden
             statusdescription: 'Produktion abgeschlossen', //String mit Beschreibung
             data: null,
-            selectProdStatus: '',
+            selectProdStatus: 'open',
             prodStatus: [],
             tableRef: '',
             data: '',
             setData: '',
             userInput: false,
         }
+
+        this.submitHandlerGetStatus()
     }
 
     changeHandler = e => {
@@ -75,7 +77,6 @@ class ProdManagement extends Component {
     }
 
     submitHandlerGetStatus = e => {
-        e.preventDefault()
         console.log(this.state)
         this.setState(
             { newProd: true }
@@ -166,53 +167,10 @@ class ProdManagement extends Component {
             <>
                 <div>
                     <div><ProdAppBar /></div>
-                    <form onSubmit={this.submitHandler}>
-
-                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus updaten und Auftrag abholen lassen </h2>
-
-                            <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
-                                <FormControl>
-                                    <Grid container
-                                        direction="row"
-                                        justify="center"
-                                        alignItems="flex-start">
-
-                                        <Grid
-                                            container spacing={3}>
-                                            <Grid item xs={6} sm={6}>
-                                                <TextField
-                                                    label="Produktionsordernummer"
-                                                    type="text"
-                                                    name="prodOrderNum"
-                                                    title="Die Produktionsordernummer könnte zum Beispiel wie folgt aussehen: C-20200616-12345-1"
-                                                    value={prodOrderNum}
-                                                    onChange={this.changeHandler} />
-                                            </Grid>
-                                            <Grid item xs={6} sm={6}>
-                                                <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
-                                                    disabled={!this.state.prodOrderNum}
-                                                    title="Wenn Sie hier klicken wird der Status aktualisiert"
-                                                >Produktionsauftrag abschließen</Button>
-                                            </Grid>
-                                        </Grid >
-                                    </Grid>
-
-                                </FormControl>
-
-                            </div>
-                        </div>
-                    </form>
-
-                    <hr style={{
-                        color: "#3f51b5",
-                        backgroundColor: "#3f51b5",
-                        height: 2,
-                        borderColor: "#3f51b5"
-                    }} />
 
                     <form onSubmit={this.submitHandlerGetStatus}>
 
-                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus der anstehenden Aufträge einsehen </h2>
+                        <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus der anstehenden Aufträge einsehen und Status auf "produziert" aktualisieren </h2>
 
                             <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
                                 <FormControl>
@@ -224,14 +182,14 @@ class ProdManagement extends Component {
                                         <Grid
                                             container spacing={3}>
                                             <Grid item xs={6} sm={6}>
-                                                <div onChange={this.changeHandler}> Filtern Sie nach Produktionsstatus: <br />
+                                                <div onChange={this.changeHandler}> Filtern Sie nach dem Produktionsstatus: <br /><br />
                                                     <input type="radio" value={""} defaultChecked name="selectProdStatus" /> Alle anzeigen <br />
                                                     <input type="radio" value={"open"} name="selectProdStatus" /> Offene Aufträge <br />
                                                     <input type="radio" value={"planned"} name="selectProdStatus" /> Eingeplante Aufträge <br />
                                                     <input type="radio" value={"produced"} name="selectProdStatus" /> Abgeschlossene Aufträge <br />
                                                 </div>
                                             </Grid>
-                                            <Grid item xs={6} sm={6}>
+                                            <Grid item xs={6} sm={6}> <br />
                                                 <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
                                                     title="Wenn Sie alle Aufträge in der Datenbank einsehen möchten dann klicken Sie bitte hier. Über die Auswahl Links können Sie sich gezielt Aufträge nach dem Produktionsstatus anzeigen lassen."
                                                 >Produktionsstatus abfragen</Button>
@@ -242,7 +200,7 @@ class ProdManagement extends Component {
                             </div>
 
                             <div style={{ width: '1200px', padding: '20px' }}>
-                                Wenn eine Bestellung fertig produziert ist dann geben Sie bitte in das Textfeld die Produktionsordernummer ein, welche auf dem Etikett der T-Shirts aufgedruckt ist und klicken Sie dann rechts auf die Schaltfläche. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.
+                                Wenn eine Bestellung fertig produziert ist dann suchen Sie bitte über das Suchfeld rechts den entsprechenden Auftrag in das Textfeld die Produktionsordernummer ein, welche auf dem Etikett der T-Shirts aufgedruckt ist und klicken Sie dann rechts auf die Schaltfläche. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.
 
                                     <h3>
                                     Bestätigung: {content = this.state.data}
@@ -285,7 +243,6 @@ class ProdManagement extends Component {
                                         color: "#FFFF",
                                     },
                                 }}
-
 
                                 actions={[
                                     rowData => ({
