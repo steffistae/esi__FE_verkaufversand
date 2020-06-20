@@ -12,9 +12,13 @@ import ProdHome from './prod/ProdHome';
 import MaterialManagement from './prod/MaterialManagement';
 import ProdManagement from './prod/ProdManagement';
 import OrderManagement from './prod/OrderManagement';
-import Kundenanfrage from './sales/Kundenanfrage'
-import Sending from './sales/Sending'
+import Kundenanfrage from './sales/Kundenanfrage';
+import Sending from './sales/Sending';
+import Dashboard from './prod/Dashboard/Dashboard.js';
 import FAQ from './FAQ'
+
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './theme';
 
 function App() {
   return (
@@ -35,9 +39,13 @@ function App() {
         <Route path="/prod/MaterialManagement" component={MaterialManagement} />
         <Route path="/prod/ProdManagement" component={ProdManagement} />
         <Route path="/prod/OrderManagement" component={OrderManagement} />
+        <ThemeProvider theme={theme}>
+        <Route path="/prod/Dashboard" component={Dashboard} />
+        </ThemeProvider>
         <Route path="/faq" component={FAQ} />
         <Route path="/" component={Home} />
 
+        
 
       </Switch>
 

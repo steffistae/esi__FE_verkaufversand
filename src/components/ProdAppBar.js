@@ -34,9 +34,10 @@ export default function ProdAppBar() {
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
-                                                <Button component={Link} to="/prod/MaterialManagement" color="inherit">Materialmanagement</Button>
-                                                <Button component={Link} to="/prod/ProdManagement" color="inherit">Produktionsmanagement</Button>
                                                 <Button component={Link} to="/prod/OrderManagement" color="inherit">Auftragsmanagement</Button>
+                                                <Button component={Link} to="/prod/ProdManagement" color="inherit">Produktionsmanagement</Button>
+                                                <Button component={Link} to="/prod/MaterialManagement" color="inherit">Materialmanagement</Button>
+                                                <Button component={Link} to="/prod/Dashboard" color="inherit">Kennzahlen</Button>
                                         </ButtonGroup>
 
                                 </Toolbar>
