@@ -28,8 +28,7 @@ export default function GlobalAppBar() {
                                         </IconButton>
 
                                         <Typography variant="h4" >
-                                                <a href="/home" style={{ color: 'white', textDecoration: 'none' }} >YOURSHIRT</a>    |
-                                                <a href="/home" style={{ color: 'white', textDecoration: 'none' }} > HOME</a>
+                                                <a href="/home" style={{ color: 'white', textDecoration: 'none' }} >YOURSHIRT</a> 
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
