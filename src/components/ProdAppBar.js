@@ -6,6 +6,10 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import PaletteIcon from '@material-ui/icons/Palette';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 import Typography from '@material-ui/core/Typography';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { Link } from 'react-router-dom'
@@ -34,10 +38,10 @@ export default function ProdAppBar() {
                                         </Typography>
 
                                         <ButtonGroup style={{ position: 'absolute', right: 20 }} size="small" color="primary" aria-label="outlined primary button group">
-                                                <Button component={Link} to="/prod/OrderManagement" color="inherit">Auftragsmanagement</Button>
-                                                <Button component={Link} to="/prod/ProdManagement" color="inherit">Produktionsmanagement</Button>
-                                                <Button component={Link} to="/prod/MaterialManagement" color="inherit">Materialmanagement</Button>
-                                                <Button component={Link} to="/prod/Dashboard" color="inherit">Kennzahlen</Button>
+                                                <Button component={Link} to="/prod/OrderManagement" color="inherit"><FileCopyIcon fontSize="middle"/>Auftragsmanagement</Button>
+                                                <Button component={Link} to="/prod/ProdManagement" color="inherit"><AssignmentTurnedInIcon fontSize="middle"/>Produktionsmanagement</Button>
+                                                <Button component={Link} to="/prod/MaterialManagement" color="inherit"><PaletteIcon fontSize="middle"/>Materialmanagement</Button>
+                                                <Button component={Link} to="/prod/Dashboard" color="inherit"><AssessmentIcon fontSize="middle"/>Kennzahlen</Button>
                                         </ButtonGroup>
 
                                 </Toolbar>
