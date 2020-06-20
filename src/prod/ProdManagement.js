@@ -209,8 +209,8 @@ class ProdManagement extends Component {
                                 <ol role="listitem" class="item">
                                     <li value="-" role="listitem" class="">Wenn eine Bestellung fertig produziert ist, dann klicken Sie oberhalb auf "Produktionsstatus abfragen" und anschließend über das Suchfeld rechts <Icon>search</Icon> den entsprechenden Auftrag mittels der Prod-Order-Nummer. Diese Nummer finden Sie auf dem Etikett der T-Shirts aufgedruckt.</li>
                                     <li value="-" role="listitem" class="">Klicken Sie anschließend in der entsprechenden Zeile links auf das Aktualisierungssymbol: <Icon>update</Icon></li> 
-                                    <li value="-" role="listitem" class="">Bestätigen Sie dann das sich öffnende Pop-up Fenster. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt um die Order abzuholen.</li>
-                                    <li value="-" role="listitem" class="">Sie erhalten nachfolgend eine Bestätigung der Datenbank ob die Aktualisierung erfolgreich war.</li>
+                                    <li value="-" role="listitem" class="">Bestätigen Sie dann das sich öffnende Pop-up Fenster. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt, um die Order abzuholen.</li>
+                                    <li value="-" role="listitem" class="">Sie erhalten nachfolgend eine Bestätigung der Datenbank, ob die Aktualisierung erfolgreich war.</li>
                                 </ol>
                                 <h3>
                                     Bestätigung: {content = this.state.data}
