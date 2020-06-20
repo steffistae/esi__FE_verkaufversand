@@ -81,11 +81,11 @@ class ProdHome extends Component {
                                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 
                                             <div>
-                                                <p>Hier finden Sie alle relevanten Informationen welche die Produktion betreffen. Derzeit befindet sich die Webseite noch in einem Prototypen-Statium aber mit Ihrer Hilfe kann sie bald zu einer vollwertigen Unterstützung für den Alltag werden!
+                                                <p>Hier finden Sie alle relevanten Informationen, welche die Produktion betreffen. Derzeit befindet sich die Webseite noch in einem Prototypen-Statium, aber mit Ihrer Hilfe kann sie bald zu einer vollwertigen Unterstützung für den Alltag werden!
                                                 </p>
                                             </div>
                                             <div>
-                                                <p>Wenn Ihnen etwas auffällt was Sie anders darstellen würden, etwas unverständlich ist oder Sie sich gerne ausführlichere Informationen wünschen dann schreiben Sie uns gerne direktes Feedback an "feedback@blackforest_IT.de" und wir werden uns darum kümmern.
+                                                <p>Wenn Ihnen etwas auffällt, was Sie anders darstellen würden, etwas unverständlich ist oder Sie sich gerne ausführlichere Informationen wünschen, dann schreiben Sie uns gerne direktes Feedback an "feedback@blackforest_IT.de" und wir werden uns darum kümmern.
                                                 </p>
                                             </div>
                                             <div>

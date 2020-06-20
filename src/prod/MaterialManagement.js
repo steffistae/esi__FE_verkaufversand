@@ -155,7 +155,7 @@ class MaterialManagement extends Component {
 
                       <Grid item xs={6} sm={6}>
                         <Button type="submit" style={{ float: 'center', margin: '14px', width: "200px" }} color="primary" variant="contained"
-                          title="Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten und klicken Sie dann hier"
+                          title="Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten, und klicken Sie dann hier"
                         >Material ordern</Button>
                       </Grid>
                     </Grid>
@@ -163,7 +163,7 @@ class MaterialManagement extends Component {
 
                 </FormControl>
                 <div>
-                  Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten und klicken Sie dann auf die blaue Schaltfläche.
+                  Wählen Sie links das Material aus, welches Sie sich liefern lassen möchten, und klicken Sie dann auf die blaue Schaltfläche.
                 <h3>Bestätigung: {content = this.state.responseOrder}</h3>
                 </div>
               </div>
@@ -211,7 +211,7 @@ class MaterialManagement extends Component {
                   </Grid>
                 </FormControl>
                 <div>
-                  Um die Qualitätswerte für eine Charge abzufragen geben Sie bitte in dem Feld links oberherhalb die Nummer ein, welche auf dem entsprechenden Material aufgedruckt ist, und klicken Sie nachfolgend auf die rechte Schaltfläche.
+                  Um die Qualitätswerte für eine Charge abzufragen, geben Sie bitte in dem Feld links oberherhalb die Nummer ein, welche auf dem entsprechenden Material aufgedruckt ist, und klicken Sie nachfolgend auf die rechte Schaltfläche.
                   Die Werte können Sie anschließend unter Farbparameter beziehungsweise unter T-Shirt Parameter entnehmen.
                 </div>
 
@@ -289,7 +289,7 @@ class MaterialManagement extends Component {
                 </FormControl>
 
                 <div>
-                  Wenn Sie Material einlagern möchten wählen Sie bitte links die entsprechende Position aus und drücken Sie hier. Die Materialwirtschaft wird dann benachrichtigt werden und sich darum kümmern.
+                  Wenn Sie Material einlagern möchten, wählen Sie bitte links die entsprechende Position aus und drücken Sie hier. Die Materialwirtschaft wird dann benachrichtigt werden und sich darum kümmern.
                 <h3>Bestätigung: {content = this.state.responseRestock}</h3>
 
                 </div>

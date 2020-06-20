@@ -6,6 +6,7 @@ import { FormControl } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import FooterPage from '../components/Footer';
 import axios from 'axios'
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 import MaterialTable from "material-table";
 
@@ -149,7 +150,7 @@ class OrderManagement extends Component {
                       <Grid item xs={6} sm={6}>
                         <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
                           disabled={!this.lengthSelected}
-                          title="Erstellen Sie eine CSV-Datei mit den Nächsten anstehenden Aufträgen bequem per Knopfdruck">
+                          title="Erstellen Sie eine CSV-Datei mit den nächsten anstehenden Aufträgen bequem per Knopfdruck">
                           CSV-Datei erstellen</Button>
                       </Grid>
                       <Grid item xs={6} sm={6}>
@@ -168,9 +169,9 @@ class OrderManagement extends Component {
                 <div>
                   <h3>Hier finden Sie eine Schritt für Schritt Anleitung, wie Sie eine CSV Datei mit den anstehenden Aufträgen auswählen, sortieren und abspeichern können:</h3>
                   <ol role="listitem" class="item">
-                    <li value="-" role="listitem" class="">In der Auflistung unterhalb finden Sie alle offenen Aufträge, welche noch nicht eingeplant sind. Wählen Sie zuerst die Aufträge aus, welche Sie als nächstes einplanen möchten, indem Sie auf die jeweilige Zeile anwählen mit diesem Icon: <Icon>checkbox</Icon> </li>
+                    <li value="-" role="listitem" class="">In der Auflistung unterhalb finden Sie alle offenen Aufträge, welche noch nicht eingeplant sind. Wählen Sie zuerst die Aufträge aus, welche Sie als nächstes einplanen möchten, indem Sie die entsprechenden Aufträge durch das Setzen des Hakens in der linken Spalte selektieren <CheckBoxIcon/> </li>
                     <li value="-" role="listitem" class="">Klicken Sie anschließend oberhalb dieses Texts auf 'CSV-Datei erstellen'. Dabei werden für die ausgewählten Aufträge alle relevanten Informationen aus der Datenbank zusammengefasst und als CSV-Datei exportiert.</li>
-                    <li value="-" role="listitem" class="">Wenn das geklappt hat drücken Sie bitte auf die nun aktivierte Schaltfläche mit dem Download-Zeichen, um die Datei herunterzuladen und abzuspeichern.</li>
+                    <li value="-" role="listitem" class="">Wenn das geklappt, hat drücken Sie bitte auf die nun aktivierte Schaltfläche mit dem Download-Zeichen, um die Datei herunterzuladen und abzuspeichern.</li>
                   </ol>
                   <h3>Bestätigung: {content = this.state.status}</h3>
                 </div>
