@@ -19,7 +19,6 @@ class Booking extends Component {
       fkmaterials: "",
       quantity: "",
       customerID: "",
-      checked: 1,
       data: null,
     };
   }
@@ -100,7 +99,7 @@ class Booking extends Component {
   checkingOrder(rowData) {
     console.log(rowData);
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", rowData)
+      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck", rowData)
       .then((result) => {
         console.log(result);
       });
@@ -152,7 +151,7 @@ class Booking extends Component {
                     { title: "ProductionOrderNr", field: "prodOrderNr" },
                     { title: "OrderNr", field: "orderNr" },
                     { title: "StatusID", field: "statusID" },
-                    { title: "Geprüft", field: "checked"},
+                    { title: "Geprüft", field: "tested"},
                   ]}
                   data={this.state.items}
                   actions={[
@@ -166,13 +165,13 @@ class Booking extends Component {
                     {
                       icon: "done_all",
                       tooltip: "Prüfen",
-                      onClick: (event, rowData) => console.log(rowData),
+                      onClick: (event, rowData) => this.checkingOrder(rowData),
                     },
                     {
                       icon: "send",
                       tooltip: "Auslagern",
                       disabled: items.orderNr = null,                     
-                      onClick: (event, rowData) => console.log(rowData),
+                      onClick: (event, rowData) => this.bookingOrder(rowData),
                     },
                   ]}
                   options={{
@@ -193,7 +192,7 @@ class Booking extends Component {
                     >
                       <form noValidate autoComplete="off">
 
-                        <div style={{ paddingTop: "100px", paddingLeft: "0px" }}>
+                        <div style={{ paddingTop: "20px", paddingLeft: "0px" }}>
                           <h2>Auslagerung Stock</h2>
                         </div>
 

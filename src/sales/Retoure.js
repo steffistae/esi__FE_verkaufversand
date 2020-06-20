@@ -20,6 +20,7 @@ class Retoure extends Component {
       items: [],
       stateID: "",
       trigger: "",
+      lack: "",
     };
   }
 
@@ -79,7 +80,7 @@ class Retoure extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error, isLoaded, items, stateID, trigger, lack } = this.state;
     let content = '';
     if (error) {
       return <div>Error: {error.message}</div>;
