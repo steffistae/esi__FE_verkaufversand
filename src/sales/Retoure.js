@@ -55,8 +55,7 @@ class Retoure extends Component {
 
   createRetoure(rowData) { //mit Neuproduktion
     console.log(rowData);
-    rowData.price = true
-    console.log(rowData.price);
+    rowData.newProd = true
     axios
       .post("", rowData)
       .then((result) => {
@@ -66,8 +65,7 @@ class Retoure extends Component {
 
   createNewOrder(rowData) { //ohne Neuproduktion
     console.log(rowData);
-    rowData.price = false
-    console.log(rowData.price);
+    rowData.newProd = false
     axios
       .post("", rowData)
       .then((result) => {
@@ -145,17 +143,17 @@ class Retoure extends Component {
                       {
                         title: "Preis",
                         field: "price",
-                        lookup: { null: "kein Preis vorhanden" },
-                      }, //prodOrderNr, lineItem, artikelnummer, quantity, preis
+                        //hier noch lookup für price=null --> "kein Preis vorhanden"
+                      },
                     ]}
                     data={this.state.items}
                     actions={[
-                      {
+/*                      {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
                         onClick: (e) => this.submitHandler(e),
-                      },
+                      }, */
                       {
                         icon: "sync",
                         tooltip: "Retoure",
@@ -168,10 +166,14 @@ class Retoure extends Component {
                       },
                     ]}
                     options={{
+                      selection: true,
                       headerStyle: {
                         backgroundColor: "#3f51b5",
                         color: "#FFFF",
                       },
+                    }}
+                    editable={{
+                      
                     }}
                    
                   />

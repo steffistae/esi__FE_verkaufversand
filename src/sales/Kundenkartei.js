@@ -16,10 +16,10 @@ class AllCustomer extends Component {
       items: [],
       stateID: '',
     };
+    this.submitHandler()
   }
 
   submitHandler = e => {
-    console.log(this.state)
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getallcustomers"
@@ -30,7 +30,6 @@ class AllCustomer extends Component {
             isLoaded: true,
             items: response.data.body,
           });
-          console.log(response.data.body)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -42,7 +41,6 @@ class AllCustomer extends Component {
           });
         }
       )
-    e.preventDefault();
   };
   
 
@@ -100,6 +98,7 @@ class AllCustomer extends Component {
                       },
                     ]}
                     options={{
+                      exportButton: true,
                       headerStyle: {
                         backgroundColor: "#3f51b5",
                         color: "#FFFF",

@@ -15,31 +15,30 @@ class Booking extends Component {
       error: null,
       isLoaded: false,
       orderNr: "",
-      prodOrderNr: "TEST_J",
+      prodOrderNr: "",
       fkmaterials: "",
       quantity: "",
       customerID: "",
       data: null,
     };
+    this.submitHandler()
   }
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
   submitHandler = e => {
-    var trigger = "4";
     axios
       .get(
-        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getstatusid?statusID=" +
-          trigger
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck"
       )
       .then(
-        (result) => {
+        (response) => {
           this.setState({
             isLoaded: true,
-            items: result.data,
+            items: response.data.orderDetails,
           });
-          console.log(result);
+          console.log(response);
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -51,26 +50,15 @@ class Booking extends Component {
           });
         }
       );
-    e.preventDefault();
-    console.log(trigger);
   };
 
   bookingMaWi() {
-//    const data = {
-//      fkmaterials: this.state.fkmaterials,
-//      quantity: this.state.quantity,
-//      customerID: this.state.customerID,
-//      prodOrderNr: "",
-//    };
-
     const data = [{
       "fkmaterials": this.state.fkmaterials,
-      "quantity": this.state.quantity
-    },{
-      "productionOrderNr": this.state.prodOrderNr    }
+      "quantity": this.state.quantity,
+      "customerID": this.state.customerID    }
     ]
-  
-
+    
     console.log({ data });
     axios
       .post(" https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/sales/goods/orders", { data })
@@ -103,6 +91,7 @@ class Booking extends Component {
       .then((result) => {
         console.log(result);
       });
+
   }
 
 
@@ -148,10 +137,9 @@ class Booking extends Component {
                   style={{ marginLeft: "20px", marginRight: "00px" }}
                   title="Versandbereite Aufträge"
                   columns={[
-                    { title: "ProductionOrderNr", field: "prodOrderNr" },
                     { title: "OrderNr", field: "orderNr" },
                     { title: "StatusID", field: "statusID" },
-                    { title: "Geprüft", field: "tested"},
+                    { title: "Geprüft", field: "tested", lookup:{false: "nein",0: "false", true: "ja", 1: "ja" }},
                   ]}
                   data={this.state.items}
                   actions={[
