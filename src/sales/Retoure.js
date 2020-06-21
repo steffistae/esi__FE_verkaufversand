@@ -5,7 +5,6 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import AppBarSales from "../components/AppBarSales";
 import FooterPage from "../components/Footer";
-
 import MaterialTable from "material-table";
 
 class Retoure extends Component {
@@ -51,36 +50,46 @@ class Retoure extends Component {
     console.log(this.state.trigger);
   };
 
-  createRetoure(rowData) { //ohne Neuproduktion
-    rowData.newProd = false
+  createRetoure(rowData) {
+    //ohne Neuproduktion
+    rowData.newProd = false;
     var body = rowData;
     console.log(body);
-    body = JSON.stringify({ body }); 
+    body = JSON.stringify({ body });
     axios
-      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour", body)
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
+        body
+      )
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.answer;
         console.log(data);
         return data;
-      })
+      });
   }
 
-  createNewOrder(rowData) { //mit Neuproduktion
-    console.log(rowData);
-    rowData.newProd = true
+  createNewOrder(rowData) {
+    //mit Neuproduktion
+    rowData.newProd = true;
+    var body = rowData;
+    console.log(body);
+    body = JSON.stringify({ body });
     axios
-      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour", rowData)
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
+        body
+      )
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.answer;
         console.log(data);
         return data;
-      })
+      });
   }
 
   changeHandler = (e) => {
@@ -88,8 +97,8 @@ class Retoure extends Component {
   };
 
   render() {
-    const { error,trigger } = this.state;
-    let content = '';
+    const { error, trigger } = this.state;
+    let content = "";
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -149,6 +158,7 @@ class Retoure extends Component {
                       { title: "Position", field: "lineItem" },
                       { title: "Artikelnummer", field: "articleNr" },
                       { title: "Menge", field: "quantity" },
+                      { title: "Mangel", field: "lack", editable: "onUpdate" },
                       {
                         title: "Preis (€)",
                         field: "price",
@@ -157,7 +167,7 @@ class Retoure extends Component {
                     ]}
                     data={this.state.items}
                     actions={[
-/*                      {
+                      /*                      {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
@@ -166,12 +176,14 @@ class Retoure extends Component {
                       {
                         icon: "sync",
                         tooltip: "Retoure",
-                        onClick: (event, rowData) => this.createRetoure(rowData),
+                        onClick: (event, rowData) =>
+                          this.createRetoure(rowData),
                       },
                       {
                         icon: "build",
                         tooltip: "Neuproduktion",
-                        onClick: (event, rowData) => this.createNewOrder(rowData),
+                        onClick: (event, rowData) =>
+                          this.createNewOrder(rowData),
                       },
                     ]}
                     options={{
@@ -182,19 +194,17 @@ class Retoure extends Component {
                       },
                     }}
                     editable={{
-                      
+                    
                     }}
-                   
                   />
                 </div>
               </div>
             </form>
           </div>
-          <div style={{paddingLeft:"20px"}}>
+          <div style={{ paddingLeft: "20px" }}>
             <h3>Bestätigung: {(content = this.state.data)}</h3>
           </div>
           <FooterPage />
-          
         </>
       );
     }

@@ -114,7 +114,7 @@ class Status extends Component {
                     title="Status der aktuellen Aufträge"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
+                      { title: "OrderNr", field: "orderNr", /*lookup: {null: "keine Ordernummer vorhanden"}*/},
                       { title: "StatusID", field: "statusID" },
                       {
                         title: "StatusDescription",

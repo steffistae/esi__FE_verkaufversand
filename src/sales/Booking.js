@@ -87,18 +87,14 @@ class Booking extends Component {
   }
 
   checkingOrder(rowData) {
-
+    rowData.checked = true;
     console.log(rowData);
     axios
       .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck", rowData) //hier wird geprüft auf true gesetzt
       .then((res) => {
-        console.log(res.data);
-        var data = JSON.stringify(res.data);
-        data = JSON.parse(data);
-        data = data.message;
-        console.log(data);
-        return data;
+        console.log(res);
       })
+      this.submitHandler()
   }
 
 
