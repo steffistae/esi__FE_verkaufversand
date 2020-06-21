@@ -139,7 +139,7 @@ class Booking extends Component {
                   columns={[
                     { title: "OrderNr", field: "orderNr" },
                     { title: "StatusID", field: "statusID" },
-                    { title: "Geprüft", field: "tested", lookup:{false: "nein",0: "false", true: "ja", 1: "ja" }},
+                    { title: "Geprüft", field: "tested", lookup:{false: false, 0: false, true: true, 1: true }},
                   ]}
                   data={this.state.items}
                   actions={[

@@ -16,6 +16,7 @@ class Retoure extends Component {
 
     this.state = {
       error: null,
+      data: null,
       isLoaded: false,
       items: [],
       stateID: "",
@@ -53,19 +54,24 @@ class Retoure extends Component {
     console.log(this.state.trigger);
   };
 
-  createRetoure(rowData) { //mit Neuproduktion
-    console.log(rowData);
-    rowData.newProd = true
-    axios
-      .post("", rowData)
-      .then((result) => {
-        console.log(rowData);
-      });
-  }
-
-  createNewOrder(rowData) { //ohne Neuproduktion
+  createRetoure(rowData) { //ohne Neuproduktion
     console.log(rowData);
     rowData.newProd = false
+    axios
+      .post("", rowData)
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.message;
+        console.log(data);
+        return data;
+      })
+  }
+
+  createNewOrder(rowData) { //mit Neuproduktion
+    console.log(rowData);
+    rowData.newProd = true
     axios
       .post("", rowData)
       .then((result) => {
@@ -141,7 +147,7 @@ class Retoure extends Component {
                       { title: "Menge", field: "quantity" },
                       { title: "Mangel", field: "lack" },
                       {
-                        title: "Preis",
+                        title: "Preis (€)",
                         field: "price",
                         //hier noch lookup für price=null --> "kein Preis vorhanden"
                       },
@@ -182,7 +188,7 @@ class Retoure extends Component {
             </form>
           </div>
           <div style={{paddingLeft:"20px"}}>
-            <h3>Bestätigung: {(content = "")}</h3>
+            <h3>Bestätigung: {(content = this.state.data)}</h3>
           </div>
           <FooterPage />
           

@@ -116,6 +116,9 @@ class Kundenanfrage extends Component {
                         title: "StatusDescription",
                         field: "Statusdescription",
                       },
+                      { title: "Farbcode", field: "colorCode"},
+                      { title: "Anzahl", field: "quantity"},
+                      { title: "Motiv", field: "motivNr"},
                     ]}
                     data={this.state.items}
                     actions={[
