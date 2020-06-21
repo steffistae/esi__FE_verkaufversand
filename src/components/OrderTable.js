@@ -72,7 +72,7 @@ function Editable() {
     
     var body = createOrder;
     console.log(body);
-    body = JSON.stringify({ body });
+    body = JSON.stringify({ body }); 
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addorder",

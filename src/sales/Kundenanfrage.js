@@ -110,7 +110,6 @@ class Kundenanfrage extends Component {
                     title="Status der Bestellung"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
                       { title: "StatusID", field: "statusID" },
                       {
                         title: "StatusDescription",

@@ -52,10 +52,12 @@ class Retoure extends Component {
   };
 
   createRetoure(rowData) { //ohne Neuproduktion
-    console.log(rowData);
     rowData.newProd = false
+    var body = rowData;
+    console.log(body);
+    body = JSON.stringify({ body }); 
     axios
-      .post("", rowData)
+      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour", body)
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
@@ -70,10 +72,15 @@ class Retoure extends Component {
     console.log(rowData);
     rowData.newProd = true
     axios
-      .post("", rowData)
-      .then((result) => {
-        console.log(rowData);
-      });
+      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour", rowData)
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.message;
+        console.log(data);
+        return data;
+      })
   }
 
   changeHandler = (e) => {
@@ -142,7 +149,6 @@ class Retoure extends Component {
                       { title: "Position", field: "lineItem" },
                       { title: "Artikelnummer", field: "articleNr" },
                       { title: "Menge", field: "quantity" },
-                      { title: "Mangel", field: "lack" },
                       {
                         title: "Preis (€)",
                         field: "price",
