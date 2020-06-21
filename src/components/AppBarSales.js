@@ -35,13 +35,14 @@ export default function GlobalAppBar() {
                             <ButtonGroup style={{position: 'absolute', right: 20}}size="small" color="primary" aria-label="outlined primary button group">
                             
                             <Button component={Link} to="/sales/newcustomer" color="inherit">Neuer Kunde</Button>
-                            <Button component={Link} to="/sales/allcustomer" color="inherit">Kundenkartei</Button>
                             <Button  component={Link} to="/sales/neworder" color="inherit">Neue Bestellung</Button>
+                            <Button component={Link} to="/sales/allcustomer" color="inherit">Kundenkartei</Button>
                             <Button  component={Link} to="/sales/customerrequest" color="inherit">Kundenanfrage</Button>
                             <Button  component={Link} to="/sales/status" color="inherit">Status</Button>
-                            <Button  component={Link} to="/sales/booking" color="inherit">Prüfung & Auslagerung</Button>
+                            <Button  component={Link} to="/sales/booking" color="inherit">Prüfen & Auslagern</Button>
                             <Button  component={Link} to="/sales/sending" color="inherit">Versandlabel</Button>
                             <Button  component={Link} to="/sales/retoure" color="inherit">Retoure</Button>
+                            <Button  component={Link} to="/sales/kpiboard" color="inherit">KPI Board</Button>
                             </ButtonGroup>
 
                             </Toolbar>
