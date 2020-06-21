@@ -52,7 +52,7 @@ class Kundenanfrage extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, orderNr } = this.state;
+    const { error, orderNr } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {

@@ -54,7 +54,7 @@ class Status extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error, trigger } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {

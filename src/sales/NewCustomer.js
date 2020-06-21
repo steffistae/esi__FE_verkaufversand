@@ -78,7 +78,6 @@ class NewCustomer extends Component {
       country,
       phone,
       mail,
-      business,
       company,
     } = this.state;
     let content = "";

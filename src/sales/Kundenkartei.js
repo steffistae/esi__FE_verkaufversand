@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 import AppBarSales from "../components/AppBarSales";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import FooterPage from '../components/Footer';
 
 class AllCustomer extends Component {
@@ -49,7 +47,7 @@ class AllCustomer extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {

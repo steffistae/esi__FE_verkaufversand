@@ -61,7 +61,7 @@ class Booking extends Component {
     
     console.log({ data });
     axios
-      .post(" https://423rw0hwdj.execute-api.eu-central-1.amazonaws.com/sales/goods/orders", { data })
+      .post("https://jsonplaceholder.typicode.com/posts", { data }) //URL anpassen
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
@@ -70,41 +70,43 @@ class Booking extends Component {
         console.log(data);
         return data;
       })
-      .then((result) => {
-        console.log({ data });
-      });
   };
 
   bookingOrder(rowData) {
     console.log(rowData);
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", rowData)
-      .then((result) => {
-        console.log(result);
-      });
+      .post("https://jsonplaceholder.typicode.com/posts", rowData) //URL anpassen
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.message;
+        console.log(data);
+        return data;
+      })
   }
 
   checkingOrder(rowData) {
+
     console.log(rowData);
     axios
-      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck", rowData)
-      .then((result) => {
-        console.log(result);
-      });
-
+      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck", rowData) //hier wird geprüft auf true gesetzt
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.message;
+        console.log(data);
+        return data;
+      })
   }
 
 
   render() {
     const {
       items,
-      error,
-      isLoaded,
-      orderNr,
       fkmaterials,
       quantity,
-      prodOrderNr,
-      checked,
       customerID,
     } = this.state;
     let content = "";

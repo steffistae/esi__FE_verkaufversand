@@ -4,8 +4,6 @@ import "../App.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import AppBarSales from "../components/AppBarSales";
-import { FormControl } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
 import FooterPage from "../components/Footer";
 
 import MaterialTable from "material-table";
@@ -21,7 +19,6 @@ class Retoure extends Component {
       items: [],
       stateID: "",
       trigger: "",
-      lack: "",
     };
   }
 
@@ -84,7 +81,7 @@ class Retoure extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger, lack } = this.state;
+    const { error,trigger } = this.state;
     let content = '';
     if (error) {
       return <div>Error: {error.message}</div>;
