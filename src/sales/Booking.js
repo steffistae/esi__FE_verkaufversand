@@ -4,7 +4,7 @@ import MaterialTable from "material-table";
 import AppBarSales from "../components/AppBarSales";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import FooterPage from '../components/Footer'; 
+import FooterPage from "../components/Footer";
 
 class Booking extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ class Booking extends Component {
 
     this.state = {
       items: [],
+      material: [],
       error: null,
       isLoaded: false,
       orderNr: "",
@@ -21,13 +22,14 @@ class Booking extends Component {
       customerID: "",
       data: null,
     };
-    this.submitHandler()
+    this.submitHandler();
+    this.tabletoStock();
   }
-  changeHandler = e => {
+  changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  submitHandler = e => {
+  submitHandler = (e) => {
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck"
@@ -52,13 +54,28 @@ class Booking extends Component {
       );
   };
 
+  tabletoStock = (e) => {
+    axios
+      .get(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getkpidata"
+      )
+      .then((response) => {
+        this.setState({
+          material: response.data.body.allAtricleNrs,
+        });
+        console.log(response);
+      });
+  };
+
   bookingMaWi() {
-    const data = [{
-      "fkmaterials": this.state.fkmaterials,
-      "quantity": this.state.quantity,
-      "customerID": this.state.customerID    }
-    ]
-    
+    const data = [
+      {
+        fkmaterials: this.state.fkmaterials,
+        quantity: this.state.quantity,
+        customerID: this.state.customerID,
+      },
+    ];
+
     console.log({ data });
     axios
       .post("https://jsonplaceholder.typicode.com/posts", { data }) //URL anpassen
@@ -69,8 +86,8 @@ class Booking extends Component {
         data = data.message;
         console.log(data);
         return data;
-      })
-  };
+      });
+  }
 
   bookingOrder(rowData) {
     console.log(rowData);
@@ -83,28 +100,25 @@ class Booking extends Component {
         data = data.message;
         console.log(data);
         return data;
-      })
+      });
   }
 
   checkingOrder(rowData) {
     rowData.checked = true;
     console.log(rowData);
     axios
-      .post("https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck", rowData) //hier wird geprüft auf true gesetzt
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/precheck",
+        rowData
+      ) //hier wird geprüft auf true gesetzt
       .then((res) => {
         console.log(res);
-      })
-      this.submitHandler()
+      });
+    this.submitHandler();
   }
 
-
   render() {
-    const {
-      items,
-      fkmaterials,
-      quantity,
-      customerID,
-    } = this.state;
+    const { items, fkmaterials, quantity, customerID } = this.state;
     let content = "";
     return (
       <>
@@ -117,27 +131,30 @@ class Booking extends Component {
 
             <AppBarSales />
 
-            <div style={{ paddingTop: "20px", paddingLeft: "20px" }}>
+            <div style={{ paddingTop: "20px", paddingLeft: "20px", paddingRight: "20px" }}>
               <h2>Prüfen und Auslagern</h2>
-              
             </div>
             <div style={{ maxWidth: "100%" }}>
               <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  margin: "20px",
+                  margin: "0px",
                 }}
               ></div>
 
-              <div style={{ paddingTop: "5px" }}>
+              <div style={{ paddingTop: "0px" }}>
                 <MaterialTable
-                  style={{ marginLeft: "20px", marginRight: "00px" }}
+                  style={{ marginLeft: "20px", marginRight: "20px" }}
                   title="Versandbereite Aufträge"
                   columns={[
                     { title: "OrderNr", field: "orderNr" },
                     { title: "StatusID", field: "statusID" },
-                    { title: "Geprüft", field: "tested", lookup:{false: false, 0: false, true: true, 1: true }},
+                    {
+                      title: "Geprüft",
+                      field: "tested",
+                      lookup: { false: false, 0: false, true: true, 1: true },
+                    },
                   ]}
                   data={this.state.items}
                   actions={[
@@ -145,8 +162,7 @@ class Booking extends Component {
                       icon: "refresh",
                       tooltip: "Refresh",
                       isFreeAction: true,
-                      onClick: (e) =>
-                        this.submitHandler(e),
+                      onClick: (e) => this.submitHandler(e),
                     },
                     {
                       icon: "done_all",
@@ -156,7 +172,6 @@ class Booking extends Component {
                     {
                       icon: "send",
                       tooltip: "Auslagern",
-                      disabled: items.orderNr = null,                     
                       onClick: (event, rowData) => this.bookingOrder(rowData),
                     },
                   ]}
@@ -167,20 +182,42 @@ class Booking extends Component {
                     },
                   }}
                 />
-                <div>
+                <div style={{ paddingTop: "10px", paddingLeft: "20px", paddingRight: "20px" }}>
+                  <h2>ToStock-Ware ausbuchen</h2>
                   <div style={{ maxWidth: "100%" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        margin: "20px",
-                      }}
-                    >
-                      <form noValidate autoComplete="off">
-
-                        <div style={{ paddingTop: "20px", paddingLeft: "0px" }}>
-                          <h2>Auslagerung Stock</h2>
-                        </div>
+                      <form>
+                        <MaterialTable
+                          style={{ maxWidth: "100%" }}
+                          title="toStock-Ware"
+                          columns={[
+                            { title: "Artikelnummer", field: "articleNr" },
+                            { title: "Menge", field: "quantity" },
+                            { title: "Materialnummer", field: "materialNr" },
+                            { title: "Farbcode", field: "colorCode" },
+                            { title: "Motivnummer", field: "motivNr" },
+                          ]}
+                          data={this.state.material}
+                          actions={[
+                            {
+                              icon: "refresh",
+                              tooltip: "Refresh",
+                              isFreeAction: true,
+                              onClick: (e) => this.tabletoStock(e),
+                            },
+                          ]}
+                          options={{
+                            headerStyle: {
+                              backgroundColor: "#3f51b5",
+                              color: "#FFFF",
+                            },
+                          }}
+                          options={{
+                            headerStyle: {
+                              backgroundColor: "#3f51b5",
+                              color: "#FFFF",
+                            },
+                          }}
+                        />
 
                         <div
                           style={{
@@ -195,7 +232,6 @@ class Booking extends Component {
                             style={{ float: "left", paddingLeft: "0px" }}
                             id="outlined-basic"
                             label="Artikelnummer*"
-                           
                             onChange={this.changeHandler}
                           />
                           <TextField
@@ -204,7 +240,6 @@ class Booking extends Component {
                             value={quantity}
                             style={{ paddingLeft: "5px" }}
                             id="outlined-basic"
-                           
                             onChange={this.changeHandler}
                           />
                           <TextField
@@ -213,7 +248,6 @@ class Booking extends Component {
                             value={customerID}
                             style={{ paddingLeft: "5px" }}
                             id="outlined-basic"
-                           
                             onChange={this.changeHandler}
                           />
 
@@ -222,7 +256,11 @@ class Booking extends Component {
                             style={{ margin: "20px" }}
                             color="primary"
                             variant="contained"
-                            disabled={!this.state.fkmaterials, !this.state.quantity, !this.state.customerID}
+                            disabled={
+                              (!this.state.fkmaterials,
+                              !this.state.quantity,
+                              !this.state.customerID)
+                            }
                           >
                             Auslagern
                           </Button>
@@ -231,14 +269,13 @@ class Booking extends Component {
                           <h3>Bestätigung: {(content = this.state.data)}</h3>
                         </div>
                       </form>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </form>
         </div>
-        <FooterPage/>
+        <FooterPage />
       </>
     );
   }
