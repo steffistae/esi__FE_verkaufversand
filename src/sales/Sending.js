@@ -26,7 +26,6 @@ class Sending extends Component {
   printButton = (e) => {
     var data = "Label wurde erfolgreich gedruckt"
     return data
-    console.log(data);
   }
 
   render() {

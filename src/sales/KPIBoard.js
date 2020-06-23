@@ -4,8 +4,8 @@ import AppBarSales from "../components/AppBarSales";
 import FooterPage from "../components/Footer";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
+
 
 class KPIBoard extends Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class KPIBoard extends Component {
       isLoaded: false,
       items: [],
     };
-    this.submitHandler()
+    this.submitHandler();
   }
 
   submitHandler = (e) => {
@@ -41,10 +41,9 @@ class KPIBoard extends Component {
       );
   };
 
-
   render() {
-    const {} = this.state;
-    let content = '';
+    const {items} = this.state;
+    let content = "";
     return (
       <>
         <div>
@@ -76,7 +75,7 @@ class KPIBoard extends Component {
                     business_center
                   </span>
                   <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allBusinessCustomers}
+                    {(content = this.state.items.allBusinessCustomers)}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -98,7 +97,7 @@ class KPIBoard extends Component {
                     group
                   </span>
                   <Typography gutterBottom variant="h3" component="h3">
-                  {content = this.state.items.allOrdinaryCustomers}
+                    {(content = this.state.items.allOrdinaryCustomers)}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -120,7 +119,7 @@ class KPIBoard extends Component {
                     shopping_cart
                   </span>
                   <Typography gutterBottom variant="h3" component="h3">
-                  {content = this.state.items.allOrders}
+                    {(content = this.state.items.allOrders)}
                   </Typography>
                   <Typography
                     variant="body1"
@@ -144,7 +143,7 @@ class KPIBoard extends Component {
                 <Card style={{ margin: "20px", width: "350px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allOrdersinstatusId1}
+                      {(content = this.state.items.allOrdersinstatusId1)}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -160,7 +159,7 @@ class KPIBoard extends Component {
                 <Card style={{ margin: "20px", width: "350px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allOrdersinstatusId2}
+                      {(content = this.state.items.allOrdersinstatusId2)}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -175,7 +174,7 @@ class KPIBoard extends Component {
                 <Card style={{ margin: "20px", width: "350px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allOrdersinstatusId3}
+                      {(content = this.state.items.allOrdersinstatusId3)}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -191,7 +190,7 @@ class KPIBoard extends Component {
                 <Card style={{ margin: "20px", width: "350px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allOrdersinstatusId4}
+                      {(content = this.state.items.allOrdersinstatusId4)}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -207,7 +206,7 @@ class KPIBoard extends Component {
                 <Card style={{ margin: "20px", width: "350px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allOrdersinstatusId5}
+                      {(content = this.state.items.allOrdersinstatusId5)}
                     </Typography>
                     <Typography
                       variant="body1"
@@ -223,7 +222,7 @@ class KPIBoard extends Component {
                 <Card style={{ margin: "20px", width: "450px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
-                    {content = this.state.items.allOrdersinstatusId6}
+                      {(content = this.state.items.allOrdersinstatusId6)}
                     </Typography>
                     <Typography
                       variant="body1"

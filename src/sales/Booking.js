@@ -118,7 +118,7 @@ class Booking extends Component {
   }
 
   render() {
-    const { items, fkmaterials, quantity, customerID } = this.state;
+    const {fkmaterials, quantity, customerID } = this.state;
     let content = "";
     return (
       <>
@@ -131,7 +131,13 @@ class Booking extends Component {
 
             <AppBarSales />
 
-            <div style={{ paddingTop: "20px", paddingLeft: "20px", paddingRight: "20px" }}>
+            <div
+              style={{
+                paddingTop: "20px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+              }}
+            >
               <h2>Prüfen und Auslagern</h2>
             </div>
             <div style={{ maxWidth: "100%" }}>
@@ -182,93 +188,94 @@ class Booking extends Component {
                     },
                   }}
                 />
-                <div style={{ paddingTop: "10px", paddingLeft: "20px", paddingRight: "20px" }}>
+                <div
+                  style={{
+                    paddingTop: "10px",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                  }}
+                >
                   <h2>ToStock-Ware ausbuchen</h2>
                   <div style={{ maxWidth: "100%" }}>
-                      <form>
-                        <MaterialTable
-                          style={{ maxWidth: "100%" }}
-                          title="toStock-Ware"
-                          columns={[
-                            { title: "Artikelnummer", field: "articleNr" },
-                            { title: "Menge", field: "quantity" },
-                            { title: "Materialnummer", field: "materialNr" },
-                            { title: "Farbcode", field: "colorCode" },
-                            { title: "Motivnummer", field: "motivNr" },
-                          ]}
-                          data={this.state.material}
-                          actions={[
-                            {
-                              icon: "refresh",
-                              tooltip: "Refresh",
-                              isFreeAction: true,
-                              onClick: (e) => this.tabletoStock(e),
-                            },
-                          ]}
-                          options={{
-                            headerStyle: {
-                              backgroundColor: "#3f51b5",
-                              color: "#FFFF",
-                            },
-                          }}
-                          options={{
-                            headerStyle: {
-                              backgroundColor: "#3f51b5",
-                              color: "#FFFF",
-                            },
-                          }}
+                    <form>
+                      <MaterialTable
+                        style={{ maxWidth: "100%" }}
+                        title="toStock-Ware"
+                        columns={[
+                          { title: "Artikelnummer", field: "articleNr" },
+                          { title: "Menge", field: "quantity" },
+                          { title: "Materialnummer", field: "materialNr" },
+                          { title: "Farbcode", field: "colorCode" },
+                          { title: "Motivnummer", field: "motivNr" },
+                        ]}
+                        data={this.state.material}
+                        actions={[
+                          {
+                            icon: "refresh",
+                            tooltip: "Refresh",
+                            isFreeAction: true,
+                            onClick: (e) => this.tabletoStock(e),
+                          },
+                        ]}
+                        options={{
+                          headerStyle: {
+                            backgroundColor: "#3f51b5",
+                            color: "#FFFF",
+                          },
+                        }}
+
+                      />
+
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          margin: "5px",
+                        }}
+                      >
+                        <TextField
+                          name="fkmaterials"
+                          value={fkmaterials}
+                          style={{ float: "left", paddingLeft: "0px" }}
+                          id="outlined-basic"
+                          label="Artikelnummer*"
+                          onChange={this.changeHandler}
+                        />
+                        <TextField
+                          name="quantity"
+                          label="Menge*"
+                          value={quantity}
+                          style={{ paddingLeft: "5px" }}
+                          id="outlined-basic"
+                          onChange={this.changeHandler}
+                        />
+                        <TextField
+                          name="customerID"
+                          label="Kundennummer*"
+                          value={customerID}
+                          style={{ paddingLeft: "5px" }}
+                          id="outlined-basic"
+                          onChange={this.changeHandler}
                         />
 
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            margin: "5px",
-                          }}
+                        <Button
+                          onClick={() => this.bookingMaWi()}
+                          style={{ margin: "20px" }}
+                          color="primary"
+                          variant="contained"
+                          disabled={
+                            (!this.state.fkmaterials,
+                            !this.state.quantity,
+                            !this.state.customerID)
+                          }
                         >
-                          <TextField
-                            name="fkmaterials"
-                            value={fkmaterials}
-                            style={{ float: "left", paddingLeft: "0px" }}
-                            id="outlined-basic"
-                            label="Artikelnummer*"
-                            onChange={this.changeHandler}
-                          />
-                          <TextField
-                            name="quantity"
-                            label="Menge*"
-                            value={quantity}
-                            style={{ paddingLeft: "5px" }}
-                            id="outlined-basic"
-                            onChange={this.changeHandler}
-                          />
-                          <TextField
-                            name="customerID"
-                            label="Kundennummer*"
-                            value={customerID}
-                            style={{ paddingLeft: "5px" }}
-                            id="outlined-basic"
-                            onChange={this.changeHandler}
-                          />
-
-                          <Button
-                            onClick={() => this.bookingMaWi()}
-                            style={{ margin: "20px" }}
-                            color="primary"
-                            variant="contained"
-                            disabled={
-                              (!this.state.fkmaterials,
-                              !this.state.quantity,
-                              !this.state.customerID)
-                            }
-                          >
-                            Auslagern
-                          </Button>
-                        </div>
-                        <div>
-                          <h3>Bestätigung: {(content = this.state.data)}</h3>
-                        </div>
-                      </form>
+                          Auslagern
+                        </Button>
+                      </div>
+                      <div>
+                        <h3>Bestätigung: {(content = this.state.data)}</h3>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

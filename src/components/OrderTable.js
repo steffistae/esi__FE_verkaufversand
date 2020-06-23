@@ -21,7 +21,6 @@ function Editable() {
       field: "colorCode",
       tooltip: "HEX-Code: #282C34",
       cellStyle: (input, rowData) => {
-        // console.log('column', data);
         return {
           backgroundColor: rowData?.colorCode || input,
         };
@@ -33,11 +32,6 @@ function Editable() {
       tooltip: "4-stellige Nummer: 3489",
     },
     { title: "Anzahl", field: "quantity", type: "numeric" },
-    {
-      //      title: 'Stock or Sale?',
-      //      field: 'toStock',
-      //      lookup: { true: 'for Stock', false: 'for Sale' },
-    },
   ]);
 
   const [data, setData] = useState([]);
@@ -68,11 +62,10 @@ function Editable() {
         toStock: parseInt(tostock),
       };
     });
-    
-    
+
     var body = createOrder;
     console.log(body);
-    body = JSON.stringify({ body }); 
+    body = JSON.stringify({ body });
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addorder",
@@ -90,7 +83,7 @@ function Editable() {
       .catch((error) => {
         console.log(error);
       });
-  };
+  }
   let content = "";
   return (
     <>
@@ -138,13 +131,6 @@ function Editable() {
               backgroundColor: "#3f51b5",
               color: "#FFFF",
             },
-            // rowStyle: rowData => ({
-            //   backgroundColor: rowData.colorCode ? rowData.colorCode : null,
-            // }),
-            // cellStyle: (...all) => {
-            //   console.log(all);
-            //   return {};
-            // }
           }}
           editable={{
             onRowAdd: (newData) =>
