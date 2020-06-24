@@ -21,7 +21,6 @@ function Editable() {
       field: "colorCode",
       tooltip: "HEX-Code: #282C34",
       cellStyle: (input, rowData) => {
-        // console.log('column', data);
         return {
           backgroundColor: rowData?.colorCode || input,
         };
@@ -33,11 +32,6 @@ function Editable() {
       tooltip: "4-stellige Nummer: 3489",
     },
     { title: "Anzahl", field: "quantity", type: "numeric" },
-    {
-      //      title: 'Stock or Sale?',
-      //      field: 'toStock',
-      //      lookup: { true: 'for Stock', false: 'for Sale' },
-    },
   ]);
 
   const [data, setData] = useState([]);
@@ -137,13 +131,6 @@ function Editable() {
               backgroundColor: "#3f51b5",
               color: "#FFFF",
             },
-            // rowStyle: rowData => ({
-            //   backgroundColor: rowData.colorCode ? rowData.colorCode : null,
-            // }),
-            // cellStyle: (...all) => {
-            //   console.log(all);
-            //   return {};
-            // }
           }}
           editable={{
             onRowAdd: (newData) =>
@@ -191,7 +178,7 @@ function Editable() {
         Speichern & an Produktion schicken
       </Button>
       <div style={{ paddingLeft: "20px" }}>
-        <h3>Bestätigung: {(content = "")}</h3>
+        <h3>Bestätigung: {(content = createOrder.response)}</h3>
       </div>
       <FooterPage />
     </>

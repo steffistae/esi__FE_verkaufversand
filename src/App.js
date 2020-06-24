@@ -15,6 +15,8 @@ import OrderManagement from './prod/OrderManagement';
 import Kundenanfrage from './sales/Kundenanfrage';
 import Sending from './sales/Sending';
 import Dashboard from './prod/Dashboard/Dashboard.js';
+import Kundenanfrage from './sales/Kundenanfrage'
+import KPIBoard from './sales/KPIBoard'
 import FAQ from './FAQ'
 
 import { ThemeProvider } from '@material-ui/styles';
@@ -35,6 +37,7 @@ function App() {
         <Route path="/sales/customerrequest" component={Kundenanfrage} />
         <Route path="/sales/retoure" component={Retoure} />
         <Route path="/sales/sending" component={Sending} />
+        <Route path="/sales/kpiboard" component={KPIBoard} />
         <Route path="/prod/ProdHome" component={ProdHome} />
         <Route path="/prod/MaterialManagement" component={MaterialManagement} />
         <Route path="/prod/ProdManagement" component={ProdManagement} />

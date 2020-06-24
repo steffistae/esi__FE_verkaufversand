@@ -23,17 +23,14 @@ class Sending extends Component {
     this.setState({ id: true });
   };
 
-  printButton() {
-    this.setState({
-      data: "Label wurde gedruckt",
-    });
-    return this.data
+  printButton = (e) => {
+    var data = "Label wurde erfolgreich gedruckt"
+    return data
   }
 
   render() {
     let content = "";
     const { orderNr, id } = this.state;
-    const downloadQR = () => {};
     return (
       <>
         <div>

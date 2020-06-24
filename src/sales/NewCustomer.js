@@ -78,7 +78,6 @@ class NewCustomer extends Component {
       country,
       phone,
       mail,
-      business,
       company,
     } = this.state;
     let content = "";
@@ -183,6 +182,7 @@ class NewCustomer extends Component {
                           type="radio"
                           value={true}
                           name="business"
+                          defaultChecked
                         /> Ja <br />
                         <input
                           type="radio"

@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 import AppBarSales from "../components/AppBarSales";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
 import FooterPage from '../components/Footer';
 
 class AllCustomer extends Component {
@@ -16,10 +14,10 @@ class AllCustomer extends Component {
       items: [],
       stateID: '',
     };
+    this.submitHandler()
   }
 
   submitHandler = e => {
-    console.log(this.state)
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getallcustomers"
@@ -30,7 +28,6 @@ class AllCustomer extends Component {
             isLoaded: true,
             items: response.data.body,
           });
-          console.log(response.data.body)
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -42,7 +39,6 @@ class AllCustomer extends Component {
           });
         }
       )
-    e.preventDefault();
   };
   
 
@@ -51,7 +47,7 @@ class AllCustomer extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger } = this.state;
+    const { error } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -100,6 +96,7 @@ class AllCustomer extends Component {
                       },
                     ]}
                     options={{
+                      exportButton: true,
                       headerStyle: {
                         backgroundColor: "#3f51b5",
                         color: "#FFFF",

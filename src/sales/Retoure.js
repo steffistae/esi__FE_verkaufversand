@@ -4,10 +4,7 @@ import "../App.css";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import AppBarSales from "../components/AppBarSales";
-import { FormControl } from "@material-ui/core";
-import { Grid } from "@material-ui/core";
 import FooterPage from "../components/Footer";
-
 import MaterialTable from "material-table";
 
 class Retoure extends Component {
@@ -16,11 +13,11 @@ class Retoure extends Component {
 
     this.state = {
       error: null,
+      data: null,
       isLoaded: false,
       items: [],
       stateID: "",
       trigger: "",
-      lack: "",
     };
   }
 
@@ -53,25 +50,45 @@ class Retoure extends Component {
     console.log(this.state.trigger);
   };
 
-  createRetoure(rowData) { //mit Neuproduktion
-    console.log(rowData);
-    rowData.price = true
-    console.log(rowData.price);
+  createRetoure(rowData) {
+    //ohne Neuproduktion
+    rowData.newProd = false;
+    var body = rowData;
+    console.log(body);
+    body = JSON.stringify({ body });
     axios
-      .post("", rowData)
-      .then((result) => {
-        console.log(rowData);
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
+        body
+      )
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.answer;
+        console.log(data);
+        return data;
       });
   }
 
-  createNewOrder(rowData) { //ohne Neuproduktion
-    console.log(rowData);
-    rowData.price = false
-    console.log(rowData.price);
+  createNewOrder(rowData) {
+    //mit Neuproduktion
+    rowData.newProd = true;
+    var body = rowData;
+    console.log(body);
+    body = JSON.stringify({ body });
     axios
-      .post("", rowData)
-      .then((result) => {
-        console.log(rowData);
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
+        body
+      )
+      .then((res) => {
+        console.log(res.data);
+        var data = JSON.stringify(res.data);
+        data = JSON.parse(data);
+        data = data.answer;
+        console.log(data);
+        return data;
       });
   }
 
@@ -80,8 +97,8 @@ class Retoure extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, trigger, lack } = this.state;
-    let content = '';
+    const { error, trigger } = this.state;
+    let content = "";
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -141,49 +158,53 @@ class Retoure extends Component {
                       { title: "Position", field: "lineItem" },
                       { title: "Artikelnummer", field: "articleNr" },
                       { title: "Menge", field: "quantity" },
-                      { title: "Mangel", field: "lack" },
+                      { title: "Mangel", field: "lack", editable: "onUpdate" },
                       {
-                        title: "Preis",
+                        title: "Preis (€)",
                         field: "price",
-                        lookup: { null: "kein Preis vorhanden" },
-                      }, //prodOrderNr, lineItem, artikelnummer, quantity, preis
+                        //hier noch lookup für price=null --> "kein Preis vorhanden"
+                      },
                     ]}
                     data={this.state.items}
                     actions={[
-                      {
+                      /*                      {
                         icon: "refresh",
                         tooltip: "Refresh",
                         isFreeAction: true,
                         onClick: (e) => this.submitHandler(e),
-                      },
+                      }, */
                       {
                         icon: "sync",
                         tooltip: "Retoure",
-                        onClick: (event, rowData) => this.createRetoure(rowData),
+                        onClick: (event, rowData) =>
+                          this.createRetoure(rowData),
                       },
                       {
                         icon: "build",
                         tooltip: "Neuproduktion",
-                        onClick: (event, rowData) => this.createNewOrder(rowData),
+                        onClick: (event, rowData) =>
+                          this.createNewOrder(rowData),
                       },
                     ]}
                     options={{
+                      selection: true,
                       headerStyle: {
                         backgroundColor: "#3f51b5",
                         color: "#FFFF",
                       },
                     }}
-                   
+                    editable={{
+                    
+                    }}
                   />
                 </div>
               </div>
             </form>
           </div>
-          <div style={{paddingLeft:"20px"}}>
-            <h3>Bestätigung: {(content = "")}</h3>
+          <div style={{ paddingLeft: "20px" }}>
+            <h3>Bestätigung: {(content = this.state.data)}</h3>
           </div>
           <FooterPage />
-          
         </>
       );
     }

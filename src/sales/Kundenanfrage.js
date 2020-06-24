@@ -52,7 +52,7 @@ class Kundenanfrage extends Component {
   };
 
   render() {
-    const { error, isLoaded, items, stateID, orderNr } = this.state;
+    const { error, orderNr } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
     } else {
@@ -110,12 +110,14 @@ class Kundenanfrage extends Component {
                     title="Status der Bestellung"
                     columns={[
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
-                      { title: "OrderNr", field: "orderNr" },
                       { title: "StatusID", field: "statusID" },
                       {
                         title: "StatusDescription",
                         field: "Statusdescription",
                       },
+                      { title: "Farbcode", field: "colorCode"},
+                      { title: "Anzahl", field: "quantity"},
+                      { title: "Motiv", field: "motivNr"},
                     ]}
                     data={this.state.items}
                     actions={[
