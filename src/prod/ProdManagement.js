@@ -177,7 +177,20 @@ class ProdManagement extends Component {
 
                         <div style={{ padding: '20px', paddingLeft: '30px' }} ><h2>Produktionsstatus der anstehenden Aufträge einsehen und Status auf "produziert" aktualisieren </h2>
 
-                            <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
+
+
+                            <div style={{ width: '100%', padding: '20px' }}>
+                                <h3>Hier finden Sie eine Schritt für Schritt Anleitung, wie Sie einen produzierten Auftrag im System aktualisieren:</h3>
+                                <ol role="listitem" class="item">
+                                    <li value="-" role="listitem" class="">Wenn eine Bestellung fertig produziert ist, dann klicken Sie oberhalb auf "Produktionsstatus abfragen" und anschließend über das Suchfeld rechts <Icon>search</Icon> den entsprechenden Auftrag mittels der Prod-Order-Nummer. Diese Nummer finden Sie auf dem Etikett der T-Shirts aufgedruckt.</li>
+                                    <li value="-" role="listitem" class="">Klicken Sie anschließend in der entsprechenden Zeile links auf das Aktualisierungssymbol: <Icon>update</Icon></li> 
+                                    <li value="-" role="listitem" class="">Bestätigen Sie dann das sich öffnende Pop-up Fenster. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt, um die Order abzuholen.</li>
+                                    <li value="-" role="listitem" class="">Sie erhalten nachfolgend eine Bestätigung der Datenbank, ob die Aktualisierung erfolgreich war.</li>
+                                </ol>
+                                
+                            </div>
+
+                            <div style={{ width: '1200px', padding: '0px', paddingLeft: '20px' }}>
                                 <FormControl>
                                     <Grid container
                                         direction="row"
@@ -202,16 +215,7 @@ class ProdManagement extends Component {
                                         </Grid >
                                     </Grid>
                                 </FormControl>
-                            </div>
 
-                            <div style={{ width: '100%', padding: '20px' }}>
-                                <h3>Hier finden Sie eine Schritt für Schritt Anleitung, wie Sie einen produzierten Auftrag im System aktualisieren:</h3>
-                                <ol role="listitem" class="item">
-                                    <li value="-" role="listitem" class="">Wenn eine Bestellung fertig produziert ist, dann klicken Sie oberhalb auf "Produktionsstatus abfragen" und anschließend über das Suchfeld rechts <Icon>search</Icon> den entsprechenden Auftrag mittels der Prod-Order-Nummer. Diese Nummer finden Sie auf dem Etikett der T-Shirts aufgedruckt.</li>
-                                    <li value="-" role="listitem" class="">Klicken Sie anschließend in der entsprechenden Zeile links auf das Aktualisierungssymbol: <Icon>update</Icon></li> 
-                                    <li value="-" role="listitem" class="">Bestätigen Sie dann das sich öffnende Pop-up Fenster. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt, um die Order abzuholen.</li>
-                                    <li value="-" role="listitem" class="">Sie erhalten nachfolgend eine Bestätigung der Datenbank, ob die Aktualisierung erfolgreich war.</li>
-                                </ol>
                                 <h3>
                                     Bestätigung: {content = this.state.data}
                                 </h3>
