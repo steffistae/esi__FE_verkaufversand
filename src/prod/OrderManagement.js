@@ -144,41 +144,41 @@ class OrderManagement extends Component {
                   <li value="-" role="listitem" class="">Klicken Sie anschließend oberhalb dieses Texts auf 'CSV-Datei erstellen'. Dabei werden für die ausgewählten Aufträge alle relevanten Informationen aus der Datenbank zusammengefasst und als CSV-Datei exportiert.</li>
                   <li value="-" role="listitem" class="">Wenn das geklappt, hat drücken Sie bitte auf die nun aktivierte Schaltfläche mit dem Download-Zeichen, um die Datei herunterzuladen und abzuspeichern.</li>
                 </ol>
-                <h3>Bestätigung: {content = this.state.status}</h3>
               </div>
-            </div>
-
-            <div style={{ width: '1200px', padding: '0px', paddingLeft: '10px' }}>
-              <FormControl>
-                <Grid container
-                  direction="row"
-                  justify="center"
-                  alignItems="flex-start">
-
-                  <Grid
-                    container spacing={3}>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
-                    <Grid item xs={6} sm={6}>
-                      <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
-                        disabled={!this.lengthSelected}
-                        title="Erstellen Sie eine CSV-Datei mit den nächsten anstehenden Aufträgen bequem per Knopfdruck">
-                        CSV-Datei erstellen</Button>
-                    </Grid>
-                    <Grid item xs={6} sm={6}>
-                      <a href={this.state.url} target="_blank" rel="noopener noreferrer" download>
-                        <Button style={{ float: 'left', margin: '20px', height: '65px' }} alt="Download CSV-Datei" color="primary" variant="contained" title="Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern"
-                          disabled={!this.state.url}>
-                          <i className="fa fa-download" icon="download" />  </Button>
-                      </a>
-
-                    </Grid>
-                  </Grid >
-                </Grid>
-
-              </FormControl>
 
 
+              <div style={{ width: '1200px', padding: '0px', paddingLeft: '20px' }}>
+                <FormControl>
+                  <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-start">
 
+                    <Grid
+                      container spacing={3}>
+                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
+                      <Grid item xs={6} sm={6}>
+                        <Button type="submit" style={{ float: 'left', margin: '20px' }} color="primary" variant="contained"
+                          disabled={!this.lengthSelected}
+                          title="Erstellen Sie eine CSV-Datei mit den nächsten anstehenden Aufträgen bequem per Knopfdruck">
+                          CSV-Datei erstellen</Button>
+                      </Grid>
+                      <Grid item xs={6} sm={6}>
+                        <a href={this.state.url} target="_blank" rel="noopener noreferrer" download>
+                          <Button style={{ float: 'left', margin: '20px', height: '65px' }} alt="Download CSV-Datei" color="primary" variant="contained" title="Nachdem Sie die CSV-Datei mit den nächsten Aufträgen erstellt haben können Sie sie hier herunterladen und abspeichern"
+                            disabled={!this.state.url}>
+                            <i className="fa fa-download" icon="download" />  </Button>
+                        </a>
+
+                      </Grid>
+                    </Grid >
+                  </Grid>
+
+                </FormControl>
+
+                <h3>Bestätigung: {content = this.state.status}</h3>
+
+              </div>
             </div>
           </form>
 

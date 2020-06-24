@@ -36,13 +36,15 @@ class ProdManagement extends Component {
             statusID: '3', //ID des Kunden
             statusdescription: 'Produktion abgeschlossen', //String mit Beschreibung
             data: null,
-            selectProdStatus: '',
+            selectProdStatus: 'planned',
             prodStatus: [],
             tableRef: '',
             data: '',
             setData: '',
             userInput: false,
         }
+
+        this.submitHandlerGetStatus()
     }
 
     changeHandler = e => {
@@ -201,9 +203,9 @@ class ProdManagement extends Component {
                                             container spacing={3}>
                                             <Grid item xs={6} sm={6}>
                                                 <div onChange={this.changeHandler}> Filtern Sie nach dem Produktionsstatus: <br /><br />
-                                                    <input type="radio" value={""} defaultChecked name="selectProdStatus" /> Alle anzeigen <br />
+                                                    <input type="radio" value={""} name="selectProdStatus" /> Alle anzeigen <br />
                                                     <input type="radio" value={"open"} name="selectProdStatus" /> Offene Aufträge <br />
-                                                    <input type="radio" value={"planned"} name="selectProdStatus" /> Eingeplante Aufträge <br />
+                                                    <input type="radio" value={"planned"} defaultChecked name="selectProdStatus" /> Eingeplante Aufträge <br />
                                                     <input type="radio" value={"produced"} name="selectProdStatus" /> Abgeschlossene Aufträge <br />
                                                 </div>
                                             </Grid>
