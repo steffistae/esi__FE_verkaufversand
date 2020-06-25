@@ -33,9 +33,6 @@ class Kundenanfrage extends Component {
             items: result.data,
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -115,7 +112,13 @@ class Kundenanfrage extends Component {
                         title: "StatusDescription",
                         field: "Statusdescription",
                       },
-                      { title: "Farbcode", field: "colorCode"},
+                      { title: "Farbcode", field: "colorCode",
+                      cellStyle: (input, rowData) => {
+                        return {
+                          backgroundColor: rowData?.colorCode || input,
+                        };
+                      },
+                    },
                       { title: "Anzahl", field: "quantity"},
                       { title: "Motiv", field: "motivNr"},
                     ]}
@@ -123,7 +126,7 @@ class Kundenanfrage extends Component {
                     actions={[
                       {
                         icon: "refresh",
-                        tooltip: "Refresh",
+                        tooltip: "Aktualisieren",
                         isFreeAction: true,
                         onClick: (e) =>
                         this.submitHandler(e)

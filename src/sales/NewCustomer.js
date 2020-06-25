@@ -131,7 +131,7 @@ class NewCustomer extends Component {
                     </Grid>
                     <Grid item xs={6} sm={6}>
                       <TextField
-                        label="PLZ*"
+                        label="Postleitzahl*"
                         type="number"
                         name="PostCode"
                         value={PostCode}

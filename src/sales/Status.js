@@ -117,7 +117,13 @@ class Status extends Component {
                         title: "StatusDescription",
                         field: "Statusdescription",
                       },
-                      { title: "Farbcode", field: "colorCode" },
+                      { title: "Farbcode", field: "colorCode",
+                      cellStyle: (input, rowData) => {
+                        return {
+                          backgroundColor: rowData?.colorCode || input,
+                        };
+                      },
+                    },
                       { title: "Anzahl", field: "quantity" },
                       { title: "Motiv", field: "motivNr" },
                     ]}
@@ -125,7 +131,7 @@ class Status extends Component {
                     actions={[
                       {
                         icon: "refresh",
-                        tooltip: "Refresh",
+                        tooltip: "Aktualisieren",
                         isFreeAction: true,
                         onClick: (e) => this.submitHandler(e),
                       },

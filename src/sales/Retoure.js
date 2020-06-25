@@ -52,10 +52,15 @@ class Retoure extends Component {
 
   createRetoure(rowData) {
     //ohne Neuproduktion
-    rowData.newProd = false;
     var body = rowData;
     console.log(body);
+    let i;
+    for (i in body)
+    {
+        body[i].newProd=false;
+    }
     body = JSON.stringify({ body });
+    console.log(body)
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
@@ -73,10 +78,15 @@ class Retoure extends Component {
 
   createNewOrder(rowData) {
     //mit Neuproduktion
-    rowData.newProd = true;
     var body = rowData;
     console.log(body);
+    let i;
+    for (i in body)
+    {
+        body[i].newProd=true;
+    }
     body = JSON.stringify({ body });
+    console.log(body)
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
@@ -157,8 +167,14 @@ class Retoure extends Component {
                       { title: "ProductionOrderNr", field: "prodOrderNr" },
                       { title: "Position", field: "lineItem" },
                       { title: "Artikelnummer", field: "articleNr" },
+                      { title: "Farbcode", field: "colorCode",
+                      cellStyle: (input, rowData) => {
+                        return {
+                          backgroundColor: rowData?.colorCode || input,
+                        };
+                      },
+                    },
                       { title: "Menge", field: "quantity" },
-                      { title: "Mangel", field: "lack", editable: "onUpdate" },
                       {
                         title: "Preis (€)",
                         field: "price",

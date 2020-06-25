@@ -70,20 +70,23 @@ class Booking extends Component {
   bookingMaWi() {
     const data = [
       {
-        fkmaterials: this.state.fkmaterials,
-        quantity: this.state.quantity,
-        customerID: this.state.customerID,
+        fkmaterials: parseInt(this.state.fkmaterials),
+        quantity: parseInt(this.state.quantity),
+        customerID: parseInt(this.state.customerID),
       },
     ];
 
     console.log({ data });
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", { data }) //URL anpassen
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/postbooking",
+        { data }
+      ) //URL anpassen
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.ans;
         console.log(data);
         return data;
       });
@@ -92,12 +95,15 @@ class Booking extends Component {
   bookingOrder(rowData) {
     console.log(rowData);
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", rowData) //URL anpassen
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/postbooking",
+        rowData
+      ) //URL anpassen
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.ans;
         console.log(data);
         return data;
       });
@@ -118,7 +124,7 @@ class Booking extends Component {
   }
 
   render() {
-    const {fkmaterials, quantity, customerID } = this.state;
+    const { fkmaterials, quantity, customerID } = this.state;
     let content = "";
     return (
       <>
@@ -205,7 +211,15 @@ class Booking extends Component {
                           { title: "Artikelnummer", field: "articleNr" },
                           { title: "Menge", field: "quantity" },
                           { title: "Materialnummer", field: "materialNr" },
-                          { title: "Farbcode", field: "colorCode" },
+                          {
+                            title: "Farbcode",
+                            field: "colorCode",
+                            cellStyle: (input, rowData) => {
+                              return {
+                                backgroundColor: rowData?.colorCode || input,
+                              };
+                            },
+                          },
                           { title: "Motivnummer", field: "motivNr" },
                         ]}
                         data={this.state.material}
@@ -223,7 +237,6 @@ class Booking extends Component {
                             color: "#FFFF",
                           },
                         }}
-
                       />
 
                       <div

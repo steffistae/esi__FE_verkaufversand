@@ -82,7 +82,7 @@ function Editable() {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
   }
   let content = "";
   return (
@@ -178,7 +178,7 @@ function Editable() {
         Speichern & an Produktion schicken
       </Button>
       <div style={{ paddingLeft: "20px" }}>
-        <h3>Bestätigung: {(content = createOrder.response)}</h3>
+        <h3>Bestätigung: {(content = "")}</h3>
       </div>
       <FooterPage />
     </>
