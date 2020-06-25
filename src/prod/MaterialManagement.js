@@ -60,6 +60,7 @@ class MaterialManagement extends Component {
       dataShirt: testDataShirts,
       responseOrder: '',
       responseRestock: '',
+      responseCharge: '',
     }
   }
 
@@ -96,17 +97,23 @@ class MaterialManagement extends Component {
     axios
       .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/addQualityValue', data)
       .then((res) => {
-        console.log(res)
+
         var res = JSON.stringify(res.data)
         res = JSON.parse(res)
+        console.log(res)
 
-
-        if (res.chargeColor === undefined) {
+        if (res.chargeColor === undefined && res.chargeShirt !== undefined) {
           this.setState({ dataColor: testDataColor })
           this.setState({ dataShirt: res })
-        } else {
+          this.setState({ responseCharge: "Die Anfrage war erfolgreich." })
+        } else if (res.chargeColor !== undefined && res.chargeShirt === undefined){
           this.setState({ dataShirt: testDataShirts })
           this.setState({ dataColor: res })
+          this.setState({ responseCharge: "Die Anfrage war erfolgreich." })
+        } else {
+          this.setState({ dataShirt: testDataShirts })
+          this.setState({ dataColor: testDataColor })
+          this.setState({ responseCharge: "Diese Chargennummer existiert nicht in der Datenbank." })
         }
         return res
       })
@@ -245,6 +252,9 @@ class MaterialManagement extends Component {
                     </Grid>
                   </Grid>
                 </div>
+
+                <h3>Bestätigung: {content = this.state.responseCharge}</h3>
+
               </div>
 
             </div>

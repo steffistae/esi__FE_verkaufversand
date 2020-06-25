@@ -128,6 +128,8 @@ class OrderManagement extends Component {
   render() {
     const { prodOrderNr } = this.state;
     let content = '';
+
+
     return (
       <>
         <div>
@@ -225,6 +227,17 @@ class OrderManagement extends Component {
                   { title: "Artikel Nr", field: "articleNumber" },
                   { title: "End Date", field: "endDate" },
                   { title: "HEX color", field: "colorHEX" },
+                  {
+                    title: "Farbcode",
+                    field: "colorCode",
+                    tooltip: "HEX-Code: #282C34",
+                    maxwidth: '10px',
+                    cellStyle: (input, rowData) => {
+                      return {
+                        backgroundColor: rowData?.colorHEX || input,
+                      };
+                    },
+                  },
                   { title: "Prod Status", field: "prodStatus" },
                   { title: "Anzahl", field: "quantity" },
                   { title: "Delta E", field: "deltaE" },

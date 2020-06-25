@@ -72,6 +72,8 @@ class ProdManagement extends Component {
             .then(data => {
                 console.log("data: " + data)
                 this.setState({ data: data })
+
+                this.confirmationPopup(data)
             })
             .catch(error => {
                 console.log(error)
@@ -137,9 +139,9 @@ class ProdManagement extends Component {
             buttons: [
                 {
                     label: 'Ja',
-                    onClick: () => {
+                    onClick: async () => {
                         console.log("User pressed yes");
-                        this.submitHandler(rowData.prodOrderNum)
+                        await this.submitHandler(rowData.prodOrderNum)
                     }
                 },
                 {
@@ -152,6 +154,21 @@ class ProdManagement extends Component {
         console.log(this.state.userInput)
     };
 
+    /** Added Popup to confirm if status shall be updated. If yes, calls POST */
+    confirmationPopup = (status) => {
+        confirmAlert({
+            title: "Auftragsstatus aktualisieren",
+            message: status,
+            buttons: [
+                {
+                    label: 'Zur Kenntniss genommen',
+                    onClick: () => {
+                    }
+                },
+            ]
+        })
+        console.log(this.state.userInput)
+    };
 
     setnewProd(event) {
         console.log(event.target.value)
@@ -185,11 +202,11 @@ class ProdManagement extends Component {
                                 <h3>Hier finden Sie eine Schritt für Schritt Anleitung, wie Sie einen produzierten Auftrag im System aktualisieren:</h3>
                                 <ol role="listitem" class="item">
                                     <li value="-" role="listitem" class="">Wenn eine Bestellung fertig produziert ist, dann klicken Sie oberhalb auf "Produktionsstatus abfragen" und anschließend über das Suchfeld rechts <Icon>search</Icon> den entsprechenden Auftrag mittels der Prod-Order-Nummer. Diese Nummer finden Sie auf dem Etikett der T-Shirts aufgedruckt.</li>
-                                    <li value="-" role="listitem" class="">Klicken Sie anschließend in der entsprechenden Zeile links auf das Aktualisierungssymbol: <Icon>update</Icon></li> 
+                                    <li value="-" role="listitem" class="">Klicken Sie anschließend in der entsprechenden Zeile links auf das Aktualisierungssymbol: <Icon>update</Icon></li>
                                     <li value="-" role="listitem" class="">Bestätigen Sie dann das sich öffnende Pop-up Fenster. Hierdurch werden der Status der Bestellung bei V&V aktualisiert und die Materialwirtschaft benachrichtigt, um die Order abzuholen.</li>
                                     <li value="-" role="listitem" class="">Sie erhalten nachfolgend eine Bestätigung der Datenbank, ob die Aktualisierung erfolgreich war.</li>
                                 </ol>
-                                
+
                             </div>
 
                             <div style={{ width: '1200px', padding: '0px', paddingLeft: '20px' }}>
