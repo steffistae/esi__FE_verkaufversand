@@ -38,7 +38,7 @@ const Dashboard = () => {
               item
               lg={3}
               sm={6}
-              xl={3}
+              xl={4}
               xs={12}
             >
               <Budget />
@@ -65,7 +65,7 @@ const Dashboard = () => {
               item
               lg={3}
               sm={6}
-              xl={3}
+              xl={4}
               xs={12}
             >
               <TasksProgress />

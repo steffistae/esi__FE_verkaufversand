@@ -41,7 +41,7 @@ export default function ProdAppBar() {
                                                 <Button component={Link} to="/prod/OrderManagement" color="inherit" title="Auftragsmanagement"><FileCopyIcon fontSize="middle"/>Auftragsmanagement</Button>
                                                 <Button component={Link} to="/prod/ProdManagement" color="inherit" title="Produktionsmanagement"><AssignmentTurnedInIcon fontSize="middle"/>Produktionsmanagement</Button>
                                                 <Button component={Link} to="/prod/MaterialManagement" color="inherit"><PaletteIcon fontSize="middle"/>Materialmanagement</Button>
-                                                <Button component={Link} to="/prod/Dashboard" color="inherit"><AssessmentIcon fontSize="middle"/>Kennzahlen</Button>
+                                                <Button href="/prod/Dashboard" color="inherit"><AssessmentIcon fontSize="middle"/>Kennzahlen</Button>
                                         </ButtonGroup>
 
                                 </Toolbar>

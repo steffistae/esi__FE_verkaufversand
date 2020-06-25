@@ -44,8 +44,8 @@ function App() {
         <Route path="/faq" component={FAQ} />
         <ThemeProvider theme={theme}>
         <Route path="/prod/Dashboard" component={Dashboard} />
-        <Route path="" component={Home} />
         </ThemeProvider>
+        <Route path="" component={Home} />
 
       </Switch>
 
