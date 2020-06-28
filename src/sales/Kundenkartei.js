@@ -71,7 +71,7 @@ class AllCustomer extends Component {
                     style={{ marginLeft: "20px", marginRight: "20px" }}
                     title="Daten aller Kunden"
                     columns={[
-                      { title: "CustomerID", field: "customerID" },
+                      { title: "Kundennummer", field: "customerID" },
                       { title: "Vorname", field: "firstName" },
                       { title: "Nachname", field: "surName" },
                       { title: "Firma", field: "company"},

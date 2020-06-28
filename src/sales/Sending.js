@@ -46,7 +46,7 @@ class Sending extends Component {
             >
               <FormControl>
                 <TextField
-                  label="Ordernummer"
+                  label="Bestellnummer"
                   type="text"
                   name="orderNr"
                   value={orderNr}
@@ -58,6 +58,8 @@ class Sending extends Component {
                   style={{ margin: "20px" }}
                   color="primary"
                   variant="contained"
+                  title="Das Label wird beim zuständigen
+                  Versanddienstleister angefordert"
                   disabled={!this.state.orderNr}
                 >
                   Label anfordern
@@ -75,9 +77,12 @@ class Sending extends Component {
                     style={{ margin: "20px" }}
                     color="primary"
                     variant="contained"
+                    title="Mit Klick auf den Button wird
+                    das Label an den Labeldrucker übermittelt
+                    und dort automatisch gedruckt"
                     onClick={() => this.printButton()}
                   >
-                    Print
+                    Drucken
                   </Button>
                 </div>
                 <div>

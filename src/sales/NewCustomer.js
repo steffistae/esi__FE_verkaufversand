@@ -109,6 +109,7 @@ class NewCustomer extends Component {
                         name="firstName"
                         value={firstName}
                         onChange={this.changeHandler}
+                        title= "Vorname des Kunden"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -118,6 +119,7 @@ class NewCustomer extends Component {
                         name="surName"
                         value={surName}
                         onChange={this.changeHandler}
+                        title="Nachname des Kunden"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -127,6 +129,7 @@ class NewCustomer extends Component {
                         name="street"
                         value={street}
                         onChange={this.changeHandler}
+                        title="Straße und Hausnummer"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -136,6 +139,7 @@ class NewCustomer extends Component {
                         name="PostCode"
                         value={PostCode}
                         onChange={this.changeHandler}
+                        title="Postleitzahl der Stadt"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -145,6 +149,7 @@ class NewCustomer extends Component {
                         name="city"
                         value={city}
                         onChange={this.changeHandler}
+                        title="Name der Stadt"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -154,6 +159,7 @@ class NewCustomer extends Component {
                         name="country"
                         value={country}
                         onChange={this.changeHandler}
+                        title="Kürzel des Landes, z.B. Deutschland = DE"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -163,6 +169,7 @@ class NewCustomer extends Component {
                         name="phone"
                         value={phone}
                         onChange={this.changeHandler}
+                        title="Telefonnummer mit Länder- und Ortsvorwahl"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -172,6 +179,7 @@ class NewCustomer extends Component {
                         name="mail"
                         value={mail}
                         onChange={this.changeHandler}
+                        title="E-Mail-Adresse des Kunden"
                       />
                     </Grid>
                     <Grid item xs={6} sm={6}>
@@ -199,6 +207,7 @@ class NewCustomer extends Component {
                         name="company"
                         value={company}
                         onChange={this.changeHandler}
+                        title="Firmenname, falls vorhanden"
                       />
                     </Grid>
                   </Grid>
@@ -207,6 +216,7 @@ class NewCustomer extends Component {
                       type="submit"
                       color="primary"
                       variant="contained"
+                      title="Kunde zur Kundendatenbank hinzufügen"
                       disabled={
                         (!this.state.firstName,
                         !this.state.surName,

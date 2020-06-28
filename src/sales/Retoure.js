@@ -36,9 +36,6 @@ class Retoure extends Component {
           });
           console.log(response);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -137,7 +134,7 @@ class Retoure extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Ordernummer*"
+                      label="Bestellnummer*"
                       type="text"
                       name="trigger"
                       value={trigger}
@@ -154,7 +151,7 @@ class Retoure extends Component {
                       color="primary"
                       disabled={!this.state.trigger}
                     >
-                      Bestellungen anzeigen
+                      Bestellpositionen anzeigen
                     </Button>
                   </div>
                 </div>
@@ -164,8 +161,8 @@ class Retoure extends Component {
                     style={{ marginLeft: "20px", marginRight: "20px" }}
                     title="Bestellpositionen"
                     columns={[
-                      { title: "ProductionOrderNr", field: "prodOrderNr" },
                       { title: "Position", field: "lineItem" },
+                      { title: "Produktionsaufragsnummer", field: "prodOrderNr" },
                       { title: "Artikelnummer", field: "articleNr" },
                       { title: "Farbcode", field: "colorCode",
                       cellStyle: (input, rowData) => {
@@ -183,12 +180,6 @@ class Retoure extends Component {
                     ]}
                     data={this.state.items}
                     actions={[
-                      /*                      {
-                        icon: "refresh",
-                        tooltip: "Refresh",
-                        isFreeAction: true,
-                        onClick: (e) => this.submitHandler(e),
-                      }, */
                       {
                         icon: "sync",
                         tooltip: "Retoure",

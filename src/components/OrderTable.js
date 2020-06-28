@@ -174,6 +174,11 @@ function Editable() {
         style={{ float: "right", margin: "20px" }}
         variant="contained"
         color="primary"
+        title="Mit Klick auf diesen Button
+        werden alle obenstehenden Positionen
+        automatisch zu einer Bestellung 
+        zusammengefasst und automatisch 
+        an die Produktion übermittelt"
       >
         Speichern & an Produktion schicken
       </Button>

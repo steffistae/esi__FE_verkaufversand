@@ -160,8 +160,8 @@ class Booking extends Component {
                   style={{ marginLeft: "20px", marginRight: "20px" }}
                   title="Versandbereite Aufträge"
                   columns={[
-                    { title: "OrderNr", field: "orderNr" },
-                    { title: "StatusID", field: "statusID" },
+                    { title: "Bestellnummer", field: "orderNr" },
+                    { title: "Status", field: "statusID" },
                     {
                       title: "Geprüft",
                       field: "tested",
@@ -172,7 +172,7 @@ class Booking extends Component {
                   actions={[
                     {
                       icon: "refresh",
-                      tooltip: "Refresh",
+                      tooltip: "Aktualisieren",
                       isFreeAction: true,
                       onClick: (e) => this.submitHandler(e),
                     },
@@ -226,7 +226,7 @@ class Booking extends Component {
                         actions={[
                           {
                             icon: "refresh",
-                            tooltip: "Refresh",
+                            tooltip: "Aktualisieren",
                             isFreeAction: true,
                             onClick: (e) => this.tabletoStock(e),
                           },
@@ -276,13 +276,16 @@ class Booking extends Component {
                           style={{ margin: "20px" }}
                           color="primary"
                           variant="contained"
+                          title="Mit Klick auf diesen Button
+                          wird die Materialwirtschaft mit der
+                          Auslagerung des Artikels beauftragt"
                           disabled={
                             (!this.state.fkmaterials,
                             !this.state.quantity,
                             !this.state.customerID)
                           }
                         >
-                          Auslagern
+                          Auslagerung anfordern
                         </Button>
                       </div>
                       <div>
