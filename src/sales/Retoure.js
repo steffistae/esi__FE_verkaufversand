@@ -13,6 +13,7 @@ class Retoure extends Component {
 
     this.state = {
       error: null,
+      answer: null,
       data: null,
       isLoaded: false,
       items: [],
@@ -70,7 +71,11 @@ class Retoure extends Component {
         data = data.answer;
         console.log(data);
         return data;
-      });
+      })
+      .then(data => {
+        this.setState({ answer: data })
+      })
+      this.submitHandler();
   }
 
   createNewOrder(rowData) {
@@ -96,7 +101,11 @@ class Retoure extends Component {
         data = data.answer;
         console.log(data);
         return data;
-      });
+      })
+      .then(data => {
+        this.setState({ answer: data })
+      })
+      this.submitHandler();
   }
 
   changeHandler = (e) => {
@@ -209,7 +218,7 @@ class Retoure extends Component {
             </form>
           </div>
           <div style={{ paddingLeft: "20px" }}>
-            <h3>Bestätigung: {(content = this.state.data)}</h3>
+            <h3>Bestätigung: {(content = this.state.answer)}</h3>
           </div>
           <FooterPage />
         </>

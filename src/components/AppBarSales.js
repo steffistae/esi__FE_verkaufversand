@@ -39,7 +39,7 @@ export default function GlobalAppBar() {
                             <Button component={Link} to="/sales/allcustomer" color="inherit">Kundenkartei</Button>
                             <Button  component={Link} to="/sales/customerrequest" color="inherit">Kundenanfrage</Button>
                             <Button  component={Link} to="/sales/status" color="inherit">Status</Button>
-                            <Button  component={Link} to="/sales/booking" color="inherit">Prüfen & Auslagern</Button>
+                            <Button  component={Link} to="/sales/booking" color="inherit">Auslagern & Prüfen</Button>
                             <Button  component={Link} to="/sales/sending" color="inherit">Versandlabel</Button>
                             <Button  component={Link} to="/sales/retoure" color="inherit">Retoure</Button>
                             <Button  component={Link} to="/sales/kpiboard" color="inherit">KPI Board</Button>

@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import FooterPage from "../components/Footer";
 import axios from "axios";
 
+var best = null;
 function Editable() {
   const { useState } = React;
   const [count, incrementCount] = useState(1);
@@ -78,7 +79,9 @@ function Editable() {
         answer = JSON.parse(answer);
         answer = answer.body.message[0];
         console.log(answer);
-        return answer;
+        best = answer;
+        console.log(best);
+        return best;
       })
       .catch((error) => {
         console.log(error);
@@ -182,9 +185,6 @@ function Editable() {
       >
         Speichern & an Produktion schicken
       </Button>
-      <div style={{ paddingLeft: "20px" }}>
-        <h3>Bestätigung: {(content = "")}</h3>
-      </div>
       <FooterPage />
     </>
   );

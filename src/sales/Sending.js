@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { FormControl } from "@material-ui/core";
 import FooterPage from '../components/Footer';
+import axios from "axios";
 
 class Sending extends Component {
   constructor(props) {
@@ -23,9 +24,10 @@ class Sending extends Component {
     this.setState({ id: true });
   };
 
-  printButton = (e) => {
-    var data = "Label wurde erfolgreich gedruckt"
-    return data
+  printButton = e => {
+    this.setState(
+      { data: "Label wurde erfolgreich gedruckt"}
+    )
   }
 
   render() {
@@ -86,7 +88,7 @@ class Sending extends Component {
                   </Button>
                 </div>
                 <div>
-                  <h3>Bestätigung: {(content = this.data)}</h3>
+                  <h3>Bestätigung: {(content = this.state.data)}</h3>
                 </div>
               </FormControl>
             </div>
