@@ -190,7 +190,7 @@ class Retoure extends Component {
                     data={this.state.items}
                     actions={[
                       {
-                        icon: "sync",
+                        icon: "repeat",
                         tooltip: "Retoure",
                         onClick: (event, rowData) =>
                           this.createRetoure(rowData),
