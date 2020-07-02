@@ -4,6 +4,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import FooterPage from "../components/Footer";
 import axios from "axios";
+import shadows from "@material-ui/core/styles/shadows";
 
 var best = null;
 function Editable() {
@@ -15,7 +16,9 @@ function Editable() {
     {
       title: "Materialnummer",
       field: "materialNr",
+      initialEditValue: "10000001",
       tooltip: "8-stellige Nummer: 10000001",
+      lookup: { 10000001: '10000001 - T-Shirt', 10000002: '10000002 - Tasse', 10000003: '10000003 - Sticker' },   
     },
     {
       title: "Farbcode",
@@ -31,6 +34,8 @@ function Editable() {
       title: "Motivnummer",
       field: "motivNr",
       tooltip: "4-stellige Nummer: 3489",
+      initialEditValue: "1111",
+      lookup: { 1111: '1111 - kein Motiv', 1112: '1112 - HS OG Logo', 1212: '1212 - YourShirt Logo', 1222: '1222 - Tierarzt Logo', 1222: '1235 - Autohaus Geiger Logo', 1335: '1335 - MAJA Fabrik Logo' , 1360: '1360 - Mercedes Stern', 1378: '1378 - Arztpraxis Schneider Logo'   },   
     },
     { title: "Anzahl", field: "quantity", type: "numeric" },
   ]);
@@ -121,11 +126,14 @@ function Editable() {
               name="tostock"
             /> Ja <br />
             <input type="radio" value={0} name="tostock" /> Nein <br />
+       
           </div>
         </div>
 
+      
+
         <MaterialTable
-          style={{ marginTop: "40px", marginLeft: "20px", marginRight: "20px" }}
+          style={{ marginTop: "40px", marginLeft: "20px", marginRight: "20px", '&&:hover': { color: 'red', boxShadow: 'none', webkitBoxShadow: 'none', mozBoxShadow: 'none', backgroundColor: 'transparent' } }}
           title="Bestellung anlegen"
           columns={columns}
           data={data}
@@ -135,6 +143,11 @@ function Editable() {
               color: "#FFFF",
             },
           }}
+          icons={{
+            Add: props => { return ( <Button variant="contained" color="primary"> <div class="mdc-button__ripple"></div>
+           <i class="material-icons mdc-button__icon" aria-hidden="true"
+             >add</i><span class="mdc-button__label"> Neues LineItem hinzufügen</span></Button> ) } 
+        }}
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve, reject) => {
