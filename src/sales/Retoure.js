@@ -44,7 +44,6 @@ class Retoure extends Component {
           });
         }
       );
-    e.preventDefault();
     console.log(this.state.trigger);
   };
 
