@@ -5,6 +5,12 @@ import TextField from "@material-ui/core/TextField";
 import FooterPage from "../components/Footer";
 import axios from "axios";
 import shadows from "@material-ui/core/styles/shadows";
+const { dropdown } = require('./dropdown.js') 
+
+
+console.log(dropdown)
+
+
 
 var best = null;
 function Editable() {
@@ -18,7 +24,7 @@ function Editable() {
       field: "materialNr",
       initialEditValue: "10000001",
       tooltip: "8-stellige Nummer: 10000001",
-      lookup: { 10000001: '10000001 - T-Shirt', 10000002: '10000002 - Tasse', 10000003: '10000003 - Sticker' },   
+      lookup: dropdown,   
     },
     {
       title: "Farbcode",
@@ -35,6 +41,7 @@ function Editable() {
       field: "motivNr",
       tooltip: "4-stellige Nummer: 3489",
       initialEditValue: "1111",
+      
       lookup: { 1111: '1111 - kein Motiv', 1112: '1112 - HS OG Logo', 1212: '1212 - YourShirt Logo', 1222: '1222 - Tierarzt Logo', 1222: '1235 - Autohaus Geiger Logo', 1335: '1335 - MAJA Fabrik Logo' , 1360: '1360 - Mercedes Stern', 1378: '1378 - Arztpraxis Schneider Logo'   },   
     },
     { title: "Anzahl", field: "quantity", type: "numeric" },
