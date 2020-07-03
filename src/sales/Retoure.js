@@ -22,8 +22,7 @@ class Retoure extends Component {
     };
   }
 
-  submitHandler = (e) => {
-    console.log(this.state.trigger);
+  lookUp() {
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getorders?orderNr=" +
@@ -43,8 +42,7 @@ class Retoure extends Component {
             error,
           });
         }
-      );
-    console.log(this.state.trigger);
+      )
   };
 
   createRetoure(rowData) {
@@ -74,7 +72,7 @@ class Retoure extends Component {
       .then(data => {
         this.setState({ answer: data })
       })
-      this.submitHandler();
+      this.lookUp();
   }
 
   createNewOrder(rowData) {
@@ -104,7 +102,7 @@ class Retoure extends Component {
       .then(data => {
         this.setState({ answer: data })
       })
-      this.submitHandler();
+      this.lookUp();
   }
 
   changeHandler = (e) => {
@@ -153,7 +151,7 @@ class Retoure extends Component {
 
                   <div>
                     <Button
-                      type="submit"
+                      onClick={() => this.lookUp()}
                       style={{ float: "left", margin: "20px" }}
                       variant="contained"
                       color="primary"

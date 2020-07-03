@@ -43,9 +43,6 @@ class Booking extends Component {
           });
           console.log(response);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -187,13 +184,13 @@ class Booking extends Component {
                     rowData => ({
                       icon: "send",
                       tooltip: "Auslagern",
-                      disabled: rowData.statusID == "5",
+                      disabled: rowData.statusID == "5" || rowData.statusID == "6",
                       onClick: (event, rowData) => this.bookingOrder(rowData),
                     }),
                     rowData => ({
                      icon: "done_all",
                       tooltip: "Prüfen",
-                      disabled: rowData.statusID == "4",
+                      disabled: rowData.statusID == "4" || rowData.statusID == "6",
                       onClick: (event, rowData) => this.checkingOrder(rowData), 
                     })
                     

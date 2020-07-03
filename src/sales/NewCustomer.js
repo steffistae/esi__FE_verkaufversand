@@ -47,6 +47,7 @@ class NewCustomer extends Component {
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addcustomer",
         this.state
       )
+      .then(console.log(this.state))
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
@@ -190,7 +191,7 @@ class NewCustomer extends Component {
                           type="radio"
                           value={true}
                           name="business"
-                          defaultChecked
+                          //defaultChecked
                         /> Ja <br />
                         <input
                           type="radio"
