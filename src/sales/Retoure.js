@@ -72,7 +72,7 @@ class Retoure extends Component {
       .then(data => {
         this.setState({ answer: data })
       })
-      this.lookUp();
+    this.lookUp();
   }
 
   createNewOrder(rowData) {
@@ -102,7 +102,7 @@ class Retoure extends Component {
       .then(data => {
         this.setState({ answer: data })
       })
-      this.lookUp();
+    this.lookUp();
   }
 
   changeHandler = (e) => {
@@ -186,6 +186,16 @@ class Retoure extends Component {
                     ]}
                     data={this.state.items}
                     actions={[
+
+                     
+                        {
+                          icon: "refresh",
+                          tooltip: "Aktualisieren",
+                          isFreeAction: true,
+                          onClick: (e) =>
+                          this.lookUp(e),
+                        },
+                      
                       {
                         icon: "repeat",
                         tooltip: "Retoure",

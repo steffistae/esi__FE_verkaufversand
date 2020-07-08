@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import FooterPage from "../components/Footer";
 import axios from "axios";
 import shadows from "@material-ui/core/styles/shadows";
-const { dropdown } = require('./dropdown.js') 
+const { dropdown } = require('./dropdown.js')
 
 
 console.log(dropdown)
@@ -24,7 +24,7 @@ function Editable() {
       field: "materialNr",
       initialEditValue: "10000001",
       tooltip: "8-stellige Nummer: 10000001",
-      lookup: dropdown,   
+      lookup: dropdown,
     },
     {
       title: "Farbcode",
@@ -41,13 +41,14 @@ function Editable() {
       field: "motivNr",
       tooltip: "4-stellige Nummer: 3489",
       initialEditValue: "1111",
-      
-      lookup: { 1111: '1111 - kein Motiv', 1112: '1112 - HS OG Logo', 1212: '1212 - YourShirt Logo', 1222: '1222 - Tierarzt Logo', 1222: '1235 - Autohaus Geiger Logo', 1335: '1335 - MAJA Fabrik Logo' , 1360: '1360 - Mercedes Stern', 1378: '1378 - Arztpraxis Schneider Logo'   },   
+
+      lookup: { 1111: '1111 - kein Motiv', 1112: '1112 - HS OG Logo', 1212: '1212 - YourShirt Logo', 1222: '1222 - Tierarzt Logo', 1222: '1235 - Autohaus Geiger Logo', 1335: '1335 - MAJA Fabrik Logo', 1360: '1360 - Mercedes Stern', 1378: '1378 - Arztpraxis Schneider Logo' },
     },
     { title: "Anzahl", field: "quantity", type: "numeric" },
   ]);
 
   const [data, setData] = useState([]);
+  const [backendResponse, setBackendResponse] = useState(null);
 
   function createOrder() {
     console.log(
@@ -86,17 +87,11 @@ function Editable() {
       )
       .then(console.log(body))
       .then((response) => {
-        console.log(response.data);
-        var answer = JSON.stringify(response.data);
-        answer = JSON.parse(answer);
-        answer = answer.body.message[0];
-        console.log(answer);
-        best = answer;
-        console.log(best);
-        return best;
+        setBackendResponse(response.data.body.message[0]);
       })
       .catch((error) => {
         console.log(error);
+        setBackendResponse(error.message);
       })
   }
   let content = "";
@@ -132,11 +127,10 @@ function Editable() {
               name="tostock"
             /> Ja <br />
             <input type="radio" value={0} name="tostock" /> Nein <br />
-       
+
           </div>
         </div>
 
-      
 
         <MaterialTable
           style={{ marginTop: "40px", marginLeft: "20px", marginRight: "20px", '&&:hover': { color: 'red', boxShadow: 'none', webkitBoxShadow: 'none', mozBoxShadow: 'none', backgroundColor: 'transparent' } }}
@@ -150,10 +144,12 @@ function Editable() {
             },
           }}
           icons={{
-            Add: props => { return ( <Button variant="contained" color="primary"> <div class="mdc-button__ripple"></div>
-           <i class="material-icons mdc-button__icon" aria-hidden="true"
-             >add</i><span class="mdc-button__label"> Neues LineItem hinzufügen</span></Button> ) } 
-        }}
+            Add: props => {
+              return (<Button variant="contained" color="primary"> <div class="mdc-button__ripple"></div>
+                <i class="material-icons mdc-button__icon" aria-hidden="true"
+                >add</i><span class="mdc-button__label"> Neues LineItem hinzufügen</span></Button>)
+            }
+          }}
           editable={{
             onRowAdd: (newData) =>
               new Promise((resolve, reject) => {
@@ -204,6 +200,15 @@ function Editable() {
       >
         Speichern & an Produktion schicken
       </Button>
+
+      <div style={{
+            display: "flex",
+            alignItems: "center",
+            paddingTop: "10px",
+            margin: "20px",
+          }}>
+        <h3>Bestätigung: {backendResponse}</h3>
+      </div>
       <FooterPage />
     </>
   );
