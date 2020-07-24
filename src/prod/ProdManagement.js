@@ -61,7 +61,7 @@ class ProdManagement extends Component {
         console.log("Sie haben diesen Auftrag erfolgreich als abgeschlossen aktualisiert: " + e)
 
         await axios
-            .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/updateprodstatus', { "prodOrderNum": e })
+            .post(process.env.REACT_APP_AMAZON_API_BASE+'/updateprodstatus', { "prodOrderNum": e })
             .then((res) => {
                 console.log(res.data)
                 var data = JSON.stringify(res.data)
@@ -95,7 +95,7 @@ class ProdManagement extends Component {
 
         if (orderStatus == 'open' || orderStatus == 'planned' || orderStatus == 'produced') {
             axios
-                .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/readorderinfo', { "orderStatus": orderStatus })
+                .post(process.env.REACT_APP_AMAZON_API_BASE+'/readorderinfo', { "orderStatus": orderStatus })
                 .then((res) => {
                     var data = JSON.stringify(res.data)
                     data = JSON.parse(data)
@@ -112,7 +112,7 @@ class ProdManagement extends Component {
                 })
         } else {
             axios
-                .get('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/readorderinfo')
+                .get(process.env.REACT_APP_AMAZON_API_BASE+'/readorderinfo')
                 .then((res) => {
                     var data = JSON.stringify(res.data)
                     data = JSON.parse(data)

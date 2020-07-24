@@ -58,7 +58,7 @@ class OrderManagement extends Component {
 
     console.log(body)
     await axios
-      .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', body)
+      .post(process.env.REACT_APP_AMAZON_API_BASE+'/sortOrders', body)
       // .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', { crossdomain: true }, body)
       .then((res) => {
         console.log(res.data)
@@ -86,7 +86,7 @@ class OrderManagement extends Component {
     )
 
     axios
-      .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/readorderinfo', { "orderStatus": 'open' })
+      .post(process.env.REACT_APP_AMAZON_API_BASE+'/readorderinfo', { "orderStatus": 'open' })
       .then((res) => {
         var data = JSON.stringify(res.data)
         data = JSON.parse(data)

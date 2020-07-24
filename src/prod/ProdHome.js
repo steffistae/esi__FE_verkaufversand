@@ -38,7 +38,7 @@ class ProdHome extends Component {
             }
         )
         axios
-            .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/sortOrders', { crossdomain: true })
+            .post(process.env.REACT_APP_AMAZON_API_BASE+'/sortOrders', { crossdomain: true })
             .then((res) => {
                 console.log(res.data)
                 var data = JSON.stringify(res.data)

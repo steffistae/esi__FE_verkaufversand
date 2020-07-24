@@ -95,7 +95,7 @@ class MaterialManagement extends Component {
       "chargesNum": this.state.chargennummer
     }
     axios
-      .post('https://2pkivl4tnh.execute-api.eu-central-1.amazonaws.com/prod/addQualityValue', data)
+      .post(process.env.REACT_APP_AMAZON_API_BASE+'/addQualityValue', data)
       .then((res) => {
 
         var res = JSON.stringify(res.data)
