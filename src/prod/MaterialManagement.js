@@ -123,14 +123,9 @@ class MaterialManagement extends Component {
       })
   }
 
-  setnewProd(event) {
-    console.log(event.target.value)
-  }
-
   render() {
     const { chargennummer } = this.state;
     let content = '';
-
 
     return (
       <>

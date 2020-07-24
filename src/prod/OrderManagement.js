@@ -10,11 +10,7 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 
 import MaterialTable from "material-table";
 
-import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
-
-import Icon from '@material-ui/core/Icon';
-import GetAppIcon from '@material-ui/icons/GetApp';
 
 class OrderManagement extends Component {
   constructor(props) {
@@ -33,17 +29,7 @@ class OrderManagement extends Component {
     this.submitHandlerGetStatus()
   }
 
-  changeHandler = e => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
-
   submitHandler = async (e) => {
-    var test = {
-      "key1": "value1",
-      "key2": "value2",
-      "key3": "value3",
-    };
-
     e.preventDefault()
     console.log(this.state)
     this.setState(
@@ -81,9 +67,6 @@ class OrderManagement extends Component {
       e.preventDefault();
     }
     console.log(this.state)
-    this.setState(
-      { newProd: true }
-    )
 
     axios
       .post(process.env.REACT_APP_AMAZON_API_BASE+'/readorderinfo', { "orderStatus": 'open' })
@@ -126,9 +109,7 @@ class OrderManagement extends Component {
   };
 
   render() {
-    const { prodOrderNr } = this.state;
     let content = '';
-
 
     return (
       <>
