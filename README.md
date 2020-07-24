@@ -21,8 +21,8 @@ What things you need to install the software and how to install them
 In the project directory, you can run:
 
 ### How to install and start the App with NPM
-When the folder is downloaded and unziped make sure to run ####'npm install' in the directory first, to download all dependencies and node modules needed for the framework. This has to be done every time you add or modify the package.json file.
-Afterwards, run ####'npm start' to start the app locally under http://localhost:3000
+When the folder is downloaded and unziped make sure to run `npm install` in the directory first, to download all dependencies and node modules needed for the framework. This has to be done every time you add or modify the package.json file.
+Afterwards, run `npm start` to start the app locally under http://localhost:3000
 
 Here are some useful informations regarding the react documentation:
 
