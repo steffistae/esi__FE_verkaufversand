@@ -2,11 +2,14 @@
 
 This project deals with the digitalisation and automation of a fictitious medium-sized production company and has the goal to improve processes and transparency for the customer (company).
 
+## Demo Video of the Prototype
+![Demo Video of Prototype](demo/ReactApp_ESI_GIF_2020.gif)
+
 This repository is meant for a clean versioning and development of the frontend functionalities. It is developt in combination with the repository "ESI_PROD_2020_Lambda" which includes the backend parts (Lambda functions) corresponding to this frontend webapp.
 Here you see an overview of the services and how they play together:
 
 ![Architecture](demo/Service_Architecture_ESI_2020.PNG)
-![Demo Video of Prototype](demo/ReactApp_ESI_GIF_2020.gif)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
