@@ -18,9 +18,6 @@ import Dashboard from './prod/Dashboard/Dashboard.js';
 import KPIBoard from './sales/KPIBoard';
 import FAQ from './FAQ';
 
-import { ThemeProvider } from '@material-ui/styles';
-import theme from './theme';
-
 function App() {
   return (
     <>
@@ -41,11 +38,9 @@ function App() {
         <Route path="/prod/MaterialManagement" component={MaterialManagement} />
         <Route path="/prod/ProdManagement" component={ProdManagement} />
         <Route path="/prod/OrderManagement" component={OrderManagement} />
-        <Route path="/faq" component={FAQ} />
-        <ThemeProvider theme={theme}>
         <Route path="/prod/Dashboard" component={Dashboard} />
-        </ThemeProvider>
-        <Route path="" component={Home} />
+        <Route path="/faq" component={FAQ} />
+        <Route path="/" component={Home} />
 
       </Switch>
 
