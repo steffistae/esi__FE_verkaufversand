@@ -12,49 +12,10 @@ class ProdHome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
-            name: this.props.filename ? this.props.filename : 'data',
-            url: '',
-            status: '',
         };
-    }
-
-    changeHandler = e => {
-        this.setState({ [e.target.name]: e.target.value })
     }
 
     submitHandler = e => {
-        var test = {
-            "key1": "value1",
-            "key2": "value2",
-            "key3": "value3",
-        };
-
-        e.preventDefault()
-        console.log(this.state)
-        this.setState(
-            {
-                newProd: true,
-            }
-        )
-        axios
-            .post(process.env.REACT_APP_AMAZON_API_BASE+'/sortOrders', { crossdomain: true })
-            .then((res) => {
-                console.log(res.data)
-                var data = JSON.stringify(res.data)
-                data = JSON.parse(data)
-                return data
-            })
-            .then(data => {
-                this.setState({ url: data.body.url, status: data.body.status })
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-
-    setnewProd(event) {
-        console.log(event.target.value)
     }
 
     render() {
@@ -64,8 +25,6 @@ class ProdHome extends Component {
             <>
                 <div>
                     <div><ProdAppBar /></div>
-
-                    <form onSubmit={this.submitHandler}>
 
                         <div style={{ padding: '20px', paddingLeft: '30px' }} ><h1>Willkommen auf der Produktionsseite! </h1>
 
@@ -150,7 +109,6 @@ class ProdHome extends Component {
                             </div>
 
                         </div>
-                    </form>
                 </div>
                 <FooterPage />
             </>
