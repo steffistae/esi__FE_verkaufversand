@@ -5,8 +5,8 @@ This project deals with the digitalisation and automation of a fictitious medium
 This repository is meant for a clean versioning and development of the frontend functionalities. It is developt in combination with the repository "ESI_PROD_2020_Lambda" which includes the backend parts (Lambda functions) corresponding to this frontend webapp.
 Here you see an overview of the services and how they play together:
 
-![Architecture](demo/Service_Architecture_ESI_2020.png)
-![Demo Video of Prototype](demo/ReactApp_ESI_GIF_2020.gif)
+![Architecture](demo/Service_Architecture_ESI_2020.PNG)
+![Demo Video of Prototype](demo/ReactApp_ESI_GIF_2020.GIF)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
