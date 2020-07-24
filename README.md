@@ -6,7 +6,7 @@ This repository is meant for a clean versioning and development of the frontend 
 Here you see an overview of the services and how they play together:
 
 ![Architecture](demo/Service_Architecture_ESI_2020.PNG)
-![Demo Video of Prototype](demo/ReactApp_ESI_GIF_2020.GIF)
+![Demo Video of Prototype](demo/ReactApp_ESI_GIF_2020.gif)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
