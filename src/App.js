@@ -19,6 +19,8 @@ import KPIBoard from './sales/KPIBoard';
 import FAQ from './FAQ';
 
 function App() {
+  const baseUrl = process.env.PUBLIC_URL; // will be /hypercomp
+  
   return (
     <>
 
@@ -34,6 +36,7 @@ function App() {
         <Route path="/sales/retoure" component={Retoure} />
         <Route path="/sales/sending" component={Sending} />
         <Route path="/sales/kpiboard" component={KPIBoard} />
+
         <Route path="/prod/ProdHome" component={ProdHome} />
         <Route path="/prod/MaterialManagement" component={MaterialManagement} />
         <Route path="/prod/ProdManagement" component={ProdManagement} />
