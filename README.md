@@ -79,7 +79,7 @@ Team Production
 Team Sales
 * **Benedikt M.** - *Initial work*
 * **Tizian D.** - *Initial work*
-* **Steffanie S.** - *Initial work*
+* **Stefanie S.** - *Initial work*
 
 ## Acknowledgments
 
