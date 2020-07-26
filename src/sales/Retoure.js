@@ -13,6 +13,7 @@ class Retoure extends Component {
 
     this.state = {
       error: null,
+      answer: null,
       data: null,
       isLoaded: false,
       items: [],
@@ -21,8 +22,7 @@ class Retoure extends Component {
     };
   }
 
-  submitHandler = (e) => {
-    console.log(this.state.trigger);
+  lookUp() {
     axios
       .get(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/getorders?orderNr=" +
@@ -36,26 +36,26 @@ class Retoure extends Component {
           });
           console.log(response);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
             error,
           });
         }
-      );
-    e.preventDefault();
-    console.log(this.state.trigger);
+      )
   };
 
   createRetoure(rowData) {
     //ohne Neuproduktion
-    rowData.newProd = false;
     var body = rowData;
     console.log(body);
+    let i;
+    for (i in body)
+    {
+        body[i].newProd=false;
+    }
     body = JSON.stringify({ body });
+    console.log(body)
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
@@ -68,15 +68,24 @@ class Retoure extends Component {
         data = data.answer;
         console.log(data);
         return data;
-      });
+      })
+      .then(data => {
+        this.setState({ answer: data })
+      })
+    this.lookUp();
   }
 
   createNewOrder(rowData) {
     //mit Neuproduktion
-    rowData.newProd = true;
     var body = rowData;
     console.log(body);
+    let i;
+    for (i in body)
+    {
+        body[i].newProd=true;
+    }
     body = JSON.stringify({ body });
+    console.log(body)
     axios
       .post(
         "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/addretour",
@@ -89,7 +98,11 @@ class Retoure extends Component {
         data = data.answer;
         console.log(data);
         return data;
-      });
+      })
+      .then(data => {
+        this.setState({ answer: data })
+      })
+    this.lookUp();
   }
 
   changeHandler = (e) => {
@@ -127,7 +140,7 @@ class Retoure extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Ordernummer*"
+                      label="Bestellnummer*"
                       type="text"
                       name="trigger"
                       value={trigger}
@@ -138,13 +151,13 @@ class Retoure extends Component {
 
                   <div>
                     <Button
-                      type="submit"
+                      onClick={() => this.lookUp()}
                       style={{ float: "left", margin: "20px" }}
                       variant="contained"
                       color="primary"
                       disabled={!this.state.trigger}
                     >
-                      Bestellungen anzeigen
+                      Bestellpositionen anzeigen
                     </Button>
                   </div>
                 </div>
@@ -154,11 +167,17 @@ class Retoure extends Component {
                     style={{ marginLeft: "20px", marginRight: "20px" }}
                     title="Bestellpositionen"
                     columns={[
-                      { title: "ProductionOrderNr", field: "prodOrderNr" },
                       { title: "Position", field: "lineItem" },
+                      { title: "Produktionsaufragsnummer", field: "prodOrderNr" },
                       { title: "Artikelnummer", field: "articleNr" },
+                      { title: "Farbcode", field: "colorCode",
+                      cellStyle: (input, rowData) => {
+                        return {
+                          backgroundColor: rowData?.colorCode || input,
+                        };
+                      },
+                    },
                       { title: "Menge", field: "quantity" },
-                      { title: "Mangel", field: "lack", editable: "onUpdate" },
                       {
                         title: "Preis (€)",
                         field: "price",
@@ -167,14 +186,18 @@ class Retoure extends Component {
                     ]}
                     data={this.state.items}
                     actions={[
-                      /*                      {
-                        icon: "refresh",
-                        tooltip: "Refresh",
-                        isFreeAction: true,
-                        onClick: (e) => this.submitHandler(e),
-                      }, */
+
+                     
+                        {
+                          icon: "refresh",
+                          tooltip: "Aktualisieren",
+                          isFreeAction: true,
+                          onClick: (e) =>
+                          this.lookUp(e),
+                        },
+                      
                       {
-                        icon: "sync",
+                        icon: "repeat",
                         tooltip: "Retoure",
                         onClick: (event, rowData) =>
                           this.createRetoure(rowData),
@@ -202,7 +225,7 @@ class Retoure extends Component {
             </form>
           </div>
           <div style={{ paddingLeft: "20px" }}>
-            <h3>Bestätigung: {(content = this.state.data)}</h3>
+            <h3>Bestätigung: {(content = this.state.answer)}</h3>
           </div>
           <FooterPage />
         </>

@@ -29,9 +29,6 @@ class AllCustomer extends Component {
             items: response.data.body,
           });
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -74,7 +71,7 @@ class AllCustomer extends Component {
                     style={{ marginLeft: "20px", marginRight: "20px" }}
                     title="Daten aller Kunden"
                     columns={[
-                      { title: "CustomerID", field: "customerID" },
+                      { title: "Kundennummer", field: "customerID" },
                       { title: "Vorname", field: "firstName" },
                       { title: "Nachname", field: "surName" },
                       { title: "Firma", field: "company"},
@@ -89,7 +86,7 @@ class AllCustomer extends Component {
                     actions={[
                       {
                         icon: "refresh",
-                        tooltip: "Refresh",
+                        tooltip: "Aktualisieren",
                         isFreeAction: true,
                         onClick: (e) =>
                         this.submitHandler(e),

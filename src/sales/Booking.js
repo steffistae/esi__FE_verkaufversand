@@ -21,6 +21,7 @@ class Booking extends Component {
       quantity: "",
       customerID: "",
       data: null,
+      answer: null,
     };
     this.submitHandler();
     this.tabletoStock();
@@ -42,9 +43,6 @@ class Booking extends Component {
           });
           console.log(response);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           this.setState({
             isLoaded: true,
@@ -70,37 +68,50 @@ class Booking extends Component {
   bookingMaWi() {
     const data = [
       {
-        fkmaterials: this.state.fkmaterials,
-        quantity: this.state.quantity,
-        customerID: this.state.customerID,
+        fkmaterials: parseInt(this.state.fkmaterials),
+        quantity: parseInt(this.state.quantity),
+        customerID: parseInt(this.state.customerID),
       },
     ];
 
     console.log({ data });
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", { data }) //URL anpassen
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/postbooking",
+        { data }
+      ) 
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.ans;
         console.log(data);
         return data;
-      });
+      })
+      .then(data => {
+        this.setState({ answer: data })
+      })
   }
 
   bookingOrder(rowData) {
     console.log(rowData);
     axios
-      .post("https://jsonplaceholder.typicode.com/posts", rowData) //URL anpassen
+      .post(
+        "https://5club7wre8.execute-api.eu-central-1.amazonaws.com/sales/postbooking",
+        rowData
+      )
       .then((res) => {
         console.log(res.data);
         var data = JSON.stringify(res.data);
         data = JSON.parse(data);
-        data = data.message;
+        data = data.ans;
         console.log(data);
         return data;
-      });
+      })
+      .then(data => {
+        this.setState({ answer: data })
+      })
+    this.submitHandler();
   }
 
   checkingOrder(rowData) {
@@ -118,7 +129,7 @@ class Booking extends Component {
   }
 
   render() {
-    const {fkmaterials, quantity, customerID } = this.state;
+    const { fkmaterials, quantity, customerID } = this.state;
     let content = "";
     return (
       <>
@@ -138,7 +149,7 @@ class Booking extends Component {
                 paddingRight: "20px",
               }}
             >
-              <h2>Prüfen und Auslagern</h2>
+              <h2>Auslagern und Prüfen</h2>
             </div>
             <div style={{ maxWidth: "100%" }}>
               <div
@@ -154,32 +165,35 @@ class Booking extends Component {
                   style={{ marginLeft: "20px", marginRight: "20px" }}
                   title="Versandbereite Aufträge"
                   columns={[
-                    { title: "OrderNr", field: "orderNr" },
-                    { title: "StatusID", field: "statusID" },
+                    { title: "Bestellnummer", field: "orderNr" },
+                    { title: "Status", field: "statusID", lookup: {4: "Bestellung versandbereit", 5: "Bestellung ausgebucht"} },
                     {
                       title: "Geprüft",
                       field: "tested",
-                      lookup: { false: false, 0: false, true: true, 1: true },
+                      lookup: { false: "nein", 0: "nein", null: "nein", true: "ja", 1: "ja" },
                     },
                   ]}
                   data={this.state.items}
                   actions={[
                     {
                       icon: "refresh",
-                      tooltip: "Refresh",
+                      tooltip: "Aktualisieren",
                       isFreeAction: true,
                       onClick: (e) => this.submitHandler(e),
                     },
-                    {
-                      icon: "done_all",
-                      tooltip: "Prüfen",
-                      onClick: (event, rowData) => this.checkingOrder(rowData),
-                    },
-                    {
+                    rowData => ({
                       icon: "send",
                       tooltip: "Auslagern",
+                      disabled: rowData.statusID == "5" || rowData.statusID == "6",
                       onClick: (event, rowData) => this.bookingOrder(rowData),
-                    },
+                    }),
+                    rowData => ({
+                     icon: "done_all",
+                      tooltip: "Prüfen",
+                      disabled: rowData.statusID == "4" || rowData.statusID == "6",
+                      onClick: (event, rowData) => this.checkingOrder(rowData), 
+                    })
+                    
                   ]}
                   options={{
                     headerStyle: {
@@ -205,14 +219,22 @@ class Booking extends Component {
                           { title: "Artikelnummer", field: "articleNr" },
                           { title: "Menge", field: "quantity" },
                           { title: "Materialnummer", field: "materialNr" },
-                          { title: "Farbcode", field: "colorCode" },
+                          {
+                            title: "Farbcode",
+                            field: "colorCode",
+                            cellStyle: (input, rowData) => {
+                              return {
+                                backgroundColor: rowData?.colorCode || input,
+                              };
+                            },
+                          },
                           { title: "Motivnummer", field: "motivNr" },
                         ]}
                         data={this.state.material}
                         actions={[
                           {
                             icon: "refresh",
-                            tooltip: "Refresh",
+                            tooltip: "Aktualisieren",
                             isFreeAction: true,
                             onClick: (e) => this.tabletoStock(e),
                           },
@@ -223,7 +245,6 @@ class Booking extends Component {
                             color: "#FFFF",
                           },
                         }}
-
                       />
 
                       <div
@@ -263,17 +284,20 @@ class Booking extends Component {
                           style={{ margin: "20px" }}
                           color="primary"
                           variant="contained"
+                          title="Mit Klick auf diesen Button
+                          wird die Materialwirtschaft mit der
+                          Auslagerung des Artikels beauftragt"
                           disabled={
                             (!this.state.fkmaterials,
                             !this.state.quantity,
                             !this.state.customerID)
                           }
                         >
-                          Auslagern
+                          Auslagerung anfordern
                         </Button>
                       </div>
                       <div>
-                        <h3>Bestätigung: {(content = this.state.data)}</h3>
+                        <h3>Bestätigung: {(content = this.state.answer)}</h3>
                       </div>
                     </form>
                   </div>

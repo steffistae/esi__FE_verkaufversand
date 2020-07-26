@@ -79,7 +79,7 @@ class Status extends Component {
                 >
                   <form noValidate autoComplete="off">
                     <TextField
-                      label="Status ID*"
+                      label="Status*"
                       type="number"
                       name="trigger"
                       value={trigger}
@@ -97,7 +97,7 @@ class Status extends Component {
                       color="primary"
                       disabled={!this.state.trigger}
                     >
-                      Prüfen
+                      Status abfragen
                     </Button>
                   </div>
                 </div>
@@ -107,17 +107,23 @@ class Status extends Component {
                     style={{ marginLeft: "20px", marginRight: "20px" }}
                     title="Status der aktuellen Aufträge"
                     columns={[
-                      { title: "ProductionOrderNr", field: "prodOrderNr" },
+                      { title: "Produktionsauftragsnummer", field: "prodOrderNr" },
                       {
-                        title: "OrderNr",
+                        title: "Bestellnummer",
                         field: "orderNr",
                       },
-                      { title: "StatusID", field: "statusID" },
+                      { title: "Status", field: "statusID" },
                       {
-                        title: "StatusDescription",
+                        title: "Statusbeschreibung",
                         field: "Statusdescription",
                       },
-                      { title: "Farbcode", field: "colorCode" },
+                      { title: "Farbcode", field: "colorCode",
+                      cellStyle: (input, rowData) => {
+                        return {
+                          backgroundColor: rowData?.colorCode || input,
+                        };
+                      },
+                    },
                       { title: "Anzahl", field: "quantity" },
                       { title: "Motiv", field: "motivNr" },
                     ]}
@@ -125,7 +131,7 @@ class Status extends Component {
                     actions={[
                       {
                         icon: "refresh",
-                        tooltip: "Refresh",
+                        tooltip: "Aktualisieren",
                         isFreeAction: true,
                         onClick: (e) => this.submitHandler(e),
                       },

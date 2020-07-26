@@ -150,7 +150,7 @@ class KPIBoard extends Component {
                       color="textSecondary"
                       component="p"
                     >
-                      Bestellugen im Status 1: {<br></br>} "Bestellung
+                      (Teil-)Bestellungen im Status 1: {<br></br>} "Bestellung
                       eingegangen"
                     </Typography>
                   </CardContent>
@@ -166,7 +166,7 @@ class KPIBoard extends Component {
                       color="textSecondary"
                       component="p"
                     >
-                      Bestellugen im Status 2: {<br></br>} "In Produktion"
+                      (Teil-)Bestellungen im Status 2: {<br></br>} "In Produktion"
                     </Typography>
                   </CardContent>
                 </Card>
@@ -181,7 +181,7 @@ class KPIBoard extends Component {
                       color="textSecondary"
                       component="p"
                     >
-                      Bestellugen im Status 3: {<br></br>} "Produktion
+                      (Teil-)Bestellungen im Status 3: {<br></br>} "Produktion
                       abgeschlossen"
                     </Typography>
                   </CardContent>
@@ -197,7 +197,7 @@ class KPIBoard extends Component {
                       color="textSecondary"
                       component="p"
                     >
-                      Bestellugen im Status 4: {<br></br>} "Bestellung
+                      (Teil-)Bestellungen im Status 4: {<br></br>} "Bestellung
                       versandbereit"
                     </Typography>
                   </CardContent>
@@ -213,13 +213,13 @@ class KPIBoard extends Component {
                       color="textSecondary"
                       component="p"
                     >
-                      Bestellugen im Status 5: {<br></br>} "Bestellung
+                      (Teil-)Bestellungen im Status 5: {<br></br>} "Bestellung
                       ausgebucht" {<br></br>}
                     </Typography>
                   </CardContent>
                 </Card>
 
-                <Card style={{ margin: "20px", width: "450px" }}>
+                <Card style={{ margin: "20px", width: "400px" }}>
                   <CardContent>
                     <Typography gutterBottom variant="h3" component="h3">
                       {(content = this.state.items.allOrdersinstatusId6)}
@@ -229,7 +229,7 @@ class KPIBoard extends Component {
                       color="textSecondary"
                       component="p"
                     >
-                      Bestellugen im Status 6: {<br></br>} "Bestellung geprüft &
+                      (Teil-)Bestellungen im Status 6: {<br></br>} "Bestellung geprüft &
                       versandbereit"
                     </Typography>
                   </CardContent>
