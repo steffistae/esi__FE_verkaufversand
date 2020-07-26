@@ -71,8 +71,15 @@ This is a prototype state!
 
 ## Authors
 
-* **Alex Sperka** - *Initial work*
+Team Production
+* **Alex S.** - *Initial work*
+* **Sherlin M.** - *Initial work*
+* **Achim P.** - *Initial work*
 
+Team Sales
+* **Benedikt M.** - *Initial work*
+* **Tizian D.** - *Initial work*
+* **Steffanie S.** - *Initial work*
 
 ## Acknowledgments
 
